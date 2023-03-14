@@ -6,7 +6,7 @@
     @click="handleClick"
     class="btn"
     :class="[
-      { 'animation-on-hover': animationOnHover},
+      { 'hvr-shutter-out-horizontal': shutterOutHorizontal},
       { 'btn-round': round },
       { 'btn-block': block },
       { 'btn-icon btn-fab': icon },
@@ -36,7 +36,7 @@ export default {
         return ["button", "a"].includes(value);        
       }
     },
-    animationOnHover: {
+    shutterOutHorizontal: {
       type: String,
       default: "",
     },

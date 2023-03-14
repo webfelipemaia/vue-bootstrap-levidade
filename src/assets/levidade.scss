@@ -74,3 +74,12 @@
 
 
 // Levidade custom files
+
+$primaryColor: $primary !default;
+$secondaryColor: $secondary !default;
+$highlightColor: $gray-400 !default;
+
+// Plugins
+//@import "/node_modules/hover.css/css/hover.css"
+@import "hovercss/scss/hover.scss";
+@import "custom/hovercss/hover.scss";
