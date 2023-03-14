@@ -1,11 +1,12 @@
 <template>
   <component
     :is="tag"
-    :type="tag === 'button' ? nativeType : ''"
-    :disabled="disabled || loading"
+    :type="(tag !== 'button' || tag ==='input') ? undefined : nativeType"
+    :disabled="(disabled || loading) ? true : undefined"
     @click="handleClick"
     class="btn"
     :class="[
+      { 'animation-on-hover': animationOnHover},
       { 'btn-round': round },
       { 'btn-block': block },
       { 'btn-icon btn-fab': icon },
@@ -31,6 +32,13 @@ export default {
     tag: {
       type: String,
       default: "button",
+      validator(value) {
+        return ["button", "a"].includes(value);        
+      }
+    },
+    animationOnHover: {
+      type: String,
+      default: "",
     },
     round: Boolean,
     icon: Boolean,
@@ -39,7 +47,7 @@ export default {
     loading: Boolean,
     type: {
       type: String,
-      default: "default",
+      default: "",
     },
     nativeType: {
       type: String,

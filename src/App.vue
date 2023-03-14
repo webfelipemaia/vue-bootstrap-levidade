@@ -1,6 +1,7 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <LeveButton class="btn-primary">Teste</LeveButton>
+  <LeveButton type="primary">Teste</LeveButton>
+  <LeveButton type="primary" class="animation-on-hover">Teste</LeveButton>
   <HelloWorld msg="Welcome to Your Vue.js App"/>
 </template>
 
