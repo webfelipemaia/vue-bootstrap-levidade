@@ -1,0 +1,15 @@
+//
+// Base styles
+//
+
+.btn {
+
+  // Force a margin below the button
+  &.#{$nameSpace}-shadow,
+  &.#{$nameSpace}-grow,
+  &.#{$nameSpace}-grow-shadow,
+  &.#{$nameSpace}-float-shadow {
+    margin-bottom: 0.5rem !important;
+  }
+  
+}

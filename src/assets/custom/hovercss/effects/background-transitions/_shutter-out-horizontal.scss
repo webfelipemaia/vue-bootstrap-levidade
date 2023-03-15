@@ -16,7 +16,7 @@
 		bottom: 0;
 		left: 0;
 		right: 0;
-		background: $activeColor;
+		background: darken($colorValue,5%);
 		@include border-radius(var(--#{$prefix}btn-border-radius));
 		@include prefixed(transform, scaleX(0));
 		@include prefixed(transform-origin, 50%);
@@ -36,9 +36,25 @@
 	}
 
 	&:hover {
-		color: var(--#{$prefix}btn-hover-color);
+		color: #ffffff;
 		text-decoration: if($link-hover-decoration == underline, none, null);
-		background-color: var(--#{$prefix}btn-hover-bg);
-		border-color: var(--#{$prefix}btn-hover-border-color);
+		background-color: $colorValue;
+		border-color: darken($colorValue,5%);
 	  }
+
+	  .btn-check:checked + &,
+	  :not(.btn-check) + &:active,
+	  &:first-child:active,
+	  &.active,
+	  &.show{
+		color: #ffffff;
+		background: darken($colorValue,10%);
+		border: darken($colorValue,10%);
+	}	  
+
+	&:focus-visible  {
+		background: darken($colorValue,10%);
+		border: darken($colorValue,10%);
+	}	  
+
 }

@@ -72,14 +72,10 @@
 @import "bootstrap/scss/utilities/api";
 // scss-docs-end import-stack
 
-
-// Levidade custom files
-
-$primaryColor: $primary !default;
-$secondaryColor: $secondary !default;
-$highlightColor: $gray-400 !default;
-
-// Plugins
-//@import "/node_modules/hover.css/css/hover.css"
+// Hover.css plugin
 @import "hovercss/scss/hover.scss";
 @import "custom/hovercss/hover.scss";
+
+
+// Levidade custom files
+@import "custom/bootstrap/buttons"

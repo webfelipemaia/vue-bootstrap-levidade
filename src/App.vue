@@ -1,10 +1,10 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
   <div class="d-flex flex-column mb-3">
-    <LeveButton type="primary">Teste</LeveButton>
-    <LeveButton type="primary" class="hvr-shutter-out-horizontal-secondary">Teste</LeveButton>
-    <LeveButton type="button" class="btn btn-primary">Primary</LeveButton>
-    <LeveButton type="button" class="btn btn-secondary">Secondary</LeveButton>
+    <LeveButton type="primary" class="hvr-shadow">Shadow</LeveButton>
+    <LeveButton type="secondary" class="hvr-grow">Grow</LeveButton>
+    <LeveButton type="primary" class="hvr-float-shadow">Float Shadow</LeveButton>
+    <LeveButton type="primary" class="hvr-grow-shadow">Grow Shadow</LeveButton>
     <LeveButton type="button" class="btn btn-success">Success</LeveButton>
     <LeveButton type="button" class="btn btn-danger">Danger</LeveButton>
     <LeveButton type="button" class="btn btn-warning">Warning</LeveButton>

@@ -1,19 +1,7 @@
 // 2D Transitions
 
 
-
 // Background Transitions
-
-@import "effects/background-transitions/shutter-out-horizontal";
-
-// $theme-colors Gets colors defined by Bootstrap or custom in theme
-@if $includeClasses {
-	@each $colorName, $colorValue in $theme-colors {
-		.#{$nameSpace}-shutter-out-horizontal-#{$colorName} {
-			@include shutter-out-horizontal(#{$colorValue});
-		}
-	}
-}
 
 
 // Icons
@@ -24,6 +12,13 @@
 
 // Border Transitions
 
+
+//Shadow and Glow Transitions
+
+@import "effects/shadow-and-glow-transitions/float-shadow";
+@import "effects/shadow-and-glow-transitions/glow";
+@import "effects/shadow-and-glow-transitions/grow-shadow";
+@import "effects/shadow-and-glow-transitions/shadow";
 
 // Speech Bubbles
 
