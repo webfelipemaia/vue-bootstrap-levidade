@@ -1,8 +1,8 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
   <div class="d-flex flex-column mb-3">
-    <LeveButton type="primary" class="hvr-shadow">Shadow</LeveButton>
-    <LeveButton type="secondary" class="hvr-grow">Grow</LeveButton>
+    <LeveButton type="button" round class="hvr-shadow">Shadow</LeveButton>
+    <!-- <LeveButton type="secondary" class="hvr-grow">Grow</LeveButton>
     <LeveButton type="primary" class="hvr-float-shadow">Float Shadow</LeveButton>
     <LeveButton type="primary" class="hvr-grow-shadow">Grow Shadow</LeveButton>
     <LeveButton type="button" class="btn btn-success">Success</LeveButton>
@@ -11,7 +11,7 @@
     <LeveButton type="button" class="btn btn-info">Info</LeveButton>
     <LeveButton type="button" class="btn btn-light">Light</LeveButton>
     <LeveButton type="button" class="btn btn-dark">Dark</LeveButton>
-    <LeveButton type="button" class="btn btn-link">Link</LeveButton>
+    <LeveButton type="button" class="btn btn-link">Link</LeveButton> -->
   </div>
 
 </template>
