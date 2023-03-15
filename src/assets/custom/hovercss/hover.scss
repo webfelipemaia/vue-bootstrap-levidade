@@ -6,7 +6,7 @@
 
 @import "effects/background-transitions/shutter-out-horizontal";
 
-// $theme-colors Gets colors defined by bootstrap or custom in theme
+// $theme-colors Gets colors defined by Bootstrap or custom in theme
 @if $includeClasses {
 	@each $colorName, $colorValue in $theme-colors {
 		.#{$nameSpace}-shutter-out-horizontal-#{$colorName} {

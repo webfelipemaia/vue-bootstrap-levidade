@@ -3,6 +3,8 @@
 	@include hacks();
 	position: relative;
 	background: $colorValue;
+	border: var(--#{$prefix}btn-border-width) solid $colorValue;
+	@include border-radius(var(--#{$prefix}btn-border-radius));
 	@include prefixed(transition-property, color);
 	@include prefixed(transition-duration, $mediumDuration);
 
@@ -15,6 +17,7 @@
 		left: 0;
 		right: 0;
 		background: $activeColor;
+		@include border-radius(var(--#{$prefix}btn-border-radius));
 		@include prefixed(transform, scaleX(0));
 		@include prefixed(transform-origin, 50%);
 		@include prefixed(transition-property, transform);
@@ -31,4 +34,11 @@
 			@include prefixed(transform, scaleX(1));
 		}
 	}
+
+	&:hover {
+		color: var(--#{$prefix}btn-hover-color);
+		text-decoration: if($link-hover-decoration == underline, none, null);
+		background-color: var(--#{$prefix}btn-hover-bg);
+		border-color: var(--#{$prefix}btn-hover-border-color);
+	  }
 }
