@@ -6,22 +6,23 @@
     @click="handleClick"
     class="btn"
     :class="[
-      { 'hvr-shutter-out-horizontal': shutterOutHorizontal},
-      { 'btn-round': round },
-      { 'btn-block': block },
-      { 'btn-icon btn-fab': icon },
+      { [`btn-outline-${outline}`]: outline },
       { [`btn-${type}`]: type },
       { [`btn-${size}`]: size },
-      { 'btn-simple': simple },
       { 'btn-link': link },
       { disabled: disabled && tag !== 'button' },
     ]"
   >
-    <slot name="loading">
-      <i v-if="loading" class="fas fa-spinner fa-spin"></i>
+    <slot v-if="loading" name="loading">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    </slot>
+
+    <slot v-if="icon" name="icon">
+      <i class="bi" :class="[{ [`bi-${icon}`]: icon }]"></i>
     </slot>
 
     <slot></slot>
+  
   </component>
 </template>
 
@@ -29,6 +30,9 @@
 export default {
   name: "base-button",
   props: {
+    block: Boolean,
+    disabled: Boolean,
+    loading: Boolean,
     tag: {
       type: String,
       default: "button",
@@ -36,15 +40,10 @@ export default {
         return ["button", "a"].includes(value);        
       }
     },
-    shutterOutHorizontal: {
+    outline: {
       type: String,
       default: "",
     },
-    round: Boolean,
-    icon: Boolean,
-    block: Boolean,
-    disabled: Boolean,
-    loading: Boolean,
     type: {
       type: String,
       default: "",
@@ -57,12 +56,17 @@ export default {
       type: String,
       default: "",
     },
-    simple: {
-      type: Boolean,
+    icon: {
+      type: String,
+      default: ""
     },
     link: {
       type: Boolean,
     },
+  },
+  data() {
+    return {
+    }
   },
   methods: {
     handleClick(evt) {

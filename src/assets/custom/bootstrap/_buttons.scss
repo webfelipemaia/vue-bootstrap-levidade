@@ -11,5 +11,11 @@
   &.#{$nameSpace}-float-shadow {
     margin-bottom: 0.5rem !important;
   }
+
+  // adjusts the margin to the right of the icon
+  & > .bi,
+  & > .spinner-border {
+    margin-right: 0.5rem;
+  }
   
 }
