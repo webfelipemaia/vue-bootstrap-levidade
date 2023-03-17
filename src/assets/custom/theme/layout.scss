@@ -1,0 +1,45 @@
+.bd-sidebar {
+    grid-area: sidebar;
+}
+.bd-main {
+    grid-area: main;
+}
+
+
+@media (min-width: 992px) {
+  .bd-layout {
+    display: grid;
+      grid-template-areas: "sidebar main";
+      grid-template-columns: 1fr 5fr;
+      gap: 1.5rem
+  }
+  .bd-sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 5rem;
+    display: block !important;
+    height: calc(100vh - 6rem);
+    padding-left: .25rem;
+    margin-left: -.25rem;
+    overflow-y: auto;
+  }
+  .bd-main {
+    grid-template-areas:
+        "intro toc"
+        "content toc";
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 4fr 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  .bd-main {
+    display: grid;
+    grid-template-areas:
+        "intro"
+        "toc"
+        "content";
+    grid-template-rows: auto auto 1fr;
+    gap: inherit;
+  }
+}
