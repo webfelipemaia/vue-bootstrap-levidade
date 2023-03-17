@@ -2,7 +2,13 @@
   <img alt="Vue logo" src="./assets/logo.png">
   <div class="d-flex flex-column mb-3">
     <!-- <LeveButton tag="button" outline="primary" type="lg" disabled>Shadow</LeveButton> -->
-    <LeveButton type="primary" icon="cart">Carregando</LeveButton>
+    <LeveButton type="primary" icon="app">Carregando</LeveButton>
+    <br />
+    <LeveButtonGroup type="vertical" role="group">
+      <LeveButton type="primary" icon="cart">Left</LeveButton>
+      <LeveButton type="secondary" icon="cart">Middle</LeveButton>
+      <LeveButton type="success" icon="cart">Right</LeveButton>
+    </LeveButtonGroup>
     <!--<LeveButton type="primary" class="hvr-float-shadow">Float Shadow</LeveButton>
     <LeveButton type="primary" class="hvr-grow-shadow">Grow Shadow</LeveButton>
     <LeveButton type="button" class="btn btn-success">Success</LeveButton>
@@ -17,12 +23,11 @@
 </template>
 
 <script>
-//import HelloWorld from './components/HelloWorld.vue'
+
 export default {
   name: 'App',
   components: {
-    //HelloWorld
-  }
+}
 }
 </script>
 
