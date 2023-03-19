@@ -12,6 +12,7 @@
       { 'btn-link': link },
       { disabled: disabled && tag !== 'button' },
     ]"
+    :ariaLabel=ariaLabel
   >
     <slot v-if="loading" name="loading">
       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>

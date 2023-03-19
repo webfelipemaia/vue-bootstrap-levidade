@@ -9,6 +9,8 @@
       <LeveButton type="secondary" icon="cart">Middle</LeveButton>
       <LeveButton type="success" icon="cart">Right</LeveButton>
     </LeveButtonGroup>
+    <br/>    
+    <LeveButton type="close"></LeveButton>
     <!--<LeveButton type="primary" class="hvr-float-shadow">Float Shadow</LeveButton>
     <LeveButton type="primary" class="hvr-grow-shadow">Grow Shadow</LeveButton>
     <LeveButton type="button" class="btn btn-success">Success</LeveButton>
