@@ -4,6 +4,8 @@
     <!-- <LeveButton tag="button" outline="primary" type="lg" disabled>Shadow</LeveButton> -->
     <LeveButton type="primary" icon="app">Carregando</LeveButton>
     <br />
+    <button type="button" @click="$event => toastAdd()" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+    <br />
     <LeveButtonGroup type="vertical" role="group">
       <LeveButton type="primary" icon="cart">Left</LeveButton>
       <LeveButton type="secondary" icon="cart">Middle</LeveButton>
@@ -26,10 +28,23 @@
 
 <script>
 
+  import { provide } from 'vue';
+  const items = [
+                {type:'info',title:'Info example',comment:'Info: Lorem ipsum dolor'},
+                {type:'success',title:'Success example',comment:'Succes: Lorem ipsum dolor'}
+            ]
+  provide('notifications', items)
+
 export default {
   name: 'App',
   components: {
-}
+  },
+  
+  methods: {
+    toastAdd() {
+      items.push({type:'secondary',title:'Teste title',comment:'Lorem ipsum dolor',})
+    },
+  },
 }
 </script>
 
