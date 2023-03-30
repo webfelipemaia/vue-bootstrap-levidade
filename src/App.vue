@@ -1,10 +1,11 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
+  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <div class="d-flex flex-column mb-3">
-    <!-- <LeveButton tag="button" outline="primary" type="lg" disabled>Shadow</LeveButton> -->
-    <LeveButton type="primary" icon="app">Carregando</LeveButton>
+    <button type="button" class="btn btn-primary" id="liveToastBtn" @click.prevent="addNotice">Show live toast</button>
     <br />
-    <button type="button" @click="$event => toastAdd()" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+    <LeveToast></LeveToast>
+    <!-- <LeveButton tag="button" outline="primary" type="lg" disabled>Shadow</LeveButton>
+    <LeveButton type="primary" icon="app">Carregando</LeveButton>
     <br />
     <LeveButtonGroup type="vertical" role="group">
       <LeveButton type="primary" icon="cart">Left</LeveButton>
@@ -13,7 +14,7 @@
     </LeveButtonGroup>
     <br/>    
     <LeveButton type="close"></LeveButton>
-    <!--<LeveButton type="primary" class="hvr-float-shadow">Float Shadow</LeveButton>
+    <LeveButton type="primary" class="hvr-float-shadow">Float Shadow</LeveButton>
     <LeveButton type="primary" class="hvr-grow-shadow">Grow Shadow</LeveButton>
     <LeveButton type="button" class="btn btn-success">Success</LeveButton>
     <LeveButton type="button" class="btn btn-danger">Danger</LeveButton>
@@ -27,24 +28,35 @@
 </template>
 
 <script>
-
-  import { provide } from 'vue';
-  const items = [
-                {type:'info',title:'Info example',comment:'Info: Lorem ipsum dolor'},
-                {type:'success',title:'Success example',comment:'Succes: Lorem ipsum dolor'}
-            ]
-  provide('notifications', items)
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'App',
+  
   components: {
+},
+
+  data () {
+    return {
+      noticeData: { type: "", text: "", comment: "" }
+    }
   },
   
-  methods: {
-    toastAdd() {
-      items.push({type:'secondary',title:'Teste title',comment:'Lorem ipsum dolor',})
-    },
+  computed: {
+    ...mapGetters({
+      notifications: 'notifications/notices'
+    }),
   },
+
+  methods: {
+    addNotice () {
+      this.$store.dispatch('notifications/new',this.noticeData)
+        .then(response => {
+          console.log(response)
+      })
+    }, 
+  }
+
 }
 </script>
 

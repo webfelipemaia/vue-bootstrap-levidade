@@ -1,31 +1,43 @@
 <template>
     <div class="toast-container  position-static bottom-0 end-0 p-3">        
-        <LeveToastNotification v-for="(item, index) in items" :key="index" :type="item.type"></LeveToastNotification>   
+        {{  notices }}
+        <LeveNotification 
+            v-for="(notice,index) in notifications"            
+            :key="index"
+            :type="index"
+            ></LeveNotification>   
     </div>
 </template>
 
 <script>
-import LeveToastNotification from './LeveToastNotificacion.vue';
-import { inject } from 'vue';
+import LeveNotification from './LeveNotificacion.vue';
+import { mapGetters } from 'vuex';
 
 
 export default {
     name: "leve-toast",
-    notifications : inject['notifications'],
     props: {
         toastIsVisible: Boolean,
     },
-    components: { LeveToastNotification },
+    components: { LeveNotification },
     data() {
         return {            
-            items: this.notifications,
+            notificationsData: [],
             count: 0,
             isVisible: this.toastIsVisible,
         }
     },
+    computed: {
+    ...mapGetters({
+      notifications: 'notifications/notices'
+    }),
+  },    
+    mounted () {
+        console.log(this.notifications);
+    },
     methods: {
         toastAdd() {
-            this.items.push({type:'success',title:'Teste title',comment:'Lorem ipsum dolor',})
+            this.notifications.push({type:'success',text:'Teste title',comment:'Lorem ipsum dolor',})
         },
         toastisVisible() {
             this.count++;

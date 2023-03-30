@@ -64,6 +64,10 @@ export default {
     link: {
       type: Boolean,
     },
+    ariaLabel: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {

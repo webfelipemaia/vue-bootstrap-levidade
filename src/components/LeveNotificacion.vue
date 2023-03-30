@@ -21,10 +21,8 @@
 </template>
 
 <script>
-import { inject } from 'vue';
 export default {
-    name: "leve-toast-notification",
-    notifications : inject['notifications'],
+    name: "leve-notification",
     props: {
         type: { 
             type: String,
@@ -55,7 +53,6 @@ export default {
     },
     data() {
         return {
-            items: this.notifications,
             hidden: false,
         }
     },
