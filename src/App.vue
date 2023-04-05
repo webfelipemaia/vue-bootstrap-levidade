@@ -28,34 +28,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 
 export default {
-  name: 'App',
-  
+  name: 'App',  
   components: {
 },
 
-  data () {
-    return {
-      noticeData: { type: "", text: "", comment: "" }
-    }
-  },
-  
-  computed: {
-    ...mapGetters({
-      notifications: 'notifications/notices'
-    }),
-  },
-
-  methods: {
-    addNotice () {
-      this.$store.dispatch('notifications/new',this.noticeData)
-        .then(response => {
-          console.log(response)
-      })
-    }, 
-  }
 
 }
 </script>

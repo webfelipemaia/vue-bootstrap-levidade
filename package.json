@@ -11,20 +11,24 @@
     "bootstrap-icons": "^1.10.3",
     "core-js": "^3.8.3",
     "hover.css": "^2.3.2",
+    "pinia": "^2.0.33",
     "sass-loader": "^13.2.0",
+    "uuid": "^8.3.2",
     "vue": "^3.2.13",
-    "vue-notifications": "^1.0.2",
-    "vuex": "^4.1.0"
+    "vue-notifications": "^1.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
+    "@types/node": "^18.15.11",
+    "@types/uuid": "^9.0.1",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
-    "sass": "^1.59.2"
+    "sass": "^1.59.2",
+    "typescript": "~5.0.3"
   },
   "eslintConfig": {
     "root": true,
