@@ -11,11 +11,11 @@
     </div>
     <div class="toast-container  position-static bottom-0 end-0 p-3">      
         <LeveNotification 
-            v-for="(notice,index) in Notifications"
+            v-for="(item,index) in items"
             :key="index"
-            :type="notice.type"
-            :title="notice.text"
-            :comment="notice.comment"
+            :text="item.text"
+            :comment="item.comment"
+            :type="item.type"
             @close-item-toast="(id) => toastisClosed(id)"
             ></LeveNotification>   
     </div>
@@ -25,43 +25,76 @@
 <script>
 import { defineComponent, onMounted, ref} from "vue";
 import { useMainStore } from '../store/Notifications.ts';
-import { fakeData } from '../models/items.ts';
+import { fakeNotificationData } from '../models/items.ts';
 import LeveNotification from './LeveNotificacion.vue';
 
 
+/** 
+ * @vue-prop {Boolean} toastIsVisible 
+ * @vue-updated @return {undefined} - Deletes a notification item
+ * @vue-mounted @return {Object}
+ * @vue-event {Object} createItem - Calls the createNewItem() method and pass object as function argument. @see createNewItem()
+ * @vue-event {Object} deleteItem - Calls the deleteItem() method and the object id. @see deleteItem() 
+ * @vue-event {Object} updateItem - Calls the updateItem() method and pass the object id. @see updateItem()
+ * @vue-event {(String|null)} [itemId=null] getLastIndex - Calls the getLastIndex() method and return the last index or null.
+*/
 export default defineComponent({
   
   name: "leve-toast",
     
-
   setup() {
+    /** The notification state. */
     const mainStore = useMainStore();
     const items = ref(mainStore);
+
     onMounted(() => {
-      items.value = mainStore.items;
+      items.value = mainStore.items;      
     });
+
     function createItem() {
-      mainStore.createNewItem(fakeData());
+      mainStore.createNewItem(fakeNotificationData());
     }
+
     function deleteItem(id) {
-      console.log(id)
       mainStore.deleteItem(id);
     }
+
     function updateItem(id) {
-      console.log(id)
-      mainStore.updateItem(id, fakeData());
+      mainStore.updateItem(id, fakeNotificationData());
     }
+
+    function getLastIndex() {
+      const size = mainStore.items.length;
+      if(size > 0) {
+      const itemId = mainStore.items[size-1].id;
+        return itemId;
+      }
+      return null;
+    }
+
     return {
       items,
       createItem,
       deleteItem,
       updateItem,
+      getLastIndex,
     };
   },
-    props: {
-        toastIsVisible: Boolean,
-    },
-    components: { LeveNotification },
+
+  props: {
+    toastIsVisible: Boolean,
+  },
+    
+  components: { LeveNotification },
+    
+  updated () {
+    const lastId = this.getLastIndex();
+    if (lastId !== null) {
+      setTimeout(() => {
+        this.deleteItem(lastId);
+      }, 5000);
+    }
+  }
     
 });
 

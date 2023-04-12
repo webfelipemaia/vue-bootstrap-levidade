@@ -31,12 +31,15 @@ export default {
 
         title: { 
             type: String,
-            default: 'Information',
+            default: 'Example',
         },
-        
+        text: { 
+            type: String,
+            default: 'An example text.',
+        },        
         comment: { 
             type: String,
-            default: 'Lorem ipsum dolor',
+            default: 'An example comment.',
         },
         defaultClass: {
             type: Array,
