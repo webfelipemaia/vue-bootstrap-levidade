@@ -30,20 +30,21 @@ import LeveNotification from './LeveNotificacion.vue';
 
 
 /** 
+ * Toasts are simple notifications created either statically or dynamically.
  * @vue-prop {Boolean} toastIsVisible 
- * @vue-updated @return {undefined} - Deletes a notification item
- * @vue-mounted @return {Object}
- * @vue-event {Object} createItem - Calls the createNewItem() method and pass object as function argument. @see createNewItem()
- * @vue-event {Object} deleteItem - Calls the deleteItem() method and the object id. @see deleteItem() 
- * @vue-event {Object} updateItem - Calls the updateItem() method and pass the object id. @see updateItem()
- * @vue-event {(String|null)} [itemId=null] getLastIndex - Calls the getLastIndex() method and return the last index or null.
+ * @vue-data {Object} mainStore - Sets the Notification store.
+ * @vue-data {Object} items - ref(mainStore) makes the object reactive.
+ * @vue-event {Object} createItem - Calls the createNewItem() method and pass object as function argument.
+ * @vue-event {Object} deleteItem - Calls the deleteItem() method and the object id.
+ * @vue-event {Object} updateItem - Calls the updateItem() method and pass the object id.
+ * @vue-event {(string|null)} getLastIndex - Calls the getLastIndex() method and return the last index or null.
 */
 export default defineComponent({
   
   name: "leve-toast",
     
   setup() {
-    /** The notification state. */
+    
     const mainStore = useMainStore();
     const items = ref(mainStore);
 
