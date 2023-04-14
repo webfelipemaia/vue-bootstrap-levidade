@@ -3,7 +3,7 @@
   <div class="d-flex flex-column mb-3">
     <button type="button" class="btn btn-primary" id="liveToastBtn" @click.prevent="addNotice">Show live toast</button>
     <br />
-    <LeveToast></LeveToast>
+    <LeveAlert is-dismissible :timeout="20000"></LeveAlert>
     <!-- <LeveButton tag="button" outline="primary" type="lg" disabled>Shadow</LeveButton>
     <LeveButton type="primary" icon="app">Carregando</LeveButton>
     <br />

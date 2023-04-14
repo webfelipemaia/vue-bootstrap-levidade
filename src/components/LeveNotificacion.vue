@@ -28,7 +28,8 @@
  * @vue-prop {string} [comment='An example comment.'] The text that is displayed in the body of the component.
  * @vue-prop {Array} [defaultClass=[]] defaultClass
  * @vue-prop {Array} [defaultClass=['mt-2', 'pt-2',]] defaultActionClass
- * @vue-data {boolean} [hidden=false] Hidden
+ * @vue-prop {string} [type='light'] - Type follows Bootstrap's theming model.
+ * @vue-data {boolean} [hidden=false] 
 */
 export default {
     name: "leve-notification",
@@ -37,7 +38,6 @@ export default {
             type: String,
             default: 'light',
         },
-
         title: { 
             type: String,
             default: 'Example',
@@ -61,7 +61,7 @@ export default {
             default(){ 
                 return ['mt-2', 'pt-2',]
             }
-        }
+        },
     },
     data() {
         return {

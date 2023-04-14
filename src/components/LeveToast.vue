@@ -17,6 +17,7 @@
             :comment="item.comment"
             :type="item.type"
             @close-item-toast="(id) => toastisClosed(id)"
+            isAlert="true"
             ></LeveNotification>   
     </div>
     
