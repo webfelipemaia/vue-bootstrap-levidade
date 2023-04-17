@@ -2,8 +2,8 @@
 import { fakeNotificationData } from "@/utils/items.ts";
 import { defineStore } from "pinia";
 
-export const useNotificationStore = defineStore({
-  id: "notificationStore",
+export const useAlertStore = defineStore({
+  id: "alertStore",
   /**
    * The initial state that receives the notifications array items.
    * @returns {Object} items

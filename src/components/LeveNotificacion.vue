@@ -68,5 +68,9 @@ export default {
             hidden: false,
         }
     },
+
+    mounted() {
+      console.log(this);      
+    },
 }
 </script>

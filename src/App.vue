@@ -4,6 +4,7 @@
     <button type="button" class="btn btn-primary" id="liveToastBtn" @click.prevent="addNotice">Show live toast</button>
     <br />
     <LeveAlert is-dismissible :timeout="20000"></LeveAlert>
+    <leveToast></leveToast>
     <!-- <LeveButton tag="button" outline="primary" type="lg" disabled>Shadow</LeveButton>
     <LeveButton type="primary" icon="app">Carregando</LeveButton>
     <br />
