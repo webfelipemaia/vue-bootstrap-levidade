@@ -1,25 +1,27 @@
 <template>
   <button @click="createItem">New Toast</button>
-  <div
-      v-for="(item, index) in items"
-      :key="index"
-      class="toast-container p-3"
-      :class="toastPosition"
-      style="background-color: #f5f5f5; padding: 10px; margin-bottom: 10px; margin-top: 10px;"
-    >
-      <code>{{ item }}</code>
-      <button @click="deleteItem(item.id)">Delete</button>
-      <button @click="updateItem(item.id)">Update</button>
-    </div>
-    <div class="toast-container p-3" :class="toastPosition">
-        <LeveNotification 
-            v-for="(item,index) in items"
-            :key="index"
-            :text="item.text"
-            :comment="item.comment"
-            :type="item.type"
-            isAlert="true"
-            ></LeveNotification>   
+ 
+    <div class="toast-container p-3" :class="[toastPosition.start, toastPosition.end]">
+      
+      <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true"
+        v-for="(item, index) in items"
+        :key="index"
+        :id="`leveToast-${index}`"
+        :class="[{[`text-bg-${item.type}`]: item.type}]"
+      >
+        <div class="toast-header">
+            <strong class="me-auto">{{ item.comment }}</strong>
+            <button @click.prevent="deleteItem(item.id)" type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            <small>{{ item.text }}</small>
+            <slot></slot>
+            <div :class="defaultActionClass">
+                <button type="button" class="btn btn-primary btn-sm">Take action</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+            </div>
+        </div>
+      </div>
     </div>
     
 </template>
@@ -28,12 +30,15 @@
 import { defineComponent, onMounted, ref} from "vue";
 import { useNotificationStore } from '../store/Notifications.ts';
 import { fakeNotificationData } from '../utils/items.ts';
-import LeveNotification from './LeveNotificacion.vue';
 
 
 /** 
  * Toasts are simple notifications created either statically or dynamically.
  * @vue-prop {Boolean} toastIsVisible 
+ * @vue-prop {string} [type='light'] - Type follows Bootstrap's theming model.
+ * @vue-prop {string} [title='Example'] The title of the notification.
+ * @vue-prop {string} [comment='An example comment.'] The text that is displayed in the body of the component.
+ * @vue-prop {Array} [defaultClass=['mt-2', 'pt-2',]] defaultActionClass
  * @vue-data {Object} notificationStore - Sets the Notification store.
  * @vue-data {Object} items - ref(notificationStore) makes the object reactive.
  * @vue-event {Object} createItem - Calls the createNewItem() method and pass object as function argument.
@@ -89,14 +94,35 @@ export default defineComponent({
     position: { 
       type: Object,
       default() {
-        return {start: null, end: null}
+        return {start: "bottom-0", end: "end-0"}
       },
+    },
+    type: { 
+      type: String,
+      default: 'light',
+    },
+    title: { 
+      type: String,
+      default: 'Example',
+    },
+    text: { 
+      type: String,
+      default: 'An example text.',
+    },        
+    comment: { 
+      type: String,
+      default: 'An example comment.',
+    },    
+    defaultActionClass: {
+        type: Array,
+        default(){ 
+        return ['mt-2', 'pt-2',]
+      }
     },
   },
     
-  components: { LeveNotification },
-    
   updated () {
+    console.log(this.position)
     console.log(Object.keys(this.position).length)
     const lastId = this.getLastIndex();
     if (lastId !== null) {
