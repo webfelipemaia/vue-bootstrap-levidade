@@ -4,7 +4,9 @@
     <button type="button" class="btn btn-primary" id="liveToastBtn" @click.prevent="addNotice">Show live toast</button>
     <br />
     <LeveAlert is-dismissible :timeout="20000"></LeveAlert>
-    <LeveToast :type="primary"></LeveToast>
+    <LeveToast :type="primary">Teste</LeveToast>
+    
+    <LeveTooltip placement="bottom" text="This is the Popper content 🍿" hover=false><a href="!#">Ok Trigger element</a></LeveTooltip>
     <!-- <LeveButton tag="button" outline="primary" type="lg" disabled>Shadow</LeveButton>
     <LeveButton type="primary" icon="app">Carregando</LeveButton>
     <br />
@@ -40,6 +42,7 @@ export default {
 </script>
 
 <style>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -1701,3 +1701,12 @@ $kbd-bg:                            var(--#{$prefix}body-color) !default;
 $nested-kbd-font-weight:            null !default; // Deprecated in v5.2.0, removing in v6
 
 $pre-color:                         null !default;
+
+$popper-theme-background-color: #000000;
+$popper-theme-background-color-hover: #000000;
+$popper-theme-text-color: $tooltip-color;
+$popper-theme-border-width: 0px;
+$popper-theme-border-style: solid;
+$popper-theme-border-radius: $tooltip-border-radius;
+$popper-theme-padding: $tooltip-padding-x;
+$popper-theme-box-shadow: 0 6px 30px -6px rgba(0, 0, 0, 0.25);
