@@ -30,14 +30,23 @@ export function fakeAlertData () {
         "Proin venenatis scelerisque", 
         "Vestibulum fringilla eget",
         "Proin sagittis turpis"];
+    
+    const comments = [
+        "Duis aute irure dolor in reprehenderit in voluptate",
+        "Excepteur sint occaecat cupidatat non proident", 
+        "Ut enim ad minim veniam",
+        "Porta lorem mollis aliquam ut porttitor leo"];
+
     const randomHeadings = Math.floor(Math.random() * headings.length);
     const templateType = ["primary","secondary","success","warning","danger","info","light","dark","default"];
+    const randomComments = Math.floor(Math.random() * comments.length);
     const randomTemplateTypes = Math.floor(Math.random() * templateType.length);
 
     return {
         id: uuidv4(),
         heading: messages[randomHeadings],
         text: "Sample comment text here",
+        comment: comments[randomComments],
         type: templateType[randomTemplateTypes],
         createdAt: new Date(),
     };

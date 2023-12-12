@@ -3,22 +3,29 @@
   <div
       v-for="(item, index) in items"
       :key="index"
-      class="alert alert-dismissible fade show d-flex"
+      class="alert alert-dismissible fade show alert-container"
       :type="item.type"
       :class="[{ [`alert-${item.type}`]: item.type }]"
       :isDismissible="('' || null) ? false : true"
     >
-      <slot v-if="icon" name="icon">
-        <i class="bi flex-shrink-0 me-2" :class="[{ [`bi-${icon}`]: icon }]"></i>
-      </slot>
-      <div>{{ item.text }}</div>
-        <button v-if="isDismissible" @click="deleteItem(item.id)" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <h5 class="alert-heading">{{ item.heading }}</h5>
+      <div class="alert-body">
+        <div class="alert-body-content">
+          <slot v-if="icon" name="icon">
+            <i class="bi flex-shrink-0 me-2" :class="[{ [`bi-${icon}`]: icon }]"></i>
+          </slot>
+          <div> {{ item.text }} </div>
+        </div>
+        <hr v-if="item.comment">
+        <div v-if="item.comment" class="alert-body-additional">{{ item.comment }}</div>
+      </div>
+      <button v-if="isDismissible" @click="deleteItem(item.id)" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     
 </template>
 
 <script>
-import { defineComponent, onMounted, ref} from "vue";
+import { defineComponent, onMounted, ref} from 'vue';
 import { useAlertStore } from '../store/Alerts.ts';
 import { fakeAlertData } from '../utils/items.ts'
 
@@ -112,3 +119,36 @@ export default defineComponent({
 });
 
 </script>
+
+<style>
+
+  .alert-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .alert-body-content {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .alert-body-additional {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .alert-heading {
+    font-weight: 300;
+    font-size: 1.1rem;
+  }
+
+  .alert-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .alert-body hr {
+    margin: 0.25rem;
+  }
+
+</style>

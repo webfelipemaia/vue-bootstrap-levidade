@@ -3,7 +3,7 @@
   <div class="d-flex flex-column mb-3">
     <button type="button" class="btn btn-primary" id="liveToastBtn" @click.prevent="addNotice">Show live toast</button>
     <br />
-    <LeveAlert is-dismissible :timeout="20000"></LeveAlert>
+    <LeveAlert is-dismissible :timeout="20000" icon="heart"></LeveAlert>
     <LeveToast :type="primary">Teste</LeveToast>
     
     <LeveTooltip placement="bottom" text="This is the Popper content 🍿" hover=false><a href="!#">Ok Trigger element</a></LeveTooltip>
