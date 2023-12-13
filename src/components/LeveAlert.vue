@@ -1,5 +1,6 @@
 <template>
   <button @click="createItem">New Alert</button>
+
   <div
       v-for="(item, index) in items"
       :key="index"
@@ -7,17 +8,27 @@
       :type="item.type"
       :class="[{ [`alert-${item.type}`]: item.type }]"
       :isDismissible="('' || null) ? false : true"
-    >
+      :style="setAlignment"
+      >
+
       <h5 class="alert-heading">{{ item.heading }}</h5>
       <div class="alert-body">
-        <div class="alert-body-content">
+
+        <div class="alert-body-content" :style="setFlexAlignment">
           <slot v-if="icon" name="icon">
             <i class="bi flex-shrink-0 me-2" :class="[{ [`bi-${icon}`]: icon }]"></i>
           </slot>
           <div> {{ item.text }} </div>
+
         </div>
+
         <hr v-if="item.comment">
-        <div v-if="item.comment" class="alert-body-additional">{{ item.comment }}</div>
+        <div 
+            v-if="item.comment" 
+            class="alert-body-additional"
+            :style="setFlexAlignment"
+          > {{ item.comment }} </div>
+
       </div>
       <button v-if="isDismissible" @click="deleteItem(item.id)" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
@@ -95,6 +106,13 @@ export default defineComponent({
       type: Number,
       default: 5000,
     },
+    alignment: {
+      type: String,
+      default: 'left',
+      validator(value) {
+        return ['left', 'center', 'right',].includes(value)
+      }
+    },
   },
 
   methods: {
@@ -105,6 +123,28 @@ export default defineComponent({
       }
       return value;
     }
+  },
+
+  computed: {
+    /**
+     * Sets text alignment
+     */
+    setAlignment() {
+      return {
+        "text-align": this.alignment,
+      }
+    },
+    
+    /**
+     * Align items in a Flex container
+     * @example
+     * // use left, center or right
+     */
+    setFlexAlignment() {
+      return {
+        "justify-content": this.alignment,
+      }
+    },
   },
 
   updated () {
@@ -130,16 +170,19 @@ export default defineComponent({
   .alert-body-content {
     display: flex;
     flex-direction: row;
+    justify-content: inherit;
   }
 
   .alert-body-additional {
     display: flex;
     flex-direction: column;
+    justify-content: inherit;
   }
 
   .alert-heading {
     font-weight: 300;
     font-size: 1.1rem;
+    text-align: inherit;
   }
 
   .alert-body {
