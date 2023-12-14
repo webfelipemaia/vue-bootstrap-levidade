@@ -19,7 +19,7 @@
         <div class="toast-header">
             
           <strong class="me-auto">{{ item.comment }}</strong>
-          <small>11 mins ago</small>
+          <small>{{ item.notificationTime }}</small>
           <button 
                   @click.prevent="deleteItem(item.id)" 
                   type="button" 
@@ -131,7 +131,11 @@ export default defineComponent({
     comment: { 
       type: String,
       default: 'An example comment.',
-    },    
+    },
+    notificationTime: {
+      type: String,
+      default: 'just now',
+    } ,
     defaultActionClass: {
         type: Array,
         default(){ 

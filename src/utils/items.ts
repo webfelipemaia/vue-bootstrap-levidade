@@ -17,6 +17,7 @@ export function fakeNotificationData () {
         text: messages[randomMessages],
         comment: "Sample comment text here",
         type: templateType[randomTemplateTypes],
+        notificationTime: 'just now',
         createdAt: new Date(),
     };
     
@@ -47,6 +48,7 @@ export function fakeAlertData () {
         heading: messages[randomHeadings],
         text: "Sample comment text here",
         comment: comments[randomComments],
+        notificationTime: 'just now',
         type: templateType[randomTemplateTypes],
         createdAt: new Date(),
     };
