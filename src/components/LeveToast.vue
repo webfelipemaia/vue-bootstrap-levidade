@@ -16,16 +16,23 @@
           :class="[{[`text-bg-${item.type}`]: item.type}]"
       >
 
-        <div class="toast-header">
+        <div class="toast-header" :class="[{[`text-bg-${item.type}`]: item.type}]">
             
           <strong class="me-auto">{{ item.comment }}</strong>
           <small>{{ item.notificationTime }}</small>
-          <button 
+          <button v-if="item.type != 'dark'"
                   @click.prevent="deleteItem(item.id)" 
                   type="button" 
                   class="btn-close" 
                   data-bs-dismiss="toast" 
                   aria-label="Close"></button>
+          <button v-if="item.type === 'dark'"
+                  @click.prevent="deleteItem(item.id)" 
+                  type="button" 
+                  class="btn-close-icon"
+                  aria-label="Close">
+                  <span class="btn-close-icon__icon" aria-hidden="true"><i class="bi bi-x-lg"></i></span>
+                </button>
         </div>
 
         <div class="toast-body">
@@ -149,7 +156,7 @@ export default defineComponent({
     if (lastId !== null) {
       setTimeout(() => {
         this.deleteItem(lastId);
-      }, 30000);
+      }, 300000);
     }
   },
   
@@ -196,3 +203,19 @@ export default defineComponent({
 });
 
 </script>
+
+<style>
+.btn-close-icon {
+  background: transparent;
+  border: 0;
+  box-sizing: content-box;
+  padding: 0.25em 0.25em;
+  color: rgba(255, 255, 255, 0.75);
+  border: 0;
+  border-radius: 0.375rem;
+}
+.btn-close-icon:hover{
+  color: rgba(255, 255, 255, 1);
+}
+
+</style>
