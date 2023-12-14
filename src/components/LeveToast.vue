@@ -1,27 +1,46 @@
 <template>
   <button @click="createItem">New Toast</button>
  
-    <div class="toast-container p-3" :class="[toastPosition.start, toastPosition.end]">
+    <div 
+        class="toast-container p-3" 
+        :class="[toastPosition.start,toastPosition.end]">
       
-      <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true"
-        v-for="(item, index) in items"
-        :key="index"
-        :id="`leveToast-${index}`"
-        :class="[{[`text-bg-${item.type}`]: item.type}]"
+      <div 
+          class="toast show" 
+          role="alert" 
+          aria-live="assertive" 
+          aria-atomic="true"
+          v-for="(item, index) in items"
+          :key="index"
+          :id="`leveToast-${index}`"
+          :class="[{[`text-bg-${item.type}`]: item.type}]"
       >
+
         <div class="toast-header">
-            <strong class="me-auto">{{ item.comment }}</strong>
-            <button @click.prevent="deleteItem(item.id)" type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            
+          <strong class="me-auto">{{ item.comment }}</strong>
+          <small>11 mins ago</small>
+          <button 
+                  @click.prevent="deleteItem(item.id)" 
+                  type="button" 
+                  class="btn-close" 
+                  data-bs-dismiss="toast" 
+                  aria-label="Close"></button>
         </div>
+
         <div class="toast-body">
+
             <small>{{ item.text }}</small>
             <slot></slot>
             <div :class="defaultActionClass">
                 <button type="button" class="btn btn-primary btn-sm">Take action</button>
                 <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
             </div>
+
         </div>
+
       </div>
+
     </div>
     
 </template>
@@ -122,19 +141,51 @@ export default defineComponent({
   },
     
   updated () {
-    console.log(this.position)
-    console.log(Object.keys(this.position).length)
     const lastId = this.getLastIndex();
     if (lastId !== null) {
       setTimeout(() => {
         this.deleteItem(lastId);
-      }, 5000);
+      }, 30000);
+    }
+  },
+  
+  methods: {
+    /**
+     * Sets toast alignment
+     */
+    defineToastAlignment(toastPosition) {
+      
+      // default Bootstrap toast positions
+      let positions = [
+                        { alignment : ['top','left'], position : ['top-0', 'start-0'] },
+                        { alignment : ['top','center'], position : ['top-0', 'start-50 translate-middle-x'] },
+                        { alignment : ['top','right'], position : ['top-0', 'end-0'] },
+                        { alignment : ['middle','left'], position : ['top-50', 'start-0 translate-middle-y'] },
+                        { alignment : ['middle','center'], position : ['top-50', 'start-50 translate-middle'] },
+                        { alignment : ['middle','right'], position : ['top-50', 'end-0 translate-middle-y'] },
+                        { alignment : ['bottom','left'], position : ['bottom-0', 'start-0'] },
+                        { alignment : ['bottom','center'], position : ['bottom-0', 'start-50 translate-middle-x'] },
+                        { alignment : ['bottom','right'], position : ['bottom-0', 'end-0'] }
+                      ]
+
+      positions.map(function(element){
+          if ((element.alignment[0] === toastPosition[0]) && (element.alignment[1] === toastPosition[1])) {
+            console.log(element.alignment[0],element.alignment[1])
+            toastPosition = {start : `${element.position[0]}`, end : `${element.position[1]}`};
+          } else {
+            return false
+          }
+      })
+      return toastPosition
     }
   },
 
   computed: {
+    /**
+     * Get the toast alignment
+     */
     toastPosition() {
-      return this.position;
+      return this.defineToastAlignment(this.position)
     },
   },
     
