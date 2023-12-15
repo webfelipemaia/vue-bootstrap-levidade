@@ -40,8 +40,10 @@
             <small>{{ item.text }}</small>
             <slot></slot>
             <div :class="defaultActionClass">
-                <button type="button" class="btn btn-primary btn-sm">Take action</button>
-                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+                <button type="button" class="btn btn-sm btn-light">Take action</button>
+                <button type="button" 
+                        class="btn btn-sm" 
+                        :class="'btn-outline-'+getBackgroundColor(item.type)" data-bs-dismiss="toast">Close</button>
             </div>
 
         </div>
@@ -188,6 +190,14 @@ export default defineComponent({
           }
       })
       return toastPosition
+    },
+    /*
+    * Sets the Toast background color according to the theme.
+    */
+    getBackgroundColor(theme) {
+      let darkThemes = ['primary','secondary','success','danger','dark']
+      const found = darkThemes.find((element) => element === theme)
+      return (found === undefined) ? 'dark' : 'light'
     }
   },
 
@@ -203,19 +213,3 @@ export default defineComponent({
 });
 
 </script>
-
-<style>
-.btn-close-icon {
-  background: transparent;
-  border: 0;
-  box-sizing: content-box;
-  padding: 0.25em 0.25em;
-  color: rgba(255, 255, 255, 0.75);
-  border: 0;
-  border-radius: 0.375rem;
-}
-.btn-close-icon:hover{
-  color: rgba(255, 255, 255, 1);
-}
-
-</style>
