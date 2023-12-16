@@ -158,7 +158,7 @@ export default defineComponent({
     if (lastId !== null) {
       setTimeout(() => {
         this.deleteItem(lastId);
-      }, 300000);
+      }, 3000);
     }
   },
   

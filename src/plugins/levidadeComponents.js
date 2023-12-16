@@ -4,6 +4,7 @@ import LeveButtonGroup from '@/components/LeveButtonGroup';
 import LeveToast from '@/components/LeveToast';
 import LeveAlert from '@/components/LeveAlert';
 import LeveTooltip from '@/components/LeveTooltip';
+import LeveBadge from '@/components/LeveBadge';
 
 import Popper from 'vue3-popper';
 
@@ -13,3 +14,4 @@ app.component('LeveToast',LeveToast)
 app.component('LeveAlert', LeveAlert)
 app.component('LevePopper',Popper)
 app.component('LeveTooltip',LeveTooltip)
+app.component('LeveBadge',LeveBadge)
