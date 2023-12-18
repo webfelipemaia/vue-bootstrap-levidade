@@ -1,6 +1,20 @@
 <template>
-        <span :class="`badge bg-${type}`" :position="getPosition"><slot></slot></span>
-    
+        <span v-if="isNotification"  :class="
+                        [
+                            `badge bg-${type}`,
+                            'position-absolute top-0 start-100 translate-middle p-2 border border-light rounded-circle'
+                        ]">
+            <span class="visually-hidden">{{ badgeHiddenText }}</span>
+        </span>
+        <span v-else  :class="
+                        [
+                            `badge bg-${type}`,
+                            badgePosition.top,
+                            badgePosition.start,
+                            badgePosition.translate
+                        ]">
+            <slot></slot>
+        </span>
 </template>
 
 <script>
@@ -14,49 +28,82 @@
     name: "leve-badge",
 
     props: {
+        isNotification: {
+            type: Boolean,
+            default: false
+        },
         type: { 
             type: String,
             default: 'primary',
         },
-        text: { 
+        badgeHiddenText: { 
             type: String,
             default: '',
         },
         position: {
             type: String,
-            default: 'top',
+            default: '',
             validator(value) {
-                return ['left', 'center', 'right',].includes(value)
+                return ['','top', 'middle', 'bottom',].includes(value)
             }
         },
     },
 
     data() {
-      return { }
+      return { 
+        
+      }
     },
 
-    methods: {},
+    methods: {
 
-    computed: {
+        /*
+        * Checks whether a value for the prop has been set.
+        */
+        checkPosition(position) {
+            return (
+                    position === false || 
+                    position === undefined ||
+                    position === null) ? "" : position;
+        },
+
         /**
          * Get badge alignment
          */
-        getAlignment() {
-            
+         defineBadgePosition(badgePosition) {
             // default Bootstrap toast positions
             let positions = [
-                        { alignment : 'top', position : ['top-0', 'start-100', 'translate-?'] },
-                        { alignment : 'middle', position : ['top-0', 'start-100', 'translate-?'] },
-                        { alignment : 'bottom', position : ['bottom-0', 'end-0', 'translate-?'] }
-                      ]
-            return 'background-color: ' + this.hovering ? this.color: 'red';
+                    { alignment : 'top', position : ['position-absolute top-0', 'start-100', 'translate-middle'] },
+                    { alignment : 'middle', position : ['position-absolute top-50', 'start-100', 'translate-middle ms-2'] },
+                    { alignment : 'bottom', position : ['position-absolute top-100', 'start-100', 'translate-middle'] }
+                ]
+                 
+            // sets the position
+            positions.map(function(element){
+                if (element.alignment === badgePosition) {
+                    badgePosition =  {
+                        top : `${element.position[0]}`, 
+                        start : `${element.position[1]}`, 
+                        translate : `${element.position[2]}`
+                    }
+                } else {
+                    return false
+                }
+            })
+            return badgePosition;
         },
-        setPlacement() {
-            return (
-                    this.placement === false || 
-                    this.placement === undefined ||
-                    this.placement === null) ? "top" : this.placement;
-        }
+    },
+
+    computed: {
+        
+         /**
+         * Get the toast alignment
+         */
+        badgePosition() {
+            const position = this.checkPosition(this.position)
+            return this.defineBadgePosition(position)
+        },
+
     },
 };
 </script>

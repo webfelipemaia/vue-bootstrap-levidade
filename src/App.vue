@@ -1,16 +1,27 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <div class="d-flex flex-column mb-3">
-    <button type="button" class="btn btn-primary" id="liveToastBtn" @click.prevent="addNotice">Show live toast</button>
+    <h4>Badge</h4>
+    <p>Headings</p>
+    <h1>Example heading h1 <LeveBadge>New</LeveBadge></h1>
+    <h4>Example heading h4 <LeveBadge>New</LeveBadge></h4>
+    <h6>Example heading h6 <LeveBadge>New</LeveBadge></h6>
+    
+    <p class="mt-4">Buttons</p>
+    <div class="d-inline-flex p-2">
+      <button type="button" class="btn btn-primary"> Notifications <LeveBadge :type="'warning'">2</LeveBadge></button>
+      <LeveButton type="secondary" :class="'position-relative'">Messages <LeveBadge :position="'top'">99+</LeveBadge></LeveButton>
+      <!-- todo: 1. add text-bg; 2. custom css prop  -->
+      <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
+        <LeveBadge isNotification :position="'bottom'"  :type="'danger'" :badgeHiddenText="'unread messages'">2</LeveBadge></LeveButton>
+    </div>  
+    <!-- <button type="button" class="btn btn-primary" id="liveToastBtn" @click.prevent="addNotice">Show live toast</button>
     <br />
     <LeveAlert is-dismissible :timeout="20000" icon="heart"></LeveAlert>
     <LeveToast :type="primary" :position="['middle','left']">Teste</LeveToast>
     <LeveTooltip placement="bottom" text="This is the Popper content 🍿" hover=false><a href="!#">Ok Trigger element</a></LeveTooltip>
-    <br>
-    
-    <h1>Example heading <LeveBadge>New</LeveBadge></h1>
-    <button type="button" class="btn btn-primary"> Notifications <LeveBadge>2</LeveBadge></button>
-    <LeveButton type="secondary" :class="'position-relative'">Messages <LeveBadge :position="top">99+</LeveBadge></LeveButton>
+    <br> -->
+
     <!-- <LeveButton tag="button" outline="primary" type="lg" disabled>Shadow</LeveButton>
     <LeveButton type="primary" icon="app">Carregando</LeveButton>
     <br />
