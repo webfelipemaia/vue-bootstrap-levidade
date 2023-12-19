@@ -11,10 +11,23 @@
     <div class="d-inline-flex p-2">
       
       <button type="button" class="btn btn-primary"> Notifications <LeveBadge :constrast="true" :type="'warning'">2</LeveBadge></button>
-      <!-- <LeveButton type="secondary" :class="'position-relative'">Messages <LeveBadge :position="'top'">99+</LeveBadge></LeveButton> -->
+      <LeveButton type="secondary" :class="'position-relative'">Messages <LeveBadge :position="'top'">99+</LeveBadge></LeveButton>
       <!-- todo: 1. add text-bg; 2. custom css prop  -->
-      <!-- <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
-        <LeveBadge is-notification :position="'bottom'"  :type="'danger'" badge-hidden-text="'unread messages'">2</LeveBadge></LeveButton> -->
+      <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
+        <LeveBadge is-notification :position="'bottom'"  :type="'danger'" badge-hidden-text="'unread messages'">2</LeveBadge></LeveButton>
+        
+    </div>
+    <p>Backgrounds</p>
+        
+    <div class="d-inline-flex p-2">
+      <LeveBadge :constrast="true" :type="'primary'">primary</LeveBadge>
+      <LeveBadge :constrast="true" :type="'secondary'">secondary</LeveBadge>
+      <LeveBadge :constrast="true" :type="'success'">success</LeveBadge>
+      <LeveBadge :constrast="true" :type="'danger'">danger</LeveBadge>
+      <LeveBadge :constrast="true" :type="'warning'">warning</LeveBadge>
+      <LeveBadge :constrast="true" :type="'info'">info</LeveBadge>
+      <LeveBadge :constrast="true" :type="'light'">light</LeveBadge>
+      <LeveBadge :constrast="true" :type="'dark'">dark</LeveBadge>
     </div>
 
 
