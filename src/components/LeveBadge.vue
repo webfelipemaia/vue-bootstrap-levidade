@@ -1,14 +1,16 @@
-<template>
+<template >
         <span v-if="isNotification"  :class="
                         [
-                            `badge bg-${type}`,
+                            'badge', 
+                            constrast ? `text-bg-${type}` : `bg-${type}`,
                             'position-absolute top-0 start-100 translate-middle p-2 border border-light rounded-circle'
                         ]">
             <span class="visually-hidden">{{ badgeHiddenText }}</span>
         </span>
         <span v-else  :class="
                         [
-                            `badge bg-${type}`,
+                            'badge', 
+                            constrast ? `text-bg-${type}` : `bg-${type}`,
                             badgePosition.top,
                             badgePosition.start,
                             badgePosition.translate
@@ -29,6 +31,10 @@
 
     props: {
         isNotification: {
+            type: Boolean,
+            default: false
+        },
+        constrast: {
             type: Boolean,
             default: false
         },

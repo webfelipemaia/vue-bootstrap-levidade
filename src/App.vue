@@ -3,18 +3,21 @@
   <div class="d-flex flex-column mb-3">
     <h4>Badge</h4>
     <p>Headings</p>
-    <h1>Example heading h1 <LeveBadge>New</LeveBadge></h1>
+    <!-- <h1>Example heading h1 <LeveBadge>New</LeveBadge></h1>
     <h4>Example heading h4 <LeveBadge>New</LeveBadge></h4>
-    <h6>Example heading h6 <LeveBadge>New</LeveBadge></h6>
+    <h6>Example heading h6 <LeveBadge>New</LeveBadge></h6> -->
     
     <p class="mt-4">Buttons</p>
     <div class="d-inline-flex p-2">
-      <button type="button" class="btn btn-primary"> Notifications <LeveBadge :type="'warning'">2</LeveBadge></button>
-      <LeveButton type="secondary" :class="'position-relative'">Messages <LeveBadge :position="'top'">99+</LeveBadge></LeveButton>
+      
+      <button type="button" class="btn btn-primary"> Notifications <LeveBadge :constrast="true" :type="'warning'">2</LeveBadge></button>
+      <!-- <LeveButton type="secondary" :class="'position-relative'">Messages <LeveBadge :position="'top'">99+</LeveBadge></LeveButton> -->
       <!-- todo: 1. add text-bg; 2. custom css prop  -->
-      <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
-        <LeveBadge isNotification :position="'bottom'"  :type="'danger'" :badgeHiddenText="'unread messages'">2</LeveBadge></LeveButton>
-    </div>  
+      <!-- <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
+        <LeveBadge is-notification :position="'bottom'"  :type="'danger'" badge-hidden-text="'unread messages'">2</LeveBadge></LeveButton> -->
+    </div>
+
+
     <!-- <button type="button" class="btn btn-primary" id="liveToastBtn" @click.prevent="addNotice">Show live toast</button>
     <br />
     <LeveAlert is-dismissible :timeout="20000" icon="heart"></LeveAlert>
