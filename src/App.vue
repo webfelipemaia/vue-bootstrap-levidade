@@ -14,15 +14,15 @@
     
     <p class="mt-4">Buttons</p>
     <div class="d-inline-flex p-2">
-      
+<!--       
       <button type="button" class="btn btn-primary"> Notifications <LeveBadge :constrast="true" :type="'warning'">2</LeveBadge></button>
-      <LeveButton type="secondary" :class="'position-relative'">Messages <LeveBadge :position="'top'">99+</LeveBadge></LeveButton>
+      <LeveButton type="secondary" :class="'position-relative'">Messages <LeveBadge :position="'top'">99+</LeveBadge></LeveButton> -->
       <!-- todo: 1. add text-bg; 2. custom css prop  -->
-      <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
-        <LeveBadge is-notification :position="'bottom'"  :type="'danger'" badge-hidden-text="'unread messages'">2</LeveBadge></LeveButton>
+      <!-- <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
+        <LeveBadge is-notification :position="'bottom'"  :type="'danger'" badge-hidden-text="'unread messages'">2</LeveBadge></LeveButton> -->
         
     </div>
-    <p>Backgrounds</p>
+    <!-- <p>Backgrounds</p>
         
     <div class="d-inline-flex p-2">
       <LeveBadge :constrast="true" :type="'primary'">primary</LeveBadge>
@@ -33,7 +33,7 @@
       <LeveBadge :constrast="true" :type="'info'">info</LeveBadge>
       <LeveBadge :constrast="true" :type="'light'">light</LeveBadge>
       <LeveBadge :constrast="true" :type="'dark'">dark</LeveBadge>
-    </div>
+    </div> -->
 
 
     <!-- <button type="button" class="btn btn-primary" id="liveToastBtn" @click.prevent="addNotice">Show live toast</button>
@@ -67,14 +67,14 @@
 </template>
 
 <script>
-import LeveBadge from './components/LeveBadge.vue';
+//import LeveBadge from './components/LeveBadge.vue';
 
 
 export default {
   name: 'App',  
-  components: {
-    LeveBadge
-},
+//   components: {
+//     LeveBadge
+// },
 
 
 }
