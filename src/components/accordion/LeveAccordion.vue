@@ -1,11 +1,14 @@
 <template>
-  <div class="accordion" id="accordionComponent">
+  <div  id="accordionComponent"
+        class="accordion"
+        :class="accordionFlush ? 'accordion-flush' : ''" 
+        >
     <LeveAccordionItem  v-for="(item, index) in contents"
-                    :id="'accordion'+index"
-                    :item="item"
-                    :groupId="groupId"
-                    :key="item.title"
-                    @accordion-opened="getAccordionId">
+                        :id="'accordion'+index"
+                        :item="item"
+                        :groupId="groupId"
+                        :key="item.title"
+                        @accordion-opened="getAccordionId">
     </LeveAccordionItem>
   </div>
 </template>
@@ -34,6 +37,10 @@ export default {
 
   props: {
     multiple: {
+      type: Boolean,
+      default: false
+    },
+    accordionFlush: {
       type: Boolean,
       default: false
     }

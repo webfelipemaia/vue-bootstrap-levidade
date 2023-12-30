@@ -14,11 +14,11 @@
               
         </LeveAccordionHeader>
         <transition name="accordion-item">
-            <LeveAccordionBody v-if="item.expanded" 
-                            :id="'collapse'+`${item.accordionId}`" 
-                            class="accordion-collapse" 
-                            :class="item.expanded ? 'collapse show' : 'collapse'" 
-                            data-bs-parent="#accordionComponent">
+            <LeveAccordionBody  v-if="item.expanded" 
+                                :id="'collapse'+`${item.accordionId}`" 
+                                class="accordion-collapse" 
+                                :class="item.expanded ? 'collapse show' : 'collapse'" 
+                                data-bs-parent="#accordionComponent">
                 {{ item.description }}
             </LeveAccordionBody>
         </transition>

@@ -1,7 +1,7 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <div class="container">
-    <LeveAccordion :multiple="true"></LeveAccordion>
+    <LeveAccordion :multiple="true" :accordion-flush="true"></LeveAccordion>
   </div>
   <div class="d-flex flex-column mb-3">
     <h4>Accordion</h4>
