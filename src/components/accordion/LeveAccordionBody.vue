@@ -7,7 +7,7 @@
 <script>
 
     export default {
-        name: "accordion-header",
+        name: "leve-accordion-header",
         data() {
             return {};
         },

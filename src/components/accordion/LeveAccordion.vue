@@ -1,36 +1,36 @@
 <template>
   <div class="accordion" id="accordionComponent">
-    <AccordionItem 
-        v-for="(item, index) in contents"
-        :id="'accordion'+index"  
-        :item="item" 
-        :key="item.title">
-    </AccordionItem>
-
+    <LeveAccordionItem  v-for="(item, index) in contents"
+                    :id="'accordion'+index"
+                    :item="item"
+                    :groupId="groupId"
+                    :key="item.title"
+                    @accordion-opened="getAccordionId">
+    </LeveAccordionItem>
   </div>
 </template>
 
 <script>
-  
-  import AccordionItem from './AccordionItem.vue';
 
+  import LeveAccordionItem from './LeveAccordionItem.vue';
+  
 const contents = Array(3)
   .fill()
   .map((_, i) => {
     return {
       accordionId: i,
-      title: `title ${i}`,
-      description: `description ${i}`,
+      title: `title ipsum dolor ${i}`,
+      description: `Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ${i}`,
       expanded: false,
     };
   });
 
-  export default {
+export default {
   name: "leve-accordion",
 
   components: {
-        AccordionItem,
-    },
+    LeveAccordionItem,
+  },
 
   props: {
     multiple: {
@@ -39,37 +39,31 @@ const contents = Array(3)
     }
   },
 
-  data() {
+  data () {
     return {
       contents,
       groupId: null,
+      currentId: null,
     };
   },
 
-  mounted() {
-    console.log(this.$el.id)
-  }
+  mounted () {
+    this.groupId = this.$el.id
+  },
 
-  }
+  methods: {
+    getAccordionId (currentId) {
+      this.currentId = currentId
+      !this.multiple ? this.closeOtherItems(currentId) : ''
+    },
 
+    closeOtherItems (currentId) {
+      this.contents.map(function(element) { 
+        if(element.accordionId !== currentId) {
+          element.expanded = false
+          }
+        })
+      },
+    }
+}
 </script>
-
-<style scoped>
- /*
-Enter and leave animations can use different
-durations and timing functions.
-*/
-.slide-fade-enter-active {
-transition: all 0.3s ease-out;
-}
-
-.slide-fade-leave-active {
-transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-transform: translateX(20px);
-opacity: 0;
-}
-</style>

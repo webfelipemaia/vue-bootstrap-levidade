@@ -1,10 +1,13 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+  <div class="container">
+    <LeveAccordion :multiple="true"></LeveAccordion>
+  </div>
   <div class="d-flex flex-column mb-3">
     <h4>Accordion</h4>
     <p>Default</p>
 
-    <LeveAccordion></LeveAccordion>
+    
     <br>
     <h4>Badge</h4>
     <p>Headings</p>

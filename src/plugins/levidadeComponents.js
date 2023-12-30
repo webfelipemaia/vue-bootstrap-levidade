@@ -6,6 +6,9 @@ import LeveAlert from '@/components/LeveAlert'
 import LeveTooltip from '@/components/LeveTooltip'
 import LeveBadge from '@/components/LeveBadge'
 import LeveAccordion from '@/components/accordion/LeveAccordion'
+import LeveAccordionItem from '@/components/accordion/LeveAccordionItem'
+import LeveAccordionBody from '@/components/accordion/LeveAccordionBody'
+import LeveAccordionHeader from '@/components/accordion/LeveAccordionHeader'
 
 import Popper from 'vue3-popper'
 
@@ -17,3 +20,6 @@ app.component('LevePopper', Popper)
 app.component('LeveTooltip', LeveTooltip)
 app.component('LeveBadge', LeveBadge)
 app.component('LeveAccordion', LeveAccordion)
+app.component('LeveAccordionItem', LeveAccordionItem)
+app.component('LeveAccordionBody', LeveAccordionBody)
+app.component('LeveAccordionHeader', LeveAccordionHeader)
