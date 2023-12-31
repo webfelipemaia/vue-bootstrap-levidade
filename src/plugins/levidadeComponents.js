@@ -11,6 +11,11 @@ import LeveAccordionBody from '@/components/accordion/LeveAccordionBody'
 import LeveAccordionHeader from '@/components/accordion/LeveAccordionHeader'
 import LeveBreadcrumb from '@/components/breadcrumb/LeveBreadcrumb'
 import LeveBreadcrumbItem from '@/components/breadcrumb/LeveBreadcrumbItem'
+import LeveCard from '@/components/card/LeveCard'
+import LeveCardBody from '@/components/card/LeveCardBody'
+import LeveCardHeader from '@/components/card/LeveCardHeader'
+import LeveCardFooter from '@/components/card/LeveCardFooter'
+import LeveCardContent from '@/components/card/LeveCardContent'
 
 import Popper from 'vue3-popper'
 
@@ -27,3 +32,8 @@ app.component('LeveAccordionBody', LeveAccordionBody)
 app.component('LeveAccordionHeader', LeveAccordionHeader)
 app.component('LeveBreadcrumb', LeveBreadcrumb)
 app.component('LeveBreadcrumbItem', LeveBreadcrumbItem)
+app.component('LeveCard', LeveCard)
+app.component('LeveCardBody', LeveCardBody)
+app.component('LeveCardHeader', LeveCardHeader)
+app.component('LeveCardFooter', LeveCardFooter)
+app.component('LeveCardContent', LeveCardContent)

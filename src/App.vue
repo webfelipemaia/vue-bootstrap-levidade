@@ -1,12 +1,19 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <div class="container">
-    <LeveBreadcrumb divider='&spades;'>
+    <LeveCard>
+        <LeveCardHeader>Featured</LeveCardHeader>
+        <LeveCardBody>
+          <LeveCardContent type="text" tag="p"></LeveCardContent>
+        </LeveCardBody>
+        <LeveCardFooter>2 days ago</LeveCardFooter>
+    </LeveCard>
+    <!-- <LeveBreadcrumb divider='&spades;'>
       <LeveBreadcrumbItem :link="'http://google.com'">Home</LeveBreadcrumbItem>
       <LeveBreadcrumbItem :link="'http://google.com'">Library</LeveBreadcrumbItem>
       <LeveBreadcrumbItem icon="cart" is-active current>Cart</LeveBreadcrumbItem>
     </LeveBreadcrumb>
-    <LeveAccordion multiple accordion-flush></LeveAccordion>
+    <LeveAccordion multiple accordion-flush></LeveAccordion> -->
   </div>
   <div class="d-flex flex-column mb-3">
     <h4>Accordion</h4>
