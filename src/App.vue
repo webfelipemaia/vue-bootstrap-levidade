@@ -1,7 +1,12 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <div class="container">
-    <LeveAccordion :multiple="true" :accordion-flush="true"></LeveAccordion>
+    <LeveBreadcrumb>
+      <LeveBreadcrumbItem :link="'http://google.com'">Home</LeveBreadcrumbItem>
+      <LeveBreadcrumbItem :link="'http://google.com'">Library</LeveBreadcrumbItem>
+      <LeveBreadcrumbItem icon="cart" is-active current>Cart</LeveBreadcrumbItem>
+    </LeveBreadcrumb>
+    <LeveAccordion multiple accordion-flush></LeveAccordion>
   </div>
   <div class="d-flex flex-column mb-3">
     <h4>Accordion</h4>

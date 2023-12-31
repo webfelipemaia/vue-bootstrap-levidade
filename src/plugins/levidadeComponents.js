@@ -9,6 +9,8 @@ import LeveAccordion from '@/components/accordion/LeveAccordion'
 import LeveAccordionItem from '@/components/accordion/LeveAccordionItem'
 import LeveAccordionBody from '@/components/accordion/LeveAccordionBody'
 import LeveAccordionHeader from '@/components/accordion/LeveAccordionHeader'
+import LeveBreadcrumb from '@/components/breadcrumb/LeveBreadcrumb'
+import LeveBreadcrumbItem from '@/components/breadcrumb/LeveBreadcrumbItem'
 
 import Popper from 'vue3-popper'
 
@@ -23,3 +25,5 @@ app.component('LeveAccordion', LeveAccordion)
 app.component('LeveAccordionItem', LeveAccordionItem)
 app.component('LeveAccordionBody', LeveAccordionBody)
 app.component('LeveAccordionHeader', LeveAccordionHeader)
+app.component('LeveBreadcrumb', LeveBreadcrumb)
+app.component('LeveBreadcrumbItem', LeveBreadcrumbItem)
