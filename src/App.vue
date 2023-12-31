@@ -1,7 +1,7 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <div class="container">
-    <LeveBreadcrumb>
+    <LeveBreadcrumb divider='&spades;'>
       <LeveBreadcrumbItem :link="'http://google.com'">Home</LeveBreadcrumbItem>
       <LeveBreadcrumbItem :link="'http://google.com'">Library</LeveBreadcrumbItem>
       <LeveBreadcrumbItem icon="cart" is-active current>Cart</LeveBreadcrumbItem>
