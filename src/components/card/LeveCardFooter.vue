@@ -1,38 +1,58 @@
 <template>
-    <div class="card-footer">
+
+    <div v-if="type" class="card-footer" :style="isGroupedStyle">
+      <div :class="cardActions">
+        <slot></slot>
+      </div>
+    </div>
+
+    <div v-else class="card-footer">
       <slot></slot>
     </div>
+
 </template>
   
 <script>
-  import { defineComponent } from 'vue';
+import { defineComponent } from 'vue';
   
   /** 
-   * Cards are general-purpose containers for displaying any type of content
+   * To assign actions to cards, you can use the LeveCardFooter component.
   */
   export default defineComponent({
     
     name: "leve-card-footer",
-      
-    setup() {
-     
-     
-    //return { },
-
+    
+    props: {      
+      type: {
+        type: String,
+        validator(value) {
+          return [ "cardGroupedContent", "cardActions"].includes(value);        
+        }
+      },
     },
   
-    //props: { },
-  
-    methods: { },
-  
-    computed: { },
-  
-    updated () { }
-      
+    computed: {
+      isGroupedStyle () {
+        return this.type ? { padding: 0, } : undefined
+      },
+      cardActions () {
+        return this.type ? { 'card-actions': true, } : undefined
+      }
+    },
+        
   });
   
 </script>
   
 <style lang="scss">
+
+  .card-grouped-content {
+    display: flex;
+  }
+
+  .card-actions {
+    display: flex;
+    align-items: stretch;
+  }
   
 </style>

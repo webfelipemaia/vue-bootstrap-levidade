@@ -4,9 +4,15 @@
     <LeveCard>
         <LeveCardHeader>Featured</LeveCardHeader>
         <LeveCardBody>
-          <LeveCardContent type="text" tag="p"></LeveCardContent>
+          <LeveCardContent type="title" tag="h5">Card Title</LeveCardContent>
+          <LeveCardContent type="subtitle" tag="h6">Card Subtitle is here</LeveCardContent>
+          <LeveCardContent type="text" tag="span">Some quick example text to build on the card title and make up the bulk of the card's content.</LeveCardContent>
         </LeveCardBody>
-        <LeveCardFooter>2 days ago</LeveCardFooter>
+        <LeveCardFooter type="cardActions">
+          <LeveCardFooterItem :link="'http://google.com'">Save</LeveCardFooterItem>
+          <LeveCardFooterItem :link="'http://google.com'">Edit</LeveCardFooterItem>
+          <LeveCardFooterItem :link="'http://google.com'">Delete</LeveCardFooterItem>
+        </LeveCardFooter>
     </LeveCard>
     <!-- <LeveBreadcrumb divider='&spades;'>
       <LeveBreadcrumbItem :link="'http://google.com'">Home</LeveBreadcrumbItem>

@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="card" :style="textAlign">
         <slot></slot>
     </div>
 </template>
@@ -9,31 +9,28 @@
     import { defineComponent } from 'vue';
   
   /** 
-   * Cards are general-purpose containers for displaying any type of content
+   * Cards are general-purpose containers for displaying any type of content.
   */
   export default defineComponent({
     
     name: "leve-card",
-      
-    setup() {
-     
-     
-    //return { },
-
+        
+    props: {      
+      alignment: {
+      type: String,
+      default: "left",
+        validator(value) {
+          return [ "left", "center","right"].includes(value);        
+        }
+      },
     },
   
-    //props: { },
-  
-    methods: { },
-  
-    computed: { },
-  
-    updated () { }
+    computed: {      
+      textAlign () {
+        return { 'text-align':  this.alignment }
+      },
+    },
       
   });
   
 </script>
-  
-<style lang="scss">
-  
-</style>

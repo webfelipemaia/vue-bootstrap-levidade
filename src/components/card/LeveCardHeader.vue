@@ -8,31 +8,12 @@
   import { defineComponent } from 'vue';
   
   /** 
-   * Cards are general-purpose containers for displaying any type of content
+   * Add highlighted title to the Card component.
   */
   export default defineComponent({
     
     name: "leve-card-header",
       
-    setup() {
-     
-     
-    //return { },
-
-    },
-  
-    //props: { },
-  
-    methods: { },
-  
-    computed: { },
-  
-    updated () { }
-      
   });
   
 </script>
-  
-<style lang="scss">
-  
-</style>

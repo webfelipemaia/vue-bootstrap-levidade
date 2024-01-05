@@ -8,31 +8,12 @@
   import { defineComponent } from 'vue';
   
   /** 
-   * Cards are general-purpose containers for displaying any type of content
+   * The casing for the body of the LeveCard component.
   */
   export default defineComponent({
     
     name: "leve-card-body",
       
-    setup() {
-     
-     
-    //return { },
-
-    },
-  
-    //props: { },
-  
-    methods: { },
-  
-    computed: { },
-  
-    updated () { }
-      
   });
   
 </script>
-  
-<style lang="scss">
-  
-</style>

@@ -1,14 +1,20 @@
 <template :is="tag">
 
   <template v-if="type === 'title'">
-    {{ type }}
+    <component :is="contentTags.includes(tag) ? tag : 'h5'" class="card-title">
+      <slot></slot>
+    </component>
   </template>
+
   <template v-else-if="type === 'subtitle'">
-    {{ type }}
+    <component :is="contentTags.includes(tag) ? tag : 'h6'" class="card-subtitle mb-2 text-body-secondary">
+      <slot></slot>
+    </component>
   </template>
+  
   <template v-else>
     <component :is="contentTags.includes(tag) ? tag : 'div'" class="card-text">
-      {{ type }}
+      <slot></slot>
     </component>
   </template>
 
@@ -18,24 +24,17 @@
   import { defineComponent } from 'vue';
   
   /** 
-   * Cards are general-purpose containers for displaying any type of content
+   * The content of the cards can be free text, a title or subtitle. By default, the component displays 
+   * as text surrounded by the <coede>div</code> tag.
   */
   export default defineComponent({
     
     name: "leve-card-content",
-      
-    setup() {
-     
-     
-    //return { },
-
-    },
-  
+        
     props: { 
       tag: {
       type: String,
       required: false,
-      default: "p",
         validator(value) {
           return ["p", "div", "span", "h1", "h2", "h3", "h4", "h5", "h6"].includes(value)
         }
@@ -54,17 +53,7 @@
         contentTags: ["p", "div", "span", "h1", "h2", "h3", "h4", "h5", "h6"],
       }
     },
-  
-    methods: { },
-  
-    computed: { },
-  
-    updated () { },
       
   });
   
 </script>
-  
-<style lang="scss">
-  
-</style>
