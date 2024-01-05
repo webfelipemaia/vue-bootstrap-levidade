@@ -17,6 +17,7 @@ import LeveCardHeader from '@/components/card/LeveCardHeader'
 import LeveCardFooter from '@/components/card/LeveCardFooter'
 import LeveCardContent from '@/components/card/LeveCardContent'
 import LeveCardFooterItem from '@/components/card/LeveCardFooterItem'
+import LeveImage from '@/components/LeveImage'
 
 import Popper from 'vue3-popper'
 
@@ -39,3 +40,4 @@ app.component('LeveCardHeader', LeveCardHeader)
 app.component('LeveCardFooter', LeveCardFooter)
 app.component('LeveCardContent', LeveCardContent)
 app.component('LeveCardFooterItem', LeveCardFooterItem)
+app.component('LeveImage', LeveImage)

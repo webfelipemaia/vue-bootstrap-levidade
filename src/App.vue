@@ -1,6 +1,14 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+  <!-- <LeveImage :alt="'Vue logo'" :path="image" /> -->
   <div class="container">
+    <LeveImage :type="'fluid'" :path="image" :alt="'Image example'" />
+    <LeveCard :helperStyle="'width: 18rem;color:red;'">
+      <LeveCardBody>
+          <LeveCardContent type="title" tag="h5">Card Title</LeveCardContent>
+          <LeveCardContent type="text" tag="span">Some quick example text to build on the card title and make up the bulk of the card's content.</LeveCardContent>
+          <a href="http://google.com" class="btn btn-primary">Go somewhere</a>
+        </LeveCardBody>
+    </LeveCard>
     <LeveCard>
         <LeveCardHeader>Featured</LeveCardHeader>
         <LeveCardBody>
@@ -89,15 +97,20 @@
 
 <script>
 //import LeveBadge from './components/LeveBadge.vue';
-
+import image from "./assets/img/ian-schneider-TamMbr4okv4-unsplash.jpg"
+import LeveImage from "./components/LeveImage.vue";
 
 export default {
-  name: 'App',  
-//   components: {
-//     LeveBadge
-// },
-
-
+    name: 'App',
+    //   components: {
+    //     LeveBadge
+    // },
+    data() {
+        return {
+            image: image,
+        };
+    },
+    components: { LeveImage }
 }
 </script>
 

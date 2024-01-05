@@ -1,5 +1,5 @@
 <template>
-    <div class="card" :style="textAlign">
+    <div class="card" :class="helperClass" :style="helperStyle">
         <slot></slot>
     </div>
 </template>
@@ -15,7 +15,14 @@
     
     name: "leve-card",
         
-    props: {      
+    props: {
+      
+      helperStyle: {
+            type: [Object,String]
+        },
+      helperClass: {
+        type: [Object,String]
+      },   
       alignment: {
       type: String,
       default: "left",
