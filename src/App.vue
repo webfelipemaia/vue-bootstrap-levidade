@@ -1,7 +1,8 @@
 <template>
   <!-- <LeveImage :alt="'Vue logo'" :path="image" /> -->
   <div class="container">
-    <LeveImage :type="'fluid'" :path="image" :alt="'Image example'" />
+    <LeveDropdown :items="[{id:1,nome:'Marie'},{id:2,nome:'Jane'}]"></LeveDropdown>
+    <!-- <LeveImage :type="'fluid'" :path="image" :alt="'Image example'" />
     <LeveCard :helperStyle="'width: 18rem;color:red;'">
       <LeveCardBody>
           <LeveCardContent type="title" tag="h5">Card Title</LeveCardContent>
@@ -21,7 +22,7 @@
           <LeveCardFooterItem :link="'http://google.com'">Edit</LeveCardFooterItem>
           <LeveCardFooterItem :link="'http://google.com'">Delete</LeveCardFooterItem>
         </LeveCardFooter>
-    </LeveCard>
+    </LeveCard> -->
     <!-- <LeveBreadcrumb divider='&spades;'>
       <LeveBreadcrumbItem :link="'http://google.com'">Home</LeveBreadcrumbItem>
       <LeveBreadcrumbItem :link="'http://google.com'">Library</LeveBreadcrumbItem>
@@ -98,7 +99,8 @@
 <script>
 //import LeveBadge from './components/LeveBadge.vue';
 import image from "./assets/img/ian-schneider-TamMbr4okv4-unsplash.jpg"
-import LeveImage from "./components/LeveImage.vue";
+import LeveDropdown from "./components/LeveDropdown.vue";
+// import LeveImage from "./components/LeveImage.vue";
 
 export default {
     name: 'App',
@@ -110,7 +112,7 @@ export default {
             image: image,
         };
     },
-    components: { LeveImage }
+    components: { LeveDropdown }
 }
 </script>
 
