@@ -1,7 +1,14 @@
 <template>
   <!-- <LeveImage :alt="'Vue logo'" :path="image" /> -->
-  <div class="container">
-    <LeveDropdown :items="[{id:1,nome:'Marie'},{id:2,nome:'Jane'}]"></LeveDropdown>
+  <div class="container"> 
+    <LeveDropdown :title="'teste'">
+      
+      <div>
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </LeveDropdown>
     <!-- <LeveImage :type="'fluid'" :path="image" :alt="'Image example'" />
     <LeveCard :helperStyle="'width: 18rem;color:red;'">
       <LeveCardBody>
