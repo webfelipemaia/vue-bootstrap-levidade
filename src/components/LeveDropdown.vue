@@ -52,30 +52,33 @@
     </div>
   </div>
 </template>
+
 <script>
 import { createPopper } from "@popperjs/core";
 import { useEventListener } from '@vueuse/core'
+
 var dropdownCounter = 0;
 var getIdGenerator = function () {
   return "dropdown-" + dropdownCounter++;
 };
+
 var Placement = [
-  "auto",
-  "auto-start",
-  "auto-end",
-  "top",
-  "top-start",
-  "top-end",
-  "bottom",
-  "bottom-start",
-  "bottom-end",
-  "right",
-  "right-start",
-  "right-end",
-  "left",
-  "left-start",
-  "left-end",
-];
+                  "auto",
+                  "auto-start",
+                  "auto-end",
+                  "top",
+                  "top-start",
+                  "top-end",
+                  "bottom",
+                  "bottom-start",
+                  "bottom-end",
+                  "right",
+                  "right-start",
+                  "right-end",
+                  "left",
+                  "left-start",
+                  "left-end",
+                ];
 
 var DropDownEvents = ["click"];
 if (window.ontouchstart || navigator.msMaxTouchPoints > 0) {
@@ -122,14 +125,35 @@ var RemoveListeners = function () {
 };
 
 export default {
+
   name: "leve-dropdown",
+  
   data() {
     return {
       isShow: false,
     };
   },
-  props: ["title", "placement", "btn-class", "btn-split", 'dropdown-class'],
+  
+  props: {
+    title: {
+      type: String,
+    },    
+    placemente: {
+      type: String,
+    },
+    btnClass: {
+      type: String,
+    },
+    btnSplit: {
+      type: String,
+    },
+    dropdownClass: {
+      type: String,
+    },
+   },
+  
   watch: {},
+  
   computed: {
     dropdownClass: function () {
       var btnClass = "";
@@ -142,6 +166,7 @@ export default {
       return btnClass;
     },
   },
+
   methods: {
     switchState: function () {
       this.isShow = !this.isShow;
@@ -157,6 +182,7 @@ export default {
       }
     },
   },
+
   beforeUnmount() {
     for (var i in DropDownInstances) {
       if (DropDownInstances[i].el === this.$el) {
@@ -165,6 +191,7 @@ export default {
     }
     RemoveListeners();
   },
+
   mounted() {
     addDropdownInstances();
     var self = this;
@@ -175,8 +202,10 @@ export default {
       },
     });
   },
+
   created: function () {
     this.id = getIdGenerator();
   },
+  
 };
 </script>

@@ -9,6 +9,11 @@
         <a class="dropdown-item" href="#">Something else here</a>
       </div>
     </LeveDropdown>
+    <LeveDropdown title="dropdown-menu-lg-end" btn-class="btn-info" dropdown-class="dropdown-menu-end dropdown-menu-lg-start">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+    </LeveDropdown>
     <!-- <LeveImage :type="'fluid'" :path="image" :alt="'Image example'" />
     <LeveCard :helperStyle="'width: 18rem;color:red;'">
       <LeveCardBody>
