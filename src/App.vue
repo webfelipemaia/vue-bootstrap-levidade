@@ -1,6 +1,47 @@
 <template>
   <!-- <LeveImage :alt="'Vue logo'" :path="image" /> -->
-  <div class="container"> 
+  <div class="container">
+    
+    <div class="row">
+      <h3 class="mt-4">Buttons</h3>
+      <!-- todo: 
+                  1. add block buttons; 
+                  2. add toggle states
+                -->
+      <p class="text-start">Buttons with badges</p>
+      <div class="d-flex justify-content-evenly my-3 p-2">        
+        <button type="button" class="btn btn-primary"> Notifications <LeveBadge :constrast="true" :type="'warning'">2</LeveBadge></button>
+        <LeveButton type="secondary" :class="'position-relative'">Messages <LeveBadge :position="'top'">99+</LeveBadge></LeveButton>        
+        <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
+          <LeveBadge :position="'bottom'"  :type="'danger'" badge-hidden-text="'unread messages'">2</LeveBadge>
+        </LeveButton>
+        <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
+          <LeveBadge is-notification :type="'danger'" badge-hidden-text="'unread messages'"></LeveBadge>
+        </LeveButton>        
+      </div>
+      
+      <p class="text-start">Outline & Sizes</p>
+      <div class="d-flex justify-content-evenly p-2">
+        <LeveButton :outline="'primary'">Button</LeveButton>
+        <LeveButton type="primary" :size="'lg'">Large button</LeveButton>
+        <LeveButton type="primary" :size="'sm'">Small button</LeveButton>        
+      </div>
+
+      <p class="text-start">Disabled state and loading</p>
+      <div class="d-flex justify-content-evenly p-2">
+        <LeveButton :outline="'primary'" disabled>Button</LeveButton>
+        <LeveButton type="primary"  disabled>Button</LeveButton>
+        <LeveButton :outline="'secondary'" loading>Button</LeveButton>
+        <LeveButton type="secondary"  loading>Button</LeveButton>
+      </div>
+      
+      <p class="text-start">Custom style</p>
+      <div class="d-flex justify-content-evenly p-2">
+        <LeveButton :outline="'primary'" :style="'--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;'">Button</LeveButton>
+        <LeveButton type="primary" :style="'background-color:grey;border-color:black;color:black;'">Large button</LeveButton>
+        <LeveButton type="primary" :size="'sm'" :style="'background-color:transparent;color:blue;'">Small button</LeveButton>        
+      </div>
+    </div>
     <LeveDropdown :title="'teste'">
       
       <div>
@@ -54,16 +95,6 @@
     <h4>Example heading h4 <LeveBadge>New</LeveBadge></h4>
     <h6>Example heading h6 <LeveBadge>New</LeveBadge></h6> -->
     
-    <p class="mt-4">Buttons</p>
-    <div class="d-inline-flex p-2">
-<!--       
-      <button type="button" class="btn btn-primary"> Notifications <LeveBadge :constrast="true" :type="'warning'">2</LeveBadge></button>
-      <LeveButton type="secondary" :class="'position-relative'">Messages <LeveBadge :position="'top'">99+</LeveBadge></LeveButton> -->
-      <!-- todo: 1. add text-bg; 2. custom css prop  -->
-      <!-- <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
-        <LeveBadge is-notification :position="'bottom'"  :type="'danger'" badge-hidden-text="'unread messages'">2</LeveBadge></LeveButton> -->
-        
-    </div>
     <!-- <p>Backgrounds</p>
         
     <div class="d-inline-flex p-2">

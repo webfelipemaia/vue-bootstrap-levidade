@@ -12,6 +12,7 @@
       { 'btn-link': link },
       { disabled: disabled && tag !== 'button' },
     ]"
+    :style="[buttonStyle,style]"
     :ariaLabel=ariaLabel
   >
     <slot v-if="loading" name="loading">
@@ -43,23 +44,23 @@ export default {
     },
     outline: {
       type: String,
-      default: "",
+      default: '',
     },
     type: {
       type: String,
-      default: "",
+      default: '',
     },
     nativeType: {
       type: String,
-      default: "button",
+      default: 'button',
     },
     size: {
       type: String,
-      default: "",
+      default: '',
     },
     icon: {
       type: String,
-      default: ""
+      default: ''
     },
     link: {
       type: Boolean,
@@ -68,9 +69,32 @@ export default {
       type: String,
       default: '',
     },
+    style: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {
+    }
+  },
+  computed: {
+    buttonStyle() {
+      let height;
+      switch (this.size) {
+        case 'sm':
+          height = '30px';
+          break;
+        case 'md':
+          height = '38px';
+          break;
+        case 'lg':
+          height = '48px';
+          break;
+        default:
+          height = '38px';
+      }
+      return { height };
     }
   },
   methods: {
