@@ -1,24 +1,55 @@
 <template>
   <!-- <LeveImage :alt="'Vue logo'" :path="image" /> -->
   <div class="container">
+  <section>
     
     <div class="row">
-      <h3 class="mt-4">Buttons</h3>
+      <h3>Badges</h3>
       <!-- todo: 
                   1. add block buttons; 
                   2. add toggle states
                 -->
-      <p class="text-start">Buttons with badges</p>
-      <div class="d-flex justify-content-evenly my-3 p-2">        
-        <button type="button" class="btn btn-primary"> Notifications <LeveBadge :constrast="true" :type="'warning'">2</LeveBadge></button>
-        <LeveButton type="secondary" :class="'position-relative'">Messages <LeveBadge :position="'top'">99+</LeveBadge></LeveButton>        
-        <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
-          <LeveBadge :position="'bottom'"  :type="'danger'" badge-hidden-text="'unread messages'">2</LeveBadge>
-        </LeveButton>
-        <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
-          <LeveBadge is-notification :type="'danger'" badge-hidden-text="'unread messages'"></LeveBadge>
-        </LeveButton>        
+      <p class="text-start">Badges are components intended for counting and labeling.</p>
+      <div class="d-flex my-3 p-2">
+        <div class="examples d-flex justify-content-around">      
+          <button type="button" class="btn btn-primary"> Notifications <LeveBadge :constrast="true" :type="'warning'">2</LeveBadge></button>
+          <LeveButton type="secondary" :class="'position-relative'">Messages <LeveBadge :position="'top'">99+</LeveBadge></LeveButton>        
+          <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
+            <LeveBadge :position="'bottom'"  :type="'danger'" badge-hidden-text="'unread messages'">2</LeveBadge>
+          </LeveButton>
+          <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
+            <LeveBadge is-notification :type="'danger'" badge-hidden-text="'unread messages'"></LeveBadge>
+          </LeveButton>
+        </div>
       </div>
+      <div class="code">
+        <pre v-highlightjs><code class="javascript">{{ badgeCode }}</code></pre>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <h3>Buttons</h3>
+      <!-- todo: 
+                  1. add block buttons; 
+                  2. add toggle states
+                -->
+      <p class="text-start">Custom buttons are used for actions on forms, dialog boxes, etc. They can have various sizes, states and other features.</p>
+      <div class="d-flex my-3 p-2">
+        <div class="examples d-flex justify-content-around">
+          <LeveButton type="primary">Primary</LeveButton>
+          <LeveButton type="secondary">Secondary</LeveButton>
+          <LeveButton type="success">Success</LeveButton>
+          <LeveButton type="danger">Danger</LeveButton>
+          <LeveButton type="warning">Warning</LeveButton>
+          <LeveButton type="info">Info</LeveButton>
+          <LeveButton type="light">Light</LeveButton>
+          <LeveButton type="dark">Dark</LeveButton>
+        </div>
+      </div>
+        <div class="code">
+          <pre v-highlightjs><code class="javascript">{{  buttonCode }}</code></pre>
+        </div>
       
       <p class="text-start">Outline & Sizes</p>
       <div class="d-flex justify-content-evenly p-2">
@@ -42,6 +73,7 @@
         <LeveButton type="primary" :size="'sm'" :style="'background-color:transparent;color:blue;'">Small button</LeveButton>        
       </div>
     </div>
+  </section>
     <LeveDropdown :title="'teste'">
       
       <div>
@@ -153,6 +185,18 @@ export default {
     data() {
         return {
             image: image,
+            badgeCode: `<button type="button" class="btn btn-primary"> Notifications <LeveBadge :constrast="true" :type="'warning'">2</LeveBadge></button>
+            <LeveButton type="secondary" :class="'position-relative'">Messages <LeveBadge :position="'top'">99+</LeveBadge></LeveButton>
+            <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages <LeveBadge :position="'bottom'"  :type="'danger'" badge-hidden-text="'unread messages'">2</LeveBadge></LeveButton>
+            <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages <LeveBadge is-notification :type="'danger'" badge-hidden-text="'unread messages'"></LeveBadge></LeveButton>`,
+            buttonCode: `          <LeveButton type="primary">Primary</LeveButton>
+          <LeveButton type="secondary">Secondary</LeveButton>
+          <LeveButton type="success">Success</LeveButton>
+          <LeveButton type="danger">Danger</LeveButton>
+          <LeveButton type="warning">Warning</LeveButton>
+          <LeveButton type="info">Info</LeveButton>
+          <LeveButton type="light">Light</LeveButton>
+          <LeveButton type="dark">Dark</LeveButton>`,
         };
     },
     components: { LeveDropdown }
@@ -165,15 +209,53 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }
+section {
+  padding: 2rem 1rem 2rem;
+}
+
+section .row h3 {
+  margin-top: 2rem;
+  padding-top: 0.5rem;
+}
+
+section .row .d-flex {
+  padding: 2rem 0 !important;
+}
+
 .d-flex.flex-column {
   max-width: 100%;
   align-items: center;
 }
 .d-flex.flex-column button {
     margin: 0.125em;
+}
+.examples {
+    align-items: center;
+    display: flex;
+    flex: 1 auto;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    justify-content: flex-start;
+}
+
+.code {
+  background-color: #eee;
+  border-radius: 8px;
+  padding-top: 1rem;
+  width: 50%;
+}
+
+.code pre code { background-color: transparent;}
+
+
+@media (max-width: 992px) {
+
+  section .row .d-flex {
+    flex-direction: column;
   }
+  
+}
 </style>
