@@ -3,7 +3,7 @@ import { app } from './plugins/mainApp'
 import './plugins/levidadeStyles'
 import './plugins/levidadeComponents'
 import VueHighlightJS from 'vue3-highlightjs'
-import 'highlight.js/styles/solarized-light.css'
+import 'highlight.js/styles/default.css'
 
 const pinia = createPinia()
 app.use(pinia)

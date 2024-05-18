@@ -1,32 +1,30 @@
 <template>
   <!-- <LeveImage :alt="'Vue logo'" :path="image" /> -->
   <div class="container">
-  <section>
-    
-    <div class="row">
-      <h3>Badges</h3>
-      <!-- todo: 
+    <section>    
+      <div class="row">
+        <h3>Badges</h3>
+          <!-- todo: 
                   1. add block buttons; 
                   2. add toggle states
                 -->
-      <p class="text-start">Badges are components intended for counting and labeling.</p>
-      <div class="d-flex my-3 p-2">
-        <div class="examples d-flex justify-content-around">      
-          <button type="button" class="btn btn-primary"> Notifications <LeveBadge :constrast="true" :type="'warning'">2</LeveBadge></button>
-          <LeveButton type="secondary" :class="'position-relative'">Messages <LeveBadge :position="'top'">99+</LeveBadge></LeveButton>        
-          <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
-            <LeveBadge :position="'bottom'"  :type="'danger'" badge-hidden-text="'unread messages'">2</LeveBadge>
-          </LeveButton>
-          <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
-            <LeveBadge is-notification :type="'danger'" badge-hidden-text="'unread messages'"></LeveBadge>
-          </LeveButton>
+        <p>Badges are components intended for counting and labeling.</p>
+        <div class="d-flex my-3 p-2">
+          <div class="examples d-flex justify-content-around">      
+            <button type="button" class="btn btn-primary"> Notifications <LeveBadge :constrast="true" :type="'warning'">2</LeveBadge></button>
+            <LeveButton type="secondary" :class="'position-relative'">Messages <LeveBadge :position="'top'">99+</LeveBadge></LeveButton>        
+            <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
+              <LeveBadge :position="'bottom'"  :type="'danger'" badge-hidden-text="'unread messages'">2</LeveBadge>
+            </LeveButton>
+            <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
+              <LeveBadge is-notification :type="'danger'" badge-hidden-text="'unread messages'"></LeveBadge>
+            </LeveButton>
+          </div>
+        </div>
+        <div class="code">
+          <pre v-highlightjs><code class="javascript">{{ badgeCode }}</code></pre>
         </div>
       </div>
-      <div class="code">
-        <pre v-highlightjs><code class="javascript">{{ badgeCode }}</code></pre>
-      </div>
-    </div>
-
 
     <div class="row">
       <h3>Buttons</h3>
@@ -34,7 +32,7 @@
                   1. add block buttons; 
                   2. add toggle states
                 -->
-      <p class="text-start">Custom buttons are used for actions on forms, dialog boxes, etc. They can have various sizes, states and other features.</p>
+      <p>Custom buttons are used for actions on forms, dialog boxes, etc. They can have various sizes, states and other features.</p>
       <div class="d-flex my-3 p-2">
         <div class="examples d-flex justify-content-around">
           <LeveButton type="primary">Primary</LeveButton>
@@ -47,31 +45,56 @@
           <LeveButton type="dark">Dark</LeveButton>
         </div>
       </div>
-        <div class="code">
-          <pre v-highlightjs><code class="javascript">{{  buttonCode }}</code></pre>
-        </div>
+      <div class="code">
+        <pre v-highlightjs><code class="javascript">{{  buttonCode }}</code></pre>
+      </div>
       
-      <p class="text-start">Outline & Sizes</p>
+      <p>Outline</p>
       <div class="d-flex justify-content-evenly p-2">
         <LeveButton :outline="'primary'">Button</LeveButton>
+        <LeveButton :outline="'secondary'">Button</LeveButton>
+        <LeveButton :outline="'success'">Button</LeveButton>
+        <LeveButton :outline="'danger'">Button</LeveButton>
+        <LeveButton :outline="'warning'">Button</LeveButton>
+        <LeveButton :outline="'info'">Button</LeveButton>
+        <LeveButton :outline="'light'">Button</LeveButton>
+        <LeveButton :outline="'dark'">Button</LeveButton>
+      </div>
+      <div class="code">
+        <pre v-highlightjs><code class="javascript">{{  outlineButtonCode }}</code></pre>
+      </div>
+      
+      <p>Outline</p>
+      <div class="d-flex justify-content-evenly p-2">
+        <LeveButton type="primary" :size="'sm'">Small button</LeveButton>
+        <LeveButton type="primary" :size="'md'">Medium button</LeveButton>
         <LeveButton type="primary" :size="'lg'">Large button</LeveButton>
-        <LeveButton type="primary" :size="'sm'">Small button</LeveButton>        
+      </div>      
+      <div class="code">
+        <pre v-highlightjs><code class="javascript">{{  sizeButtonCode }}</code></pre>
       </div>
 
-      <p class="text-start">Disabled state and loading</p>
+      <p>Disabled state and loading</p>
       <div class="d-flex justify-content-evenly p-2">
         <LeveButton :outline="'primary'" disabled>Button</LeveButton>
         <LeveButton type="primary"  disabled>Button</LeveButton>
         <LeveButton :outline="'secondary'" loading>Button</LeveButton>
         <LeveButton type="secondary"  loading>Button</LeveButton>
       </div>
+      <div class="code">
+        <pre v-highlightjs><code class="javascript">{{  disabledAndLoadingButtonCode }}</code></pre>
+      </div>
       
-      <p class="text-start">Custom style</p>
+      <p>Custom style</p>
       <div class="d-flex justify-content-evenly p-2">
         <LeveButton :outline="'primary'" :style="'--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;'">Button</LeveButton>
         <LeveButton type="primary" :style="'background-color:grey;border-color:black;color:black;'">Large button</LeveButton>
         <LeveButton type="primary" :size="'sm'" :style="'background-color:transparent;color:blue;'">Small button</LeveButton>        
       </div>
+      <div class="code">
+        <pre v-highlightjs><code class="javascript">{{  sizeButtonCode }}</code></pre>
+      </div>
+      
     </div>
   </section>
     <LeveDropdown :title="'teste'">
@@ -184,12 +207,14 @@ export default {
     // },
     data() {
         return {
-            image: image,
-            badgeCode: `<button type="button" class="btn btn-primary"> Notifications <LeveBadge :constrast="true" :type="'warning'">2</LeveBadge></button>
-            <LeveButton type="secondary" :class="'position-relative'">Messages <LeveBadge :position="'top'">99+</LeveBadge></LeveButton>
-            <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages <LeveBadge :position="'bottom'"  :type="'danger'" badge-hidden-text="'unread messages'">2</LeveBadge></LeveButton>
-            <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages <LeveBadge is-notification :type="'danger'" badge-hidden-text="'unread messages'"></LeveBadge></LeveButton>`,
-            buttonCode: `          <LeveButton type="primary">Primary</LeveButton>
+          image: image,
+          badgeCode: `
+          <button type="button" class="btn btn-primary"> Notifications <LeveBadge :constrast="true" :type="'warning'">2</LeveBadge></button>
+          <LeveButton type="secondary" :class="'position-relative'">Messages <LeveBadge :position="'top'">99+</LeveBadge></LeveButton>
+          <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages <LeveBadge :position="'bottom'"  :type="'danger'" badge-hidden-text="'unread messages'">2</LeveBadge></LeveButton>
+          <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages <LeveBadge is-notification :type="'danger'" badge-hidden-text="'unread messages'"></LeveBadge></LeveButton>`,
+          buttonCode: `
+          <LeveButton type="primary">Primary</LeveButton>
           <LeveButton type="secondary">Secondary</LeveButton>
           <LeveButton type="success">Success</LeveButton>
           <LeveButton type="danger">Danger</LeveButton>
@@ -197,6 +222,32 @@ export default {
           <LeveButton type="info">Info</LeveButton>
           <LeveButton type="light">Light</LeveButton>
           <LeveButton type="dark">Dark</LeveButton>`,
+          outlineButtonCode: `
+          <LeveButton :outline="'primary'">Button</LeveButton>
+          <LeveButton :outline="'secondary'">Button</LeveButton>
+          <LeveButton :outline="'success'">Button</LeveButton>
+          <LeveButton :outline="'danger'">Button</LeveButton>
+          <LeveButton :outline="'warning'">Button</LeveButton>
+          <LeveButton :outline="'info'">Button</LeveButton>
+          <LeveButton :outline="'light'">Button</LeveButton>
+          <LeveButton :outline="'dark'">Button</LeveButton>          
+          `,
+          sizeButtonCode: `
+          <LeveButton :outline="'primary'">Button</LeveButton>
+          <LeveButton type="primary" :size="'lg'">Large button</LeveButton>
+          <LeveButton type="primary" :size="'sm'">Small button</LeveButton>          
+          `,
+          disabledAndLoadingButtonCode: `
+          <LeveButton :outline="'primary'" disabled>Button</LeveButton>
+          <LeveButton type="primary"  disabled>Button</LeveButton>
+          <LeveButton :outline="'secondary'" loading>Button</LeveButton>
+          <LeveButton type="secondary"  loading>Button</LeveButton>          
+          `,
+          customStyleButtonCode: `
+          <LeveButton :outline="'primary'" :style="'--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;'">Button</LeveButton>
+          <LeveButton type="primary" :style="'background-color:grey;border-color:black;color:black;'">Large button</LeveButton>
+          <LeveButton type="primary" :size="'sm'" :style="'background-color:transparent;color:blue;'">Small button</LeveButton>  
+          `,
         };
     },
     components: { LeveDropdown }
@@ -216,9 +267,24 @@ section {
   padding: 2rem 1rem 2rem;
 }
 
+section .row {
+  border: 1px solid #eee;
+  border-radius: 12px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin: 1rem 0;
+}
+
 section .row h3 {
-  margin-top: 2rem;
-  padding-top: 0.5rem;
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+}
+
+section .row p {
+  font-size: 110%;
+  margin-top: 1.25rem;
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid #eee;
 }
 
 section .row .d-flex {
@@ -243,9 +309,7 @@ section .row .d-flex {
 
 .code {
   background-color: #eee;
-  border-radius: 8px;
   padding-top: 1rem;
-  width: 50%;
 }
 
 .code pre code { background-color: transparent;}
