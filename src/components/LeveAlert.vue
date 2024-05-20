@@ -1,12 +1,50 @@
 <template>
-  <button @click="createItem">New Alert</button>
 
-  <div
+  <button v-if="!isAlert" @click="createItem" :class="{ hide: !isOpen }">New Alert</button>
+
+    <!-- Alerts -->
+
+    <div 
+        v-if="isAlert"
+        class="alert alert-dismissible fade alert-container"
+        :class="[{ [`alert-${alertType || singleAlert.type}`]: alertType || singleAlert.type },{ show: isOpen },{ hide: !isOpen }]"
+        :isDismissible="('' || null) ? false : true"
+        :style="setAlignment"
+        role="alert">
+
+        <h5 class="alert-heading">
+          <slot name="header">{{ headingText || singleAlert.heading }}</slot>
+        </h5>
+
+        <div class="alert-body">
+
+          <div class="alert-body-content" :style="setFlexAlignment">
+            <slot v-if="icon" name="icon">
+              <i class="bi flex-shrink-0 me-2" :class="[{ [`bi-${icon}`]: icon }]"></i>
+            </slot>
+            <div>
+              <slot>{{ bodyText || singleAlert.text }}</slot>
+            </div>
+
+          </div>
+          <hr v-if="commentText || singleAlert.text">
+          
+          <div class="alert-body-additional" :style="setFlexAlignment">            
+            <slot name="footer">{{ commentText || singleAlert.comment }}</slot>
+          </div>
+
+        </div>
+        
+        <button v-if="isDismissible" @click="isOpen = !isOpen" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        
+    </div>
+
+    <!-- System notification -->
+    <div
       v-for="(item, index) in items"
       :key="index"
       class="alert alert-dismissible fade show alert-container"
-      :type="item.type"
-      :class="[{ [`alert-${item.type}`]: item.type }]"
+      :class="[{ [`alert-${alertType || singleAlert.type}`]: alertType || singleAlert.type }]"
       :isDismissible="('' || null) ? false : true"
       :style="setAlignment"
       >
@@ -22,7 +60,7 @@
 
         </div>
 
-        <hr v-if="item.comment">
+        <hr v-if="commentText || item.comment">
         <div 
             v-if="item.comment" 
             class="alert-body-additional"
@@ -60,9 +98,10 @@ export default defineComponent({
     
     const alertStore = useAlertStore();
     const items = ref(alertStore);
+    const isOpen = ref(true);
 
     onMounted(() => {
-      items.value = alertStore.items;      
+      items.value = alertStore.items;
     });
 
     function createItem() {
@@ -85,8 +124,9 @@ export default defineComponent({
       }
       return null;
     }
-
+    
     return {
+      isOpen,
       items,
       createItem,
       deleteItem,
@@ -98,9 +138,29 @@ export default defineComponent({
     icon: {
       type: String,
     },
+    headingText: {
+      type: String,
+    },
+    bodyText: {
+      type: String,
+    },
+    commentText: {
+      type: String,
+    },
+    alertType: {
+      type: String,
+    },
+    type: {
+      type: [Object,String],
+      default: 'primary'
+    },
     isDismissible: {
       type: Boolean,
       default: false
+    },
+    isAlert: {
+      type: Boolean,
+      default: true
     },    
     timeout: {
       type: Number,
@@ -113,6 +173,12 @@ export default defineComponent({
         return ['left', 'center', 'right',].includes(value)
       }
     },
+    singleAlert: {
+      type: Object,
+      default() {
+        return { type: 'primary', heading: '', text: '', comment: ''}
+      }
+    }
   },
 
   methods: {
@@ -161,6 +227,10 @@ export default defineComponent({
 </script>
 
 <style>
+
+  .hide {
+    display: none !important;
+  }
 
   .alert-container {
     display: flex;

@@ -1,6 +1,110 @@
 <template>
   <!-- <LeveImage :alt="'Vue logo'" :path="image" /> -->
   <div class="container">
+    <section>
+      <div class="heading">
+        <h2>Notifications</h2>
+        <p>System notifications are flexible and don't require much code editing.</p>
+      </div>    
+      <div class="row">
+        <h3>Simple alert</h3>
+        <p>Alerts are simple notifications designed to respond to typical user interaction actions.</p>
+        <div class="d-flex my-3 p-2">
+          <div class="examples d-flex justify-content-around">
+            <div class="d-flex flex-column">
+              <LeveAlert>Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>Default</span>
+            </div>
+            <div class="d-flex flex-column">
+              <LeveAlert is-dismissible>Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>Dismissible</span>
+            </div>
+            <div class="d-flex flex-column">
+              <LeveAlert is-dismissible icon="heart">Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>With icon</span>
+            </div>
+          </div>
+        </div>
+        <div class="code">
+          <pre v-highlightjs><code class="javascript"></code></pre>
+        </div>
+
+        <p>Types of alert according to the theme.</p>
+        <div class="d-flex my-3 p-2">
+          <div class="examples d-flex justify-content-around">
+            <div class="d-flex flex-column">
+              <LeveAlert :alertType="'primary'">Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>Primary</span>
+            </div>
+            <div class="d-flex flex-column">
+              <LeveAlert  :alertType="'secondary'">Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>Secondary</span>
+            </div>
+            <div class="d-flex flex-column">
+              <LeveAlert  :alertType="'success'">Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>Success</span>
+            </div>
+            <div class="d-flex flex-column">
+              <LeveAlert  :alertType="'danger'">Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>Danger</span>
+            </div>
+            <div class="d-flex flex-column">
+              <LeveAlert  :alertType="'warning'">Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>Warning</span>
+            </div>
+            <div class="d-flex flex-column">
+              <LeveAlert  :alertType="'info'">Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>Info</span>
+            </div>
+            <div class="d-flex flex-column">
+              <LeveAlert  :alertType="'light'">Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>Light</span>
+            </div>
+            <div class="d-flex flex-column">
+              <LeveAlert  :alertType="'dark'">Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>Dark</span>
+            </div>
+          </div>
+        </div>
+        <div class="code">
+          <pre v-highlightjs><code class="javascript"></code></pre>
+        </div>
+      </div>
+      <div class="row">
+        <h3>Alert with additional content</h3>
+        <p>Here we explore the use of slots. There are three slots defined for text and one for icon representation. When adding content between the <code>&#60;LeveAlert&#62;</code> and <code>&#60;/LeveAlert&#62;</code> tags, the default slot <code>#default</code> adds the content to the alert or notification. For header, use the <code>#header</code> template. For the footer, use <code>#footer</code>.</p>
+        <div class="d-flex my-3 p-2">
+          <div class="examples d-flex justify-content-around">
+            <LeveAlert is-dismissible :alert-type="'secondary'" icon="arrow-through-heart">
+                <template #header>
+                  Header text goes here.
+                </template>
+                <template #default>
+                  A text for the main content.
+                </template>
+                <template #footer>
+                  A little text here in the footer
+                </template>
+              </LeveAlert>
+              <LeveAlert is-dismissible :alert-type="'secondary'">
+                <template #header>
+                  Header text goes here.
+                </template>
+                <template #default>
+                  A text for the main content.
+                </template>
+                <template #footer>
+                  A little text here in the footer
+                </template>
+              </LeveAlert>
+          </div>
+        </div>
+        <div class="code">
+          <pre v-highlightjs><code class="javascript"></code></pre>
+        </div>
+      </div>
+    </section>
+
     <section>    
       <div class="row">
         <h3>Badges</h3>
@@ -64,7 +168,7 @@
         <pre v-highlightjs><code class="javascript">{{  outlineButtonCode }}</code></pre>
       </div>
       
-      <p>Outline</p>
+      <p>Sizes</p>
       <div class="d-flex justify-content-evenly p-2">
         <LeveButton type="primary" :size="'sm'">Small button</LeveButton>
         <LeveButton type="primary" :size="'md'">Medium button</LeveButton>
@@ -208,6 +312,14 @@ export default {
     data() {
         return {
           image: image,
+          singleAlert: { 
+            id: 0, 
+            text: 'Lorem ipsum dolor sit amet',
+            comment: 'Sample comment text here',
+            type: 'primary',
+            notificationTime: 'just now',
+            createdAt: new Date()
+          },
           badgeCode: `
           <button type="button" class="btn btn-primary"> Notifications <LeveBadge :constrast="true" :type="'warning'">2</LeveBadge></button>
           <LeveButton type="secondary" :class="'position-relative'">Messages <LeveBadge :position="'top'">99+</LeveBadge></LeveButton>
