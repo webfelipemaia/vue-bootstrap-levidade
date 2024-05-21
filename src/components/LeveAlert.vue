@@ -10,11 +10,12 @@
         :class="[{ [`alert-${alertType || singleAlert.type}`]: alertType || singleAlert.type },{ show: isOpen },{ hide: !isOpen }]"
         :isDismissible="('' || null) ? false : true"
         :style="setAlignment"
-        role="alert">
+        role="alert"
+        >
 
-        <h5 class="alert-heading">
+        <h4 class="alert-heading">
           <slot name="header">{{ headingText || singleAlert.heading }}</slot>
-        </h5>
+        </h4>
 
         <div class="alert-body">
 
@@ -27,7 +28,7 @@
             </div>
 
           </div>
-          <hr v-if="commentText || singleAlert.text">
+          <hr v-if="hasFooterSlotContent|| singleAlert.text">
           
           <div class="alert-body-additional" :style="setFlexAlignment">            
             <slot name="footer">{{ commentText || singleAlert.comment }}</slot>
@@ -49,7 +50,7 @@
       :style="setAlignment"
       >
 
-      <h5 class="alert-heading">{{ item.heading }}</h5>
+      <h4 class="alert-heading">{{ item.heading }}</h4>
       <div class="alert-body">
 
         <div class="alert-body-content" :style="setFlexAlignment">
@@ -60,7 +61,7 @@
 
         </div>
 
-        <hr v-if="commentText || item.comment">
+        <hr v-if="hasFooterSlotContent || item.comment">
         <div 
             v-if="item.comment" 
             class="alert-body-additional"
@@ -74,7 +75,7 @@
 </template>
 
 <script>
-import { defineComponent, onMounted, ref} from 'vue';
+import { defineComponent, onMounted, ref, computed} from 'vue';
 import { useAlertStore } from '../store/Alerts.ts';
 import { fakeAlertData } from '../utils/items.ts'
 
@@ -82,6 +83,10 @@ import { fakeAlertData } from '../utils/items.ts'
 /** 
  * Alerts are simple notifications designed to respond to typical user interaction actions.
  * @vue-prop {Boolean} icon - Define an icon by adding the suffix of the CSS class corresponding to the icon using web font. For example, for <i class="bi bi-arrow-right"></i>, in the icon property we set the value 'arrow-right'.
+ * @vue-prop {String} headingText - The text for the alert header.
+ * @vue-prop {String} bodyText - The text that appears in the body of the alert.
+ * @vue-prop {String} commentText - Simple comment to be displayed in the footer.
+ * @vue-prop {Object} singleAlert - To create dynamic and relevant content.
  * @vue-data {Boolean} [isDismissable=false] isDismissable - Define whether the notification is an alert.
  * @vue-data {Boolean} [timeout=5000] timeout - The time, in milliseconds, that the timer should wait before closing the alert. A value of 5000 is used by default. If a negative value is assigned, the alert is not rendered.
  * @vue-data {Object} alertStore - Sets the Notification store.
@@ -94,16 +99,21 @@ export default defineComponent({
   
   name: "leve-alert",
     
-  setup() {
+  setup(_, { slots })  {
     
     const alertStore = useAlertStore();
     const items = ref(alertStore);
     const isOpen = ref(true);
 
+    // Verifies that the slot footer has received data. If the answer is yes, the dividing line is displayed.
+    const hasFooterSlotContent = computed(() => slots.footer && slots.footer().length > 0);
+
+    // Start the items
     onMounted(() => {
       items.value = alertStore.items;
     });
 
+    // Create a notification
     function createItem() {
       if(this.checkTimeoutValue(this.timeout) === -1) {
         console.log(`The timeout property expects a numeric value greater than or equal to zero. ${this.timeout} was assigned.`);
@@ -112,10 +122,12 @@ export default defineComponent({
       }
     }
 
+    // Delete a notification
     function deleteItem(id) {
       alertStore.deleteItem(id);
     }
 
+    // Get the id of the last added item
     function getLastIndex() {
       const size = alertStore.items.length;
       if(size > 0) {
@@ -128,6 +140,7 @@ export default defineComponent({
     return {
       isOpen,
       items,
+      hasFooterSlotContent,
       createItem,
       deleteItem,
       getLastIndex,
@@ -251,7 +264,7 @@ export default defineComponent({
 
   .alert-heading {
     font-weight: 300;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     text-align: inherit;
   }
 

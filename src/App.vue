@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="code">
-          <pre v-highlightjs><code class="javascript"></code></pre>
+          <pre v-highlightjs><code class="javascript">{{ simpleAlertCode }}</code></pre>
         </div>
 
         <p>Types of alert according to the theme.</p>
@@ -67,26 +67,15 @@
           </div>
         </div>
         <div class="code">
-          <pre v-highlightjs><code class="javascript"></code></pre>
+          <pre v-highlightjs><code class="javascript">{{ simpleAlertCodeByTheme }}</code></pre>
         </div>
       </div>
       <div class="row">
         <h3>Alert with additional content</h3>
         <p>Here we explore the use of slots. There are three slots defined for text and one for icon representation. When adding content between the <code>&#60;LeveAlert&#62;</code> and <code>&#60;/LeveAlert&#62;</code> tags, the default slot <code>#default</code> adds the content to the alert or notification. For header, use the <code>#header</code> template. For the footer, use <code>#footer</code>.</p>
-        <div class="d-flex my-3 p-2">
-          <div class="examples d-flex justify-content-around">
-            <LeveAlert is-dismissible :alert-type="'secondary'" icon="arrow-through-heart">
-                <template #header>
-                  Header text goes here.
-                </template>
-                <template #default>
-                  A text for the main content.
-                </template>
-                <template #footer>
-                  A little text here in the footer
-                </template>
-              </LeveAlert>
-              <LeveAlert is-dismissible :alert-type="'secondary'">
+        <div class="d-flex justify-content-around my-3 p-2">
+          <div class="w-50">
+            <LeveAlert is-dismissible>
                 <template #header>
                   Header text goes here.
                 </template>
@@ -100,7 +89,7 @@
           </div>
         </div>
         <div class="code">
-          <pre v-highlightjs><code class="javascript"></code></pre>
+          <pre v-highlightjs><code class="javascript">{{ slotedAlertCode }}</code></pre>
         </div>
       </div>
     </section>
@@ -132,10 +121,6 @@
 
     <div class="row">
       <h3>Buttons</h3>
-      <!-- todo: 
-                  1. add block buttons; 
-                  2. add toggle states
-                -->
       <p>Custom buttons are used for actions on forms, dialog boxes, etc. They can have various sizes, states and other features.</p>
       <div class="d-flex my-3 p-2">
         <div class="examples d-flex justify-content-around">
@@ -201,8 +186,8 @@
       
     </div>
   </section>
-    <LeveDropdown :title="'teste'">
-      
+  <!--
+    <LeveDropdown :title="'teste'">      
       <div>
         <a class="dropdown-item" href="#">Action</a>
         <a class="dropdown-item" href="#">Another action</a>
@@ -214,7 +199,7 @@
       <a class="dropdown-item" href="#">Another action</a>
       <a class="dropdown-item" href="#">Something else here</a>
     </LeveDropdown>
-    <!-- <LeveImage :type="'fluid'" :path="image" :alt="'Image example'" />
+     <LeveImage :type="'fluid'" :path="image" :alt="'Image example'" />
     <LeveCard :helperStyle="'width: 18rem;color:red;'">
       <LeveCardBody>
           <LeveCardContent type="title" tag="h5">Card Title</LeveCardContent>
@@ -243,14 +228,14 @@
     <LeveAccordion multiple accordion-flush></LeveAccordion> -->
   </div>
   <div class="d-flex flex-column mb-3">
-    <h4>Accordion</h4>
+  <!--  <h4>Accordion</h4>
     <p>Default</p>
 
     
     <br>
     <h4>Badge</h4>
     <p>Headings</p>
-    <!-- <h1>Example heading h1 <LeveBadge>New</LeveBadge></h1>
+    <h1>Example heading h1 <LeveBadge>New</LeveBadge></h1>
     <h4>Example heading h4 <LeveBadge>New</LeveBadge></h4>
     <h6>Example heading h6 <LeveBadge>New</LeveBadge></h6> -->
     
@@ -301,7 +286,7 @@
 <script>
 //import LeveBadge from './components/LeveBadge.vue';
 import image from "./assets/img/ian-schneider-TamMbr4okv4-unsplash.jpg"
-import LeveDropdown from "./components/LeveDropdown.vue";
+// import LeveDropdown from "./components/LeveDropdown.vue";
 // import LeveImage from "./components/LeveImage.vue";
 
 export default {
@@ -360,9 +345,70 @@ export default {
           <LeveButton type="primary" :style="'background-color:grey;border-color:black;color:black;'">Large button</LeveButton>
           <LeveButton type="primary" :size="'sm'" :style="'background-color:transparent;color:blue;'">Small button</LeveButton>  
           `,
+          simpleAlertCode: `
+            <div class="d-flex flex-column">
+              <LeveAlert>Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>Default</span>
+            </div>
+            <div class="d-flex flex-column">
+              <LeveAlert is-dismissible>Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>Dismissible</span>
+            </div>
+            <div class="d-flex flex-column">
+              <LeveAlert is-dismissible icon="heart">Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>With icon</span>
+            </div>          
+          `,
+          simpleAlertCodeByTheme: `
+            <div class="d-flex flex-column">
+              <LeveAlert :alertType="'primary'">Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>Primary</span>
+            </div>
+            <div class="d-flex flex-column">
+              <LeveAlert  :alertType="'secondary'">Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>Secondary</span>
+            </div>
+            <div class="d-flex flex-column">
+              <LeveAlert  :alertType="'success'">Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>Success</span>
+            </div>
+            <div class="d-flex flex-column">
+              <LeveAlert  :alertType="'danger'">Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>Danger</span>
+            </div>
+            <div class="d-flex flex-column">
+              <LeveAlert  :alertType="'warning'">Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>Warning</span>
+            </div>
+            <div class="d-flex flex-column">
+              <LeveAlert  :alertType="'info'">Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>Info</span>
+            </div>
+            <div class="d-flex flex-column">
+              <LeveAlert  :alertType="'light'">Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>Light</span>
+            </div>
+            <div class="d-flex flex-column">
+              <LeveAlert  :alertType="'dark'">Lorem ipsum dolor sit amet.</LeveAlert>
+              <span>Dark</span>
+            </div>          
+          `,
+          slotedAlertCode: `
+            <LeveAlert is-dismissible>
+              <template #header>
+                Header text goes here.
+              </template>
+              <template #default>
+                A text for the main content.
+              </template>
+              <template #footer>
+                A little text here in the footer
+              </template>
+            </LeveAlert>
+          `,
         };
     },
-    components: { LeveDropdown }
+    components: { /*LeveDropdown*/ }
 }
 </script>
 
