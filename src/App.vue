@@ -5,7 +5,7 @@
       <div class="heading">
         <h2>Notifications</h2>
         <p>System notifications are flexible and don't require much code editing.</p>
-      </div>    
+      </div>
       <div class="row">
         <h3>Simple alert</h3>
         <p>Alerts are simple notifications designed to respond to typical user interaction actions.</p>
@@ -94,30 +94,71 @@
       </div>
     </section>
 
-    <section>    
+    <section>
+      <div class="heading">
+        <h2>Badges</h2>
+        <p>Badges that work as small notifiers for highlighted parts of the interface.</p>
+      </div>
       <div class="row">
-        <h3>Badges</h3>
+        <h3>Títulos</h3>
           <!-- todo: 
                   1. add block buttons; 
                   2. add toggle states
                 -->
-        <p>Badges are components intended for counting and labeling.</p>
+        <p>Designed to fit the size of the component.</p>
         <div class="d-flex my-3 p-2">
-          <div class="examples d-flex justify-content-around">      
-            <button type="button" class="btn btn-primary"> Notifications <LeveBadge :constrast="true" :type="'warning'">2</LeveBadge></button>
-            <LeveButton type="secondary" :class="'position-relative'">Messages <LeveBadge :position="'top'">99+</LeveBadge></LeveButton>        
-            <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
-              <LeveBadge :position="'bottom'"  :type="'danger'" badge-hidden-text="'unread messages'">2</LeveBadge>
-            </LeveButton>
-            <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
-              <LeveBadge is-notification :type="'danger'" badge-hidden-text="'unread messages'"></LeveBadge>
-            </LeveButton>
+          <div class="examples d-flex flex-column">      
+            <h1>Heading h1 <LeveBadge>New</LeveBadge></h1>
+            <h2>Heading h2 <LeveBadge>New</LeveBadge></h2>
+            <h3>Heading h3 <LeveBadge>New</LeveBadge></h3>
+            <h4>Heading h4 <LeveBadge>New</LeveBadge></h4>
+            <h5>Heading h5 <LeveBadge>New</LeveBadge></h5>
+            <h6>Heading h6 <LeveBadge>New</LeveBadge></h6>
+          </div>
+        </div>
+        <div class="code">
+          <pre v-highlightjs><code class="javascript">{{ headingBadgeCode }}</code></pre>
+        </div>
+      </div>
+
+      <div class="row">
+        <h3>Themes</h3>
+        <div class="d-flex my-3 p-2">
+          <div class="examples d-flex justify-content-around">
+            <LeveBadge :constrast="true" :type="'primary'">primary</LeveBadge>
+            <LeveBadge :constrast="true" :type="'secondary'">secondary</LeveBadge>
+            <LeveBadge :constrast="true" :type="'success'">success</LeveBadge>
+            <LeveBadge :constrast="true" :type="'danger'">danger</LeveBadge>
+            <LeveBadge :constrast="true" :type="'warning'">warning</LeveBadge>
+            <LeveBadge :constrast="true" :type="'info'">info</LeveBadge>
+            <LeveBadge :constrast="true" :type="'light'">light</LeveBadge>
+            <LeveBadge :constrast="true" :type="'dark'">dark</LeveBadge>
+          </div>
+        </div>
+      </div>
+      <div class="code">
+        <pre v-highlightjs><code class="javascript">{{  badgeCodeByTheme }}</code></pre>
+      </div>
+     
+      <div class="row">
+        <h3>Buttons</h3>
+        <p>Associeated with buttons or links they may have some uses. For example, as a counter, as a notifier combining with a counter or as a notifier only.</p>
+        <div class="d-flex my-3 p-2">
+            <div class="examples d-flex justify-content-around">      
+              <button type="button" class="btn btn-primary"> Notifications <LeveBadge :constrast="true" :type="'warning'">2</LeveBadge></button>
+              <LeveButton type="secondary" :class="'position-relative'">Messages <LeveBadge :position="'top'">99+</LeveBadge></LeveButton>        
+              <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
+                <LeveBadge :position="'bottom'"  :type="'danger'" badge-hidden-text="'unread messages'">2</LeveBadge>
+              </LeveButton>
+              <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages 
+                <LeveBadge is-notification :type="'danger'" badge-hidden-text="'unread messages'"></LeveBadge>
+              </LeveButton>
+            </div>
           </div>
         </div>
         <div class="code">
           <pre v-highlightjs><code class="javascript">{{ badgeCode }}</code></pre>
         </div>
-      </div>
 
     <div class="row">
       <h3>Buttons</h3>
@@ -231,29 +272,12 @@
   <!--  <h4>Accordion</h4>
     <p>Default</p>
 
-    
-    <br>
-    <h4>Badge</h4>
-    <p>Headings</p>
-    <h1>Example heading h1 <LeveBadge>New</LeveBadge></h1>
-    <h4>Example heading h4 <LeveBadge>New</LeveBadge></h4>
-    <h6>Example heading h6 <LeveBadge>New</LeveBadge></h6> -->
-    
-    <!-- <p>Backgrounds</p>
+    <p>Backgrounds</p>
         
     <div class="d-inline-flex p-2">
-      <LeveBadge :constrast="true" :type="'primary'">primary</LeveBadge>
-      <LeveBadge :constrast="true" :type="'secondary'">secondary</LeveBadge>
-      <LeveBadge :constrast="true" :type="'success'">success</LeveBadge>
-      <LeveBadge :constrast="true" :type="'danger'">danger</LeveBadge>
-      <LeveBadge :constrast="true" :type="'warning'">warning</LeveBadge>
-      <LeveBadge :constrast="true" :type="'info'">info</LeveBadge>
-      <LeveBadge :constrast="true" :type="'light'">light</LeveBadge>
-      <LeveBadge :constrast="true" :type="'dark'">dark</LeveBadge>
-    </div> -->
 
 
-    <!-- <button type="button" class="btn btn-primary" id="liveToastBtn" @click.prevent="addNotice">Show live toast</button>
+ <button type="button" class="btn btn-primary" id="liveToastBtn" @click.prevent="addNotice">Show live toast</button>
     <br />
     <LeveAlert is-dismissible :timeout="20000" icon="heart"></LeveAlert>
     <LeveToast :type="primary" :position="['middle','left']">Teste</LeveToast>
@@ -305,11 +329,28 @@ export default {
             notificationTime: 'just now',
             createdAt: new Date()
           },
+          headingBadgeCode:`
+            <h1>Heading h1 <LeveBadge>New</LeveBadge></h1>
+            <h2>Heading h2 <LeveBadge>New</LeveBadge></h2>
+            <h3>Heading h3 <LeveBadge>New</LeveBadge></h3>
+            <h4>Heading h4 <LeveBadge>New</LeveBadge></h4>
+            <h5>Heading h5 <LeveBadge>New</LeveBadge></h5>
+            <h6>Heading h6 <LeveBadge>New</LeveBadge></h6>
+          `,
           badgeCode: `
           <button type="button" class="btn btn-primary"> Notifications <LeveBadge :constrast="true" :type="'warning'">2</LeveBadge></button>
           <LeveButton type="secondary" :class="'position-relative'">Messages <LeveBadge :position="'top'">99+</LeveBadge></LeveButton>
           <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages <LeveBadge :position="'bottom'"  :type="'danger'" badge-hidden-text="'unread messages'">2</LeveBadge></LeveButton>
           <LeveButton type="secondary" class="ms-3" :class="'position-relative'">Messages <LeveBadge is-notification :type="'danger'" badge-hidden-text="'unread messages'"></LeveBadge></LeveButton>`,
+          badgeCodeByTheme:`
+          <LeveButton type="primary">Primary</LeveButton>
+          <LeveButton type="secondary">Secondary</LeveButton>
+          <LeveButton type="success">Success</LeveButton>
+          <LeveButton type="danger">Danger</LeveButton>
+          <LeveButton type="warning">Warning</LeveButton>
+          <LeveButton type="info">Info</LeveButton>
+          <LeveButton type="light">Light</LeveButton>
+          <LeveButton type="dark">Dark</LeveButton>`,
           buttonCode: `
           <LeveButton type="primary">Primary</LeveButton>
           <LeveButton type="secondary">Secondary</LeveButton>
