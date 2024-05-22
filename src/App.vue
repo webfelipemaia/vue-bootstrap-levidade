@@ -100,7 +100,7 @@
         <p>Badges that work as small notifiers for highlighted parts of the interface.</p>
       </div>
       <div class="row">
-        <h3>Títulos</h3>
+        <h3>Titles</h3>
           <!-- todo: 
                   1. add block buttons; 
                   2. add toggle states
@@ -119,10 +119,8 @@
         <div class="code">
           <pre v-highlightjs><code class="javascript">{{ headingBadgeCode }}</code></pre>
         </div>
-      </div>
 
-      <div class="row">
-        <h3>Themes</h3>
+        <p>Themes</p>
         <div class="d-flex my-3 p-2">
           <div class="examples d-flex justify-content-around">
             <LeveBadge :constrast="true" :type="'primary'">primary</LeveBadge>
@@ -135,12 +133,10 @@
             <LeveBadge :constrast="true" :type="'dark'">dark</LeveBadge>
           </div>
         </div>
-      </div>
-      <div class="code">
-        <pre v-highlightjs><code class="javascript">{{  badgeCodeByTheme }}</code></pre>
-      </div>
+        <div class="code">
+          <pre v-highlightjs><code class="javascript">{{  badgeCodeByTheme }}</code></pre>
+        </div>
      
-      <div class="row">
         <h3>Buttons</h3>
         <p>Associeated with buttons or links they may have some uses. For example, as a counter, as a notifier combining with a counter or as a notifier only.</p>
         <div class="d-flex my-3 p-2">
@@ -155,14 +151,17 @@
               </LeveButton>
             </div>
           </div>
-        </div>
-        <div class="code">
-          <pre v-highlightjs><code class="javascript">{{ badgeCode }}</code></pre>
-        </div>
+          <div class="code">
+            <pre v-highlightjs><code class="javascript">{{ badgeCode }}</code></pre>
+          </div>
+      </div>
 
-    <div class="row">
-      <h3>Buttons</h3>
+      <div class="heading">
+        <h2>Buttons</h2>
       <p>Custom buttons are used for actions on forms, dialog boxes, etc. They can have various sizes, states and other features.</p>
+      </div>
+    <div class="row">
+      <h3>Themes</h3>
       <div class="d-flex my-3 p-2">
         <div class="examples d-flex justify-content-around">
           <LeveButton type="primary">Primary</LeveButton>
