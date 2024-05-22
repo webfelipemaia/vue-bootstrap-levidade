@@ -1,16 +1,16 @@
 <template>
   <!-- <LeveImage :alt="'Vue logo'" :path="image" /> -->
-  <div class="container">
+  <div class="levedoc container">
     <section>
       <div class="heading">
         <h2>Notifications</h2>
         <p>System notifications are flexible and don't require much code editing.</p>
       </div>
-      <div class="row">
-        <h3>Simple alert</h3>
+      <div class="snippet row">
+        <h3 class="snippet-title">Simple alert</h3>
         <p>Alerts are simple notifications designed to respond to typical user interaction actions.</p>
-        <div class="d-flex my-3 p-2">
-          <div class="examples d-flex justify-content-around">
+        <div class="snippet-item">
+          <div class="examples">
             <div class="d-flex flex-column">
               <LeveAlert>Lorem ipsum dolor sit amet.</LeveAlert>
               <span>Default</span>
@@ -25,7 +25,7 @@
             </div>
           </div>
         </div>
-        <div class="code">
+        <div class="snippet-code">
           <pre v-highlightjs><code class="javascript">{{ simpleAlertCode }}</code></pre>
         </div>
 
@@ -452,8 +452,67 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+.levedoc {
 
+  section {
+
+    padding: 2rem 1rem 2rem;
+
+    h2 {
+      margin-bottom: 2rem;
+      font-weight: bold;
+    }
+    .snippet {
+
+      border: 1px solid #eee;
+      border-radius: 12px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      margin: 1rem 0;
+
+      .snippet-title {
+        margin-top: 0.25rem;
+        padding: 0.5rem;
+      }
+
+      p {
+        font-size: 110%;
+        margin-top: 1.25rem;
+        padding: 1.25rem 1rem;
+        border-bottom: 1px solid #eee;
+      }
+
+      .snippet-item {
+
+        .examples {
+            align-items: center;
+            display: flex;
+            flex: 1 auto;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            justify-content: flex-start;
+        }
+
+        .code {
+          background-color: #eee;
+          padding-top: 1rem;
+
+          pre {
+            code { 
+              background-color: transparent;
+            }
+          }
+
+        }
+        
+      }
+
+    }
+    
+  }
+
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -461,56 +520,16 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-section {
-  padding: 2rem 1rem 2rem;
-}
-
-section .row {
-  border: 1px solid #eee;
-  border-radius: 12px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  margin: 1rem 0;
-}
-
-section .row h3 {
-  margin-top: 0.25rem;
-  padding: 0.5rem;
-}
-
-section .row p {
-  font-size: 110%;
-  margin-top: 1.25rem;
-  padding: 1.25rem 1rem;
-  border-bottom: 1px solid #eee;
-}
-
-section .row .d-flex {
-  padding: 2rem 0 !important;
-}
 
 .d-flex.flex-column {
   max-width: 100%;
   align-items: center;
 }
+
 .d-flex.flex-column button {
     margin: 0.125em;
 }
-.examples {
-    align-items: center;
-    display: flex;
-    flex: 1 auto;
-    flex-wrap: wrap;
-    gap: 1.25rem;
-    justify-content: flex-start;
-}
 
-.code {
-  background-color: #eee;
-  padding-top: 1rem;
-}
-
-.code pre code { background-color: transparent;}
 
 
 @media (max-width: 992px) {
