@@ -3,7 +3,7 @@
   <button v-if="!isAlert" @click="createItem" :class="{ hide: !isOpen }">New Alert</button>
 
     <!-- Alerts -->
-
+  
     <div 
         v-if="isAlert"
         class="alert alert-dismissible fade alert-container"
@@ -18,7 +18,7 @@
         </h4>
 
         <div class="alert-body">
-
+       
           <div class="alert-body-content" :style="setFlexAlignment">
             <slot v-if="icon" name="icon">
               <i class="bi flex-shrink-0 me-2" :class="[{ [`bi-${icon}`]: icon }]"></i>
@@ -42,14 +42,13 @@
 
     <!-- System notification -->
     <div
-      v-for="(item, index) in items"
+      v-for="(item, index) in filteredItems"
       :key="index"
       class="alert alert-dismissible fade show alert-container"
       :class="[{ [`alert-${alertType || singleAlert.type}`]: alertType || singleAlert.type }]"
       :isDismissible="('' || null) ? false : true"
       :style="setAlignment"
       >
-
       <h4 class="alert-heading">{{ item.heading }}</h4>
       <div class="alert-body">
 
@@ -58,7 +57,6 @@
             <i class="bi flex-shrink-0 me-2" :class="[{ [`bi-${icon}`]: icon }]"></i>
           </slot>
           <div> {{ item.text }} </div>
-
         </div>
 
         <hr v-if="hasFooterSlotContent || item.comment">
@@ -74,80 +72,12 @@
     
 </template>
 
-<script>
-import { defineComponent, onMounted, ref, computed} from 'vue';
+<script setup>
+import { defineProps, onMounted, onUpdated, getCurrentInstance, ref, computed, useSlots} from 'vue';
 import { useAlertStore } from '../store/Alerts.ts';
-import { fakeAlertData } from '../utils/items.ts'
 
-
-/** 
- * Alerts are simple notifications designed to respond to typical user interaction actions.
- * @vue-prop {Boolean} icon - Define an icon by adding the suffix of the CSS class corresponding to the icon using web font. For example, for <i class="bi bi-arrow-right"></i>, in the icon property we set the value 'arrow-right'.
- * @vue-prop {String} headingText - The text for the alert header.
- * @vue-prop {String} bodyText - The text that appears in the body of the alert.
- * @vue-prop {String} commentText - Simple comment to be displayed in the footer.
- * @vue-prop {Object} singleAlert - To create dynamic and relevant content.
- * @vue-data {Boolean} [isDismissable=false] isDismissable - Define whether the notification is an alert.
- * @vue-data {Boolean} [timeout=5000] timeout - The time, in milliseconds, that the timer should wait before closing the alert. A value of 5000 is used by default. If a negative value is assigned, the alert is not rendered.
- * @vue-data {Object} alertStore - Sets the Notification store.
- * @vue-data {Object} items - ref(alertStore) makes the object reactive.
- * @vue-event {Object} createItem - Calls the createNewItem() method and pass object as function argument.
- * @vue-event {Object} deleteItem - Calls the deleteItem() method and the object id.
- * @vue-event {(string|null)} getLastIndex - Calls the getLastIndex() method and return the last index or null.
-*/
-export default defineComponent({
-  
-  name: "leve-alert",
-    
-  setup(_, { slots })  {
-    
-    const alertStore = useAlertStore();
-    const items = ref(alertStore);
-    const isOpen = ref(true);
-
-    // Verifies that the slot footer has received data. If the answer is yes, the dividing line is displayed.
-    const hasFooterSlotContent = computed(() => slots.footer && slots.footer().length > 0);
-
-    // Start the items
-    onMounted(() => {
-      items.value = alertStore.items;
-    });
-
-    // Create a notification
-    function createItem() {
-      if(this.checkTimeoutValue(this.timeout) === -1) {
-        console.log(`The timeout property expects a numeric value greater than or equal to zero. ${this.timeout} was assigned.`);
-      } else {
-        alertStore.createNewItem(fakeAlertData());
-      }
-    }
-
-    // Delete a notification
-    function deleteItem(id) {
-      alertStore.deleteItem(id);
-    }
-
-    // Get the id of the last added item
-    function getLastIndex() {
-      const size = alertStore.items.length;
-      if(size > 0) {
-      const itemId = alertStore.items[size-1].id;
-        return itemId;
-      }
-      return null;
-    }
-    
-    return {
-      isOpen,
-      items,
-      hasFooterSlotContent,
-      createItem,
-      deleteItem,
-      getLastIndex,
-    };
-  },
-
-  props: {
+// Alerts are simple notifications designed to respond to typical user interaction actions.
+const props = defineProps ({
     icon: {
       type: String,
     },
@@ -189,53 +119,85 @@ export default defineComponent({
     singleAlert: {
       type: Object,
       default() {
-        return { type: 'primary', heading: '', text: '', comment: ''}
+        return { type: 'primary', heading: '', text: '', comment: '',uid: ''}
       }
     }
-  },
+  })
+   
+    const alertStore = useAlertStore();
+    const items = ref([]);
+    const isOpen = ref(true);
+    const instance = getCurrentInstance();
+    const uid = instance?.uid;
+    const slots = useSlots();
+    
+    // Verifies that the slot footer has received data. If the answer is yes, the dividing line is displayed.
+    const hasFooterSlotContent = computed(() => slots.footer && slots.footer().length > 0);
 
-  methods: {
-    checkTimeoutValue(value) {
+    // Configures the item display for the source component.
+    // Eliminates duplication of display
+    const filteredItems = computed(() => {
+      return items.value.filter(item => item.uid === uid);
+    });
+
+    // Sets text alignment
+    const setAlignment = computed(() => {
+      return { "text-align": props.alignment }
+    });
+
+    // Align items in a Flex container
+    const setFlexAlignment = computed(() => {
+      return {  "justify-content": props.alignment }
+    });
+
+    // Removes alert after x seconds (see props.timeout)
+    onUpdated(() => { 
+      const lastId = getLastIndex();    
+      if (lastId !== null) {
+        setTimeout(() => {
+          deleteItem(lastId);
+        }, props.timeout);
+      }
+    });
+
+    // Start the items
+    onMounted(() => {
+      items.value = alertStore.items;
+    });
+
+    // Create a notification
+    function createItem() {
+      if(checkTimeoutValue(props.timeout) === -1) {
+        console.log(`The timeout property expects a numeric value greater than or equal to zero. ${this.timeout} was assigned.`);
+      } else {
+        alertStore.createNewItem(props.singleAlert,uid)
+      }
+    }
+
+    // Delete a notification
+    function deleteItem(id) {
+      alertStore.deleteItem(id);
+    }
+
+    // Get the id of the last added item
+    function getLastIndex() {
+      const size = alertStore.items.length;
+      if(size > 0) {
+      const itemId = alertStore.items[size-1].id;
+        return itemId;
+      }
+      return null;
+    }
+
+    // Check the value of timeout
+    function checkTimeoutValue(value) {
       const delayNumber = new Number(value);
       if(delayNumber.valueOf() < 0 ) {
         return -1;
       }
       return value;
     }
-  },
-
-  computed: {
-    /**
-     * Sets text alignment
-     */
-    setAlignment() {
-      return {
-        "text-align": this.alignment,
-      }
-    },
-    
-    /**
-     * Align items in a Flex container
-     * @example
-     * // use left, center or right
-     */
-    setFlexAlignment() {
-      return {
-        "justify-content": this.alignment,
-      }
-    },
-  },
-
-  updated () {
-    const lastId = this.getLastIndex();    
-    if (lastId !== null) {
-      setTimeout(() => {
-        this.deleteItem(lastId);
-      }, this.timeout);
-    }
-  }
-    
-});
+  
 
 </script>
 
