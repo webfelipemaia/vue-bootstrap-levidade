@@ -1,6 +1,5 @@
 <template>
   <button @click="createItem">New Toast</button>
- 
     <div 
         class="toast-container p-3" 
         :class="[toastPosition.start,toastPosition.end]">
@@ -36,7 +35,6 @@
         </div>
 
         <div class="toast-body">
-
             <small>{{ item.text }}</small>
             <slot></slot>
             <div :class="defaultActionClass">
@@ -49,75 +47,19 @@
         </div>
 
       </div>
-
     </div>
     
 </template>
 
-<script>
-import { defineComponent, onMounted, ref} from "vue";
+<script setup>
+import { defineProps, onMounted, onUpdated, ref, computed} from "vue";
 import { useNotificationStore } from '../store/Notifications.ts';
-import { fakeNotificationData } from '../utils/items.ts';
+//import { fakeNotificationData } from '../utils/items.ts';
+import { inject } from 'vue'
 
-
-/** 
- * Toasts are simple notifications created either statically or dynamically.
- * @vue-prop {Boolean} toastIsVisible 
- * @vue-prop {string} [type='light'] - Type follows Bootstrap's theming model.
- * @vue-prop {string} [title='Example'] The title of the notification.
- * @vue-prop {string} [comment='An example comment.'] The text that is displayed in the body of the component.
- * @vue-prop {Array} [defaultClass=['mt-2', 'pt-2',]] defaultActionClass
- * @vue-data {Object} notificationStore - Sets the Notification store.
- * @vue-data {Object} items - ref(notificationStore) makes the object reactive.
- * @vue-event {Object} createItem - Calls the createNewItem() method and pass object as function argument.
- * @vue-event {Object} deleteItem - Calls the deleteItem() method and the object id.
- * @vue-event {Object} updateItem - Calls the updateItem() method and pass the object id.
- * @vue-event {(string|null)} getLastIndex - Calls the getLastIndex() method and return the last index or null.
-*/
-export default defineComponent({
+// Toasts are simple notifications created either statically or dynamically.
   
-  name: "leve-toast",
-    
-  setup() {
-    
-    const notificationStore = useNotificationStore();
-    const items = ref(notificationStore);
-
-    onMounted(() => {
-      items.value = notificationStore.items;      
-    });
-
-    function createItem() {
-      notificationStore.createNewItem(fakeNotificationData());
-    }
-
-    function deleteItem(id) {
-      notificationStore.deleteItem(id);
-    }
-
-    function updateItem(id) {
-      notificationStore.updateItem(id, fakeNotificationData());
-    }
-
-    function getLastIndex() {
-      const size = notificationStore.items.length;
-      if(size > 0) {
-      const itemId = notificationStore.items[size-1].id;
-        return itemId;
-      }
-      return null;
-    }
-
-    return {
-      items,
-      createItem,
-      deleteItem,
-      updateItem,
-      getLastIndex,
-    };
-  },
-
-  props: {
+const props = defineProps ({
     toastIsVisible: Boolean,
     position: { 
       type: Object,
@@ -151,65 +93,99 @@ export default defineComponent({
         return ['mt-2', 'pt-2',]
       }
     },
-  },
+    isToast: {
+      type: Boolean,
+      default: true
+    },    
+    timeout: {
+      type: Number,
+      default: 5000,
+    },   
+  })
+
     
-  updated () {
-    const lastId = this.getLastIndex();
+  const notification = inject('notification')
+  const notificationStore = useNotificationStore();
+  const items = ref([]);
+
+  // Start the items
+  onMounted(() => {
+    items.value = notificationStore.items;
+  });
+
+  // Removes alert after x seconds (see props.timeout)
+  onUpdated(() => {
+    const lastId = getLastIndex();    
     if (lastId !== null) {
       setTimeout(() => {
-        this.deleteItem(lastId);
-      }, 3000);
+        deleteItem(lastId);
+      }, props.timeout);
     }
-  },
-  
-  methods: {
-    /**
-     * Sets toast alignment
-     */
-    defineToastAlignment(toastPosition) {
+  });
+
+  // Get the toast alignment
+  const toastPosition = computed(() => {
+    return defineToastAlignment(props.position)
+  })
+
+  function createItem() {
+    notificationStore.createNewItem(notification.value);
+  }
+
+  function deleteItem(id) {
+    notificationStore.deleteItem(id);
+  }
+
+  // function updateItem(id) {
+  //    notificationStore.updateItem(id, fakeNotificationData());
+  // }
+
+  function getLastIndex() {
+    const size = notificationStore.items.length;
+    if(size > 0) {
+      const itemId = notificationStore.items[size-1].id;
+      return itemId;
+    }
+    return null;
+  }
+
+  // Sets toast alignment
+  function defineToastAlignment(toastPosition) {
       
-      // default Bootstrap toast positions
-      let positions = [
-                        { alignment : ['top','left'], position : ['top-0', 'start-0'] },
-                        { alignment : ['top','center'], position : ['top-0', 'start-50 translate-middle-x'] },
-                        { alignment : ['top','right'], position : ['top-0', 'end-0'] },
-                        { alignment : ['middle','left'], position : ['top-50', 'start-0 translate-middle-y'] },
-                        { alignment : ['middle','center'], position : ['top-50', 'start-50 translate-middle'] },
-                        { alignment : ['middle','right'], position : ['top-50', 'end-0 translate-middle-y'] },
-                        { alignment : ['bottom','left'], position : ['bottom-0', 'start-0'] },
-                        { alignment : ['bottom','center'], position : ['bottom-0', 'start-50 translate-middle-x'] },
-                        { alignment : ['bottom','right'], position : ['bottom-0', 'end-0'] }
-                      ]
+    // default Bootstrap toast positions
+    let positions = [
+                      { alignment : ['top','left'], position : ['top-0', 'start-0'] },
+                      { alignment : ['top','center'], position : ['top-0', 'start-50 translate-middle-x'] },
+                      { alignment : ['top','right'], position : ['top-0', 'end-0'] },
+                      { alignment : ['middle','left'], position : ['top-50', 'start-0 translate-middle-y'] },
+                      { alignment : ['middle','center'], position : ['top-50', 'start-50 translate-middle'] },
+                      { alignment : ['middle','right'], position : ['top-50', 'end-0 translate-middle-y'] },
+                      { alignment : ['bottom','left'], position : ['bottom-0', 'start-0'] },
+                      { alignment : ['bottom','center'], position : ['bottom-0', 'start-50 translate-middle-x'] },
+                      { alignment : ['bottom','right'], position : ['bottom-0', 'end-0'] }
+                    ]
 
-      positions.map(function(element){
-          if ((element.alignment[0] === toastPosition[0]) && (element.alignment[1] === toastPosition[1])) {
-            console.log(element.alignment[0],element.alignment[1])
-            toastPosition = {start : `${element.position[0]}`, end : `${element.position[1]}`};
-          } else {
-            return false
-          }
-      })
-      return toastPosition
-    },
-    /*
-    * Sets the Toast background color according to the theme.
-    */
-    getBackgroundColor(theme) {
-      let darkThemes = ['primary','secondary','success','danger','dark']
-      const found = darkThemes.find((element) => element === theme)
-      return (found === undefined) ? 'dark' : 'light'
-    }
-  },
+    positions.map(function(element){
+      if (
+        (element.alignment[0] === toastPosition[0]) 
+          && (element.alignment[1] === toastPosition[1])
+        ) {
+        toastPosition = {
+          start : `${element.position[0]}`, 
+          end : `${element.position[1]}`
+        };
+      } else {
+        return false
+      }
+    })
+    return toastPosition
+  }
 
-  computed: {
-    /**
-     * Get the toast alignment
-     */
-    toastPosition() {
-      return this.defineToastAlignment(this.position)
-    },
-  },
-    
-});
+  // Sets the Toast background color according to the theme.
+  function getBackgroundColor(theme) {
+    let darkThemes = ['primary','secondary','success','danger','dark']
+    const found = darkThemes.find((element) => element === theme)
+    return (found === undefined) ? 'dark' : 'light'
+  }  
 
 </script>
