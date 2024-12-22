@@ -95,7 +95,7 @@
           .nav-link {
               border-bottom: none;
               border-radius: var(--bs-border-radius);
-              color: var(--bs-gray-600) !important;
+              color: var(--bs-gray-700) !important;
               line-height: 1.25rem;
               margin: .05rem 1.25rem;
               padding: .275rem .675rem;
@@ -106,8 +106,8 @@
               }
 
               &:hover {
-                background-color: var(--bs-gray-100);
-                color: var(--bs-link-hover-color) !important;
+                background-color: var(--bs-gray-100) !important;
+                color: var(--bs-gray-900) !important;
               }
           }
         }
@@ -131,6 +131,10 @@
       }
     }
   }
+}
+
+.offcanvas-header {
+  border-bottom: 1px solid var(--bs-gray-200);
 }
 
 .sidebar-separator  {
@@ -157,7 +161,7 @@
         font-size: .875rem;
         display: block;
         padding: .125rem 0;
-        color: var(--bs-gray-600);
+        color: var(--bs-gray-700);
         text-decoration: none;
 
         .active {
@@ -167,7 +171,7 @@
 
         &:hover {
           background-color: transparent;
-          color: var(--bs-link-hover-color) !important;
+          color: var(--bs-gray-900) !important;
           text-decoration: underline;
         }
       }

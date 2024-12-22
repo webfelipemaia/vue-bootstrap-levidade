@@ -47,7 +47,16 @@
           <li class="nav-item"><router-link class="nav-link" to="/doc/typography">Typography</router-link></li>
         </ul>
       </nav>
-      <LeveOffcanvas></LeveOffcanvas>
+      <LeveOffcanvas
+      :offcanvas-visible="false" 
+      title="My Menu" 
+      placement="start"
+      >
+      <template #offcanvas-nav>
+        <li class="nav-item"><a class="nav-link" href="#">Link 1</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Link 2</a></li>
+      </template>
+      </LeveOffcanvas>
     </template>
 
 
