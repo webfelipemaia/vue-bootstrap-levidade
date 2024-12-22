@@ -6,7 +6,14 @@ module.exports = defineConfig({
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? '/vue-bootstrap-levidade/' : '/',  
   css: {
-    extract: false
+    extract: false,
+    loaderOptions: {
+      sass: {
+        sassOptions: {
+          silenceDeprecations: ['mixed-decls', 'color-functions', 'global-builtin', 'import'],
+        },
+      },
+    },
   },
   configureWebpack: {
     output: {

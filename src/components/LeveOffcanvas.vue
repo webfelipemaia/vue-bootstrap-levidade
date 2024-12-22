@@ -20,6 +20,32 @@
       </div>
 
       <div class="offcanvas-body">
+        <nav class="aside-nav">
+          <ul class="navbar-nav flex-column">
+            <li class="navbar-header">
+              <h5 class="heading">Teste de título</h5>
+            </li>
+            <li class="nav-item"><router-link class="nav-link" to="/doc">Index</router-link></li>
+            <li class="nav-item"><router-link class="nav-link" to="/doc/accordion">Accordion</router-link></li>
+            <li class="nav-item"><router-link class="nav-link" to="/doc/badge">Badge</router-link></li>
+            <li class="nav-item"><router-link class="nav-link" to="/doc/breadcrumb">Breadcrumb</router-link></li>
+            <li>
+              <div class="sidebar-separator"></div>
+            </li>
+            <li class="navbar-header">
+              <h5 class="heading">Teste de título</h5>
+            </li>
+            <li class="nav-item"><router-link class="nav-link" to="/doc/button">Button</router-link></li>
+            <li class="nav-item"><router-link class="nav-link" to="/doc/card">Card</router-link></li>
+            <li class="nav-item"><router-link class="nav-link" to="/doc/dropdown">Dropdown</router-link></li>
+            <li class="nav-item"><router-link class="nav-link" to="/doc/image">Image</router-link></li>
+            <li class="nav-item"><router-link class="nav-link" to="/doc/notification">Notification</router-link></li>
+            <li class="nav-item"><router-link class="nav-link" to="/doc/offcanvas">Offcanvas</router-link></li>
+            <li class="nav-item"><router-link class="nav-link" to="/doc/toast">Toast</router-link></li>
+            <li class="nav-item"><router-link class="nav-link" to="/doc/tooltip">Tooltip</router-link></li>
+            <li class="nav-item"><router-link class="nav-link" to="/doc/typography">Typography</router-link></li>
+          </ul>
+        </nav>
       </div>
 
     </div>
