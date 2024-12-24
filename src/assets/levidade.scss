@@ -47,8 +47,15 @@ $cyan:    #4dbaff !default;
 
 // Typography
 
-$font-family-sans-serif:      system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
-$font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$font-family-sans-serif: "Open Sans", sans-serif !default;
+$font-family-base: $font-family-sans-serif;
+
+$font-weight-light: 300; // Light
+$font-weight-normal: 400; // Regular
+$font-weight-semibold: 600; // Semi-Bold
+$font-weight-bold: 700; // Bold
+$font-weight-bolder: 800;
+
 $font-size-base:              1rem !default;
 // headings
 $h1-font-size: $font-size-base * 2.3 + 0.35 !default;
