@@ -1,0 +1,12 @@
+.accordion-header {
+    margin-bottom: 0 !important;
+}
+
+.accordion-item-enter-active {
+    will-change: height;
+    transition: height 0.6s ease-in;
+}
+
+.accordion-item-leave-active {
+    height : 0 !important;
+}

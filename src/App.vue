@@ -20,7 +20,7 @@
           <li class="navbar-header">
             <h5 class="heading">Início</h5>
           </li>
-          <li class="nav-item"><router-link class="nav-link" to="/doc">Index</router-link></li>
+          <li class="nav-item"><router-link class="nav-link" to="/doc">Introdução</router-link></li>
           <li>
             <div class="sidebar-separator"></div>
           </li>

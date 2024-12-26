@@ -3,7 +3,7 @@ import { app } from './plugins/mainApp'
 import './plugins/levidadeStyles'
 import './plugins/levidadeComponents'
 import VueHighlightJS from 'vue3-highlightjs'
-import 'highlight.js/styles/default.css'
+import 'highlight.js/styles/tomorrow-night-blue.css'
 import router from "./router";
 
 const pinia = createPinia()

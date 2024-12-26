@@ -86,10 +86,10 @@
   --bs-black-rgb: 0, 0, 0;
   --bs-body-color-rgb: 34, 34, 55;
   --bs-body-bg-rgb: 255, 255, 255;
-  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-sans-serif: "Open Sans", sans-serif;
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-  --bs-body-font-family: var(--bs-font-sans-serif);
+  --bs-body-font-family: "Open Sans", sans-serif;
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
@@ -111,7 +111,7 @@
   --bs-link-decoration: underline;
   --bs-link-hover-color: #3538aa;
   --bs-link-hover-color-rgb: 53, 56, 170;
-  --bs-code-color: #d054b0;
+  --bs-code-color: #6f42c1;
   --bs-highlight-bg: #fff7db;
   --bs-border-width: 1px;
   --bs-border-style: solid;
@@ -330,7 +330,7 @@ blockquote {
 
 b,
 strong {
-  font-weight: bolder;
+  font-weight: 800;
 }
 
 small, .small {
@@ -5675,7 +5675,7 @@ textarea.form-control-lg {
   display: block;
   padding: var(--bs-tooltip-arrow-height);
   margin: var(--bs-tooltip-margin);
-  font-family: var(--bs-font-sans-serif);
+  font-family: "Open Sans", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -5785,7 +5785,7 @@ textarea.form-control-lg {
   z-index: var(--bs-popover-zindex);
   display: block;
   max-width: var(--bs-popover-max-width);
-  font-family: var(--bs-font-sans-serif);
+  font-family: "Open Sans", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -8242,7 +8242,7 @@ textarea.form-control-lg {
 }
 
 .fw-bolder {
-  font-weight: bolder !important;
+  font-weight: 800 !important;
 }
 
 .lh-1 {
@@ -15788,6 +15788,19 @@ textarea.form-control-lg {
 }
 .toast-header .btn-close-icon:hover {
   color: rgb(255, 255, 255);
+}
+
+.accordion-header {
+  margin-bottom: 0 !important;
+}
+
+.accordion-item-enter-active {
+  will-change: height;
+  transition: height 0.6s ease-in;
+}
+
+.accordion-item-leave-active {
+  height: 0 !important;
 }
 
 .content-wrapper {

@@ -57,6 +57,8 @@ $font-weight-bold: 700; // Bold
 $font-weight-bolder: 800;
 
 $font-size-base:              1rem !default;
+$code-color:                  $purple !default;
+
 // headings
 $h1-font-size: $font-size-base * 2.3 + 0.35 !default;
 $h2-font-size: $font-size-base * 1.9 + 0.30 !default; 
@@ -132,4 +134,5 @@ $display-font-sizes: (
 // Levidade custom files
 @import "custom/bootstrap/buttons";
 @import "custom/bootstrap/toasts";
+@import "custom/bootstrap/accordion";
 @import "custom/theme/layout.scss";
