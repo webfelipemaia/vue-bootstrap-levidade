@@ -62,7 +62,7 @@
 
     <!-- Footer -->
     <template #footer>
-      <p>© 2024 My Website. All Rights Reserved.</p>
+      <p>© 2024 Levidade UI kit. All Rights Reserved.</p>
     </template>
   </LeveContainer>
 </template>

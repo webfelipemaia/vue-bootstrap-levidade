@@ -1,12 +1,12 @@
 <template>
   <div
-    id="accordionComponent"
     class="accordion"
     :class="accordionFlush ? 'accordion-flush' : ''"
+    :id="id"
   >
     <LeveAccordionItem
       v-for="(item, index) in contents"
-      :id="'accordion' + index"
+      :id="id + index"
       :item="item"
       :groupId="groupId"
       :key="item.title"
@@ -32,6 +32,10 @@ const props = defineProps({
     type: [Array, Object],
     required: false,
   },
+  id: {
+    type: String,
+    default: 'accordionId',
+  },
 });
 
 const contents = ref(props.items);
@@ -39,7 +43,8 @@ const groupId = ref(null);
 const currentId = ref(null);
 
 onMounted(() => {
-  groupId.value = "accordionComponent";
+  // Garante que o groupId seja único para cada instância do componente
+  groupId.value = `accordion_${props.id}`;
 });
 
 function getAccordionId(currentIdValue) {

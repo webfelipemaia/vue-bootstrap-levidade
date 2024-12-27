@@ -25,116 +25,216 @@ Controla a expansão e colapso do item e emite eventos para notificar alteraçõ
         <h4>Como usar</h4>
         <div class="sidebar-separator"></div>
         <p>Cada item do acordeão é gerenciado por um subcomponente (ver componentes auxiliares) chamado LeveAccordionItem.</p>
+        <p>Os dados dos items, como título e o conteúdo que vai no corpo, são passados em um array de objetos. Por exemplo</p>
+        <pre v-highlightjs><code class="javascript">
+const accordionItems1 = [
+  { accordionId: 1, title: 'Título 1', description: 'Conteúdo 1', expanded: false },
+  { accordionId: 2, title: 'Título 2', description: 'Conteúdo 2', expanded: false },
+  { accordionId: 3, title: 'Título 3', description: 'Conteúdo 3', expanded: false },
+];
+
+...
+
+&lt;leve-accordion
+  :id="accordion1"
+  :items="getClonedItems(accordionItems1)"
+  :multiple="false"
+/&gt;
+        </code></pre>
+        <LeveAlert alertType="info" icon="exclamation-circle">Nota:<br />
+        Use <code>getClonedItems()</code> com a função <code>JSON.parse(JSON.stringify(...))</code> ou outra técnica de clonagem para garantir que os 
+          itens de cada acordeon sejam independentes, caso você renderize vários componentes na mesma página.
+        </LeveAlert>
         <br />
         <div class="howto-use">
-            <h5>Accordion Básico</h5>
+            <h5 id="accordion-basic">Accordion Básico</h5>
             <div class="howto-use__title">code</div>
             <pre v-highlightjs="sourcecode"><code class="javascript">
     &lt;leve-accordion :multiple="false" /&gt;
             </code></pre>
 
             <div class="howto-use__title">preview</div>
-            <leve-accordion :multiple="false" :items="[{
-        accordionId: 1,
-        title: 'title one',
-        description: 'One Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.',
-        expanded: false,
-      },{
-        accordionId: 2,
-        title: 'title two',
-        description: 'Two Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.',
-        expanded: false,
-      }]">
-
-            </leve-accordion>
+              <leve-accordion
+                :id="accordion1"
+                :items="getClonedItems(accordionItems1)"
+                :multiple="false"
+              />
         </div>
 
         <div class="howto-use mt-5">
-            <h5>Accordion Flush Layout</h5>
+            <h5 id="accordion-flush">Accordion Flush Layout</h5>
             <div class="howto-use__title">code</div>
             <pre v-highlightjs="sourcecode"><code class="javascript">
     &lt;leve-accordion :accordion-flush="true" /&gt;
             </code></pre>
 
             <div class="howto-use__title">preview</div>
-            <leve-accordion id="accordion2" :accordion-flush="true" showExamples />
+            <leve-accordion 
+              :id="accordion2" 
+              :accordion-flush="true"  
+              :items="accordionItems2" />
 
         </div>
 
         <div class="howto-use mt-5">
-            <h5>Accordion com Múltiplos Itens Abertos</h5>
+            <h5 id="accordion-multiple">Accordion com Múltiplos Itens Abertos</h5>
             <div class="howto-use__title">code</div>
             <pre v-highlightjs="sourcecode"><code class="javascript">
     &lt;leve-accordion :multiple="true" /&gt;
             </code></pre>
 
             <div class="howto-use__title">preview</div>
-            <leve-accordion id="customAccordionId" :multiple="true" showExamples />
-
+            <leve-accordion 
+              :id="accordion3"
+              :multiple="true"  
+              :items="getClonedItems(accordionItems1)" />
 
         </div>
     </section>
     <br />
     <section id="description">
-      <h4>Descrição</h4>
+      <h4 id="LeveAccordion-description">Descrição - LeveAccordion</h4>
       <div class="sidebar-separator"></div>
       <h5 class="mt-5">Propriedades (props)</h5>
       <table class="table">
         <thead>
-            <tr>
+          <tr>
             <th>Propriedade</th>
-            <th>Descrição</th>
             <th>Tipo</th>
-            <th>Valor Padrão</th>
-            </tr>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
         </thead>
         <tbody>
-            <tr>
+          <tr>
+            <td>id</td>
+            <td>String</td>
+            <td>'accordionId'</td>
+            <td>Identificador único para o acordeon. Necessário para gerenciar múltiplas instâncias.</td>
+          </tr>
+          <tr>
+            <td>items</td>
+            <td>Array</td>
+            <td>[]</td>
+            <td>
+              Array de objetos que define os itens do acordeon. Cada objeto deve conter 
+              <code>accordionId</code>, <code>title</code>, <code>description</code> e <code>expanded</code>.
+            </td>
+          </tr>
+          <tr>
             <td>multiple</td>
-            <td>Define se múltiplos itens podem ser abertos simultaneamente.</td>
             <td>Boolean</td>
             <td>false</td>
-            </tr>
-            <tr>
+            <td>Se <code>true</code>, permite que múltiplos itens sejam expandidos ao mesmo tempo.</td>
+          </tr>
+          <tr>
             <td>accordionFlush</td>
-            <td>Habilita ou desabilita o layout "flush", removendo bordas e espaçamentos entre os itens.</td>
             <td>Boolean</td>
             <td>false</td>
-            </tr>
+            <td>Se <code>true</code>, aplica o estilo "flush" (sem bordas).</td>
+          </tr>
         </tbody>
-    </table>
+      </table>
+
     <br />
     <h5 class="mt-5">Métodos e Eventos</h5>
     <table class="table">
+      <thead>
+        <tr>
+          <th>Método</th>
+          <th>Parâmetros</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>getAccordionId</td>
+          <td>currentIdValue (String)</td>
+          <td>
+            Atualiza o ID do item atualmente expandido e, se <code>multiple</code> for <code>false</code>, fecha outros itens.
+          </td>
+        </tr>
+        <tr>
+          <td>closeOtherItems</td>
+          <td>currentIdValue (String)</td>
+          <td>Fecha todos os itens, exceto o que possui o ID passado como parâmetro.</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Evento</th>
+          <th>Payload</th>
+          <th>Método Associado</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>accordion-opened</td>
+          <td>accordionId</td>
+          <td>getAccordionId</td>
+          <td>Emitido quando um item é expandido. Contém o ID do item expandido.</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    
+    <h4 id="LeveAccordionItem-description" class="mt-5">Descrição - LeveAccordionItem</h4>
+      <div class="sidebar-separator"></div>
+      <h5 class="mt-5">Propriedades (props)</h5>
+      
+      <table class="table">
         <thead>
-            <tr>
-            <th>Nome</th>
+          <tr>
+            <th>Propriedade</th>
             <th>Tipo</th>
+            <th>Padrão</th>
             <th>Descrição</th>
-            <th>Parâmetros</th>
-            </tr>
+          </tr>
         </thead>
         <tbody>
-            <tr>
-            <td>getAccordionId</td>
-            <td>Método</td>
-            <td>Recebe o ID do item aberto e fecha os outros itens caso <code>multiple</code> seja <code>false</code>.</td>
-            <td>currentId (ID do item atualmente aberto)</td>
-            </tr>
-            <tr>
-            <td>closeOtherItems</td>
-            <td>Método</td>
-            <td>Fecha todos os itens do acordeão, exceto o atualmente aberto.</td>
-            <td>currentId (ID do item atualmente aberto)</td>
-            </tr>
-            <tr>
-            <td>accordion-opened</td>
-            <td>Evento</td>
-            <td>Emitido pelo subcomponente para notificar o item atualmente aberto.</td>
-            <td>N/A</td>
-            </tr>
+          <tr>
+            <td>item</td>
+            <td>Object</td>
+            <td>{}</td>
+            <td>
+              Objeto que define os dados do item. Deve conter <code>accordionId</code>, 
+              <code>title</code>, <code>description</code> e <code>expanded</code>.
+            </td>
+          </tr>
+          <tr>
+            <td>groupId</td>
+            <td>String</td>
+            <td>null</td>
+            <td>Identificador único do grupo de acordeons ao qual este item pertence.</td>
+          </tr>
         </tbody>
-    </table>
+      </table>
+
+      <br />
+      <h5 class="mt-5">Métodos e Eventos</h5>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Método</th>
+            <th>Parâmetros</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>toggleItem</td>
+            <td>item (Object)</td>
+            <td>
+              Alterna o estado do item entre expandido e contraído. Emite o evento 
+              <code>accordion-opened</code>.
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
     </section>
     
@@ -149,8 +249,19 @@ Controla a expansão e colapso do item e emite eventos para notificar alteraçõ
           <li class="detail-entry detail-h2">
             <a href="#introduction">Introdução</a>
           </li>
-          <li class="detail-entry detail-h2"><a href="#how-to-use">Como usar</a></li>
-          <li class="detail-entry detail-h2"><a href="#description">Descrição</a></li>
+          <li class="detail-entry detail-h2"><a href="#how-to-use">Como usar</a>
+            <ul>
+              <li class="detail-entry detail-h2"><a href="#accordion-basic">Accordion Basic</a></li>
+              <li class="detail-entry detail-h2"><a href="#accordion-flush">Accordion Flush Layout</a></li>
+              <li class="detail-entry detail-h2"><a href="#accordion-multiple">Accordion Multiple</a></li>
+            </ul>
+          </li>
+          <li class="detail-entry detail-h2"><a href="#description">Descrição</a>
+            <ul>
+              <li class="detail-entry detail-h2"><a href="#LeveAccordion-description">LeveAccordion</a></li>
+              <li class="detail-entry detail-h2"><a href="#LeveAccordionItem-description">LeveAccordionItem</a></li>
+            </ul>
+          </li>
         </template>
       </leve-fixednav>
     </template>
@@ -160,6 +271,23 @@ Controla a expansão e colapso do item e emite eventos para notificar alteraçõ
 <script setup>
   import LeveWrapper from '@/views/layout/LeveWrapper.vue';
   import LeveFixednav from '@/components/LeveFixednav.vue';
+  import LeveAlert from '@/components/LeveAlert.vue';
+
+  const accordionItems1 = [
+  { accordionId: 1, title: 'Título 1', description: 'Conteúdo 1', expanded: false },
+  { accordionId: 2, title: 'Título 2', description: 'Conteúdo 2', expanded: false },
+  { accordionId: 3, title: 'Título 3', description: 'Conteúdo 3', expanded: false },
+];
+
+const accordionItems2 = [
+  { accordionId: 1, title: 'Título A', description: 'Conteúdo A', expanded: false },
+  { accordionId: 2, title: 'Título B', description: 'Conteúdo B', expanded: false },
+  { accordionId: 3, title: 'Título C', description: 'Conteúdo C', expanded: false },
+];
+
+function getClonedItems(items) {
+  return JSON.parse(JSON.stringify(items));
+}
 </script>
 <style lang="scss">
 .howto-use {
