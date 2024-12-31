@@ -1,0 +1,36 @@
+.hideAlert {
+    display: none !important;
+  }
+
+  .alert-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .alert-body-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: inherit;
+  }
+
+  .alert-body-additional {
+    display: flex;
+    flex-direction: column;
+    justify-content: inherit;
+  }
+
+  .alert-heading {
+    font-weight: 300;
+    font-size: 1.2rem;
+    text-align: inherit;
+    font-weight: 600;
+  }
+
+  .alert-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .alert-body hr {
+    margin: 0.25rem;
+  }

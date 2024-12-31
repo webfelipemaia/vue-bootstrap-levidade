@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import TypographyExample from "./examples/TypographyExample.vue";
 import IndexExample from "./examples/IndexExample.vue";
 import AccordionExample from "./examples/AccordionExample.vue";
+import AlertExample from "./examples/AlertExample.vue";
 import BadgeExample from "./examples/BadgeExample.vue";
 import BreadcrumbExample from "./examples/BreadcrumbExample.vue";
 import ButtonExample from "./examples/ButtonExample.vue";
@@ -17,6 +18,7 @@ import CustomizeExample from "./examples/CustomizeExample.vue";
 const routes = [
   { path: "/doc/", name: "Index", component: IndexExample },
   { path: "/doc/accordion", name: "Accordion", component: AccordionExample },
+  { path: "/doc/alert", name: "Alert", component: AlertExample },
   { path: "/doc/badge", name: "Badge", component: BadgeExample },
   { path: "/doc/breadcrumb", name: "Breadcrumb", component: BreadcrumbExample },
   { path: "/doc/button", name: "Button", component: ButtonExample },

@@ -15803,6 +15803,43 @@ textarea.form-control-lg {
   height: 0 !important;
 }
 
+.hideAlert {
+  display: none !important;
+}
+
+.alert-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.alert-body-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: inherit;
+}
+
+.alert-body-additional {
+  display: flex;
+  flex-direction: column;
+  justify-content: inherit;
+}
+
+.alert-heading {
+  font-weight: 300;
+  font-size: 1.2rem;
+  text-align: inherit;
+  font-weight: 600;
+}
+
+.alert-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.alert-body hr {
+  margin: 0.25rem;
+}
+
 .content-wrapper {
   padding-top: 1rem;
 }
@@ -15961,6 +15998,19 @@ textarea.form-control-lg {
   .mt-lg-8, .my-lg-8 {
     margin-top: 7.5rem !important;
   }
+}
+#introduction h3, #introduction .h3 {
+  font-weight: 600;
+}
+
+.howto-use .howto-use__title {
+  padding: 0.5rem 1rem 0.5rem 0;
+  margin-bottom: 2rem !important;
+}
+.howto-use .howto-use__title span {
+  background-color: #b3b5ee;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
 }
 
 /*# sourceMappingURL=levidade.css.map */

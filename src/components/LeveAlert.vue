@@ -1,19 +1,19 @@
 <template>
 
-  <button v-if="!isAlert" @click="createItem" :class="{ hide: !isOpen }">New Alert</button>
+  <button v-if="!isAlert" @click="createItem" :class="{ hideAlert: !isOpen }">New Alert</button>
 
     <!-- Alerts -->
   
     <div 
         v-if="isAlert"
         class="alert alert-dismissible fade alert-container"
-        :class="[{ [`alert-${alertType || singleAlert.type}`]: alertType || singleAlert.type },{ show: isOpen },{ hide: !isOpen }]"
+        :class="[{ [`alert-${alertType || singleAlert.type}`]: alertType || singleAlert.type },{ show: isOpen },{ hideAlert: !isOpen }]"
         :isDismissible="('' || null) ? false : true"
         :style="setAlignment"
         role="alert"
         >
 
-        <h4 class="alert-heading">
+        <h4 class="alert-heading" v-if="headingText || singleAlert.heading || hasHeaderSlotContent">
           <slot name="header">{{ headingText || singleAlert.heading }}</slot>
         </h4>
 
@@ -132,7 +132,14 @@ const props = defineProps ({
     const slots = useSlots();
     
     // Verifies that the slot footer has received data. If the answer is yes, the dividing line is displayed.
-    const hasFooterSlotContent = computed(() => slots.footer && slots.footer().length > 0);
+    const hasFooterSlotContent = computed(() => { 
+      return slots.footer && slots.footer().length > 0
+    });
+
+    // Verifies that the slot header has received data.
+    const hasHeaderSlotContent = computed(() => {
+      return slots.header && slots.header().length > 0;
+    });
 
     // Configures the item display for the source component.
     // Eliminates duplication of display
@@ -200,43 +207,3 @@ const props = defineProps ({
   
 
 </script>
-
-<style>
-
-  .hide {
-    display: none !important;
-  }
-
-  .alert-container {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .alert-body-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: inherit;
-  }
-
-  .alert-body-additional {
-    display: flex;
-    flex-direction: column;
-    justify-content: inherit;
-  }
-
-  .alert-heading {
-    font-weight: 300;
-    font-size: 1.2rem;
-    text-align: inherit;
-  }
-
-  .alert-body {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .alert-body hr {
-    margin: 0.25rem;
-  }
-
-</style>

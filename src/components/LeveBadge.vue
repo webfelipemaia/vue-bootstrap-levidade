@@ -3,8 +3,7 @@
                         [
                             'badge', 
                             constrast ? `text-bg-${type}` : `bg-${type}`,
-                            'position-absolute top-0 start-100 translate-middle p-2 border border-light rounded-circle'
-                        ]">
+                            `position-absolute  ${badgePosition.top} ${badgePosition.start} translate-middle p-2 border border-light rounded-circle`                        ]">
             <span class="visually-hidden">{{ badgeHiddenText }}</span>
         </span>
         <span v-else  :class="
@@ -50,7 +49,7 @@
             type: String,
             default: '',
             validator(value) {
-                return ['','top', 'middle', 'bottom',].includes(value)
+                return ['', 'top', 'middle', 'bottom', 'bottom-left', 'bottom-right', 'top-left'].includes(value);
             }
         },
     },
@@ -77,33 +76,39 @@
          * Get badge alignment
          */
          defineBadgePosition(badgePosition) {
-            // default Bootstrap toast positions
-            let positions = [
-                    { alignment : 'top', position : ['position-absolute top-0', 'start-100', 'translate-middle'] },
-                    { alignment : 'middle', position : ['position-absolute top-50', 'start-100', 'translate-middle ms-2'] },
-                    { alignment : 'bottom', position : ['position-absolute top-100', 'start-100', 'translate-middle'] }
-                ]
-                 
-            // sets the position
-            positions.map(function(element){
-                if (element.alignment === badgePosition) {
-                    badgePosition =  {
-                        top : `${element.position[0]}`, 
-                        start : `${element.position[1]}`, 
-                        translate : `${element.position[2]}`
-                    }
-                } else {
-                    return false
-                }
-            })
-            return badgePosition;
+            
+            const positions = [
+                { alignment: 'top', position: ['position-absolute top-0', 'start-100', 'translate-middle'] },
+                { alignment: 'middle', position: ['position-absolute top-50', 'start-100', 'translate-middle ms-2'] },
+                { alignment: 'bottom', position: ['position-absolute top-100', 'start-100', 'translate-middle'] },
+                { alignment: 'bottom-left', position: ['position-absolute top-100', 'start-0', 'translate-middle'] },
+                { alignment: 'bottom-right', position: ['position-absolute top-100', 'start-100', 'translate-middle'] },
+                { alignment: 'top-left', position: ['position-absolute top-0', 'start-0', 'translate-middle'] }
+            ];
+
+            // Sets the position based on the given alignment
+            const matchedPosition = positions.find(element => element.alignment === badgePosition);
+            if (matchedPosition) {
+                return {
+                    top: matchedPosition.position[0],
+                    start: matchedPosition.position[1],
+                    translate: matchedPosition.position[2]
+                };
+            }
+            // Returns empty if no position is found
+            return {
+                top: '',
+                start: '',
+                translate: ''
+            };
         },
+
     },
 
     computed: {
         
          /**
-         * Get the toast alignment
+         * Get the badge alignment
          */
         badgePosition() {
             const position = this.checkPosition(this.position)
