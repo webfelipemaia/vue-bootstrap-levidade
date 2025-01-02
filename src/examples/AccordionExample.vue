@@ -21,8 +21,9 @@ Controla a expansão e colapso do item e emite eventos para notificar alteraçõ
       </template>
     <template #content-middle>
 
-    <section id="how-to-use">
-        <h4>Como usar</h4>
+      <section id="how-to-use">
+        <br />
+        <h4 class="mt-5">Como usar</h4>
         <div class="sidebar-separator"></div>
         <p>Cada item do acordeão é gerenciado por um subcomponente (ver componentes auxiliares) chamado LeveAccordionItem.</p>
         <p>Os dados dos items, como título e o conteúdo que vai no corpo, são passados em um array de objetos. Por exemplo</p>

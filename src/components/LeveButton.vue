@@ -100,7 +100,6 @@ export default {
   methods: {
     handleClick(evt) {
       this.$emit("click", evt);
-      this.$toast.show(`Hey! I'm here`);
     },
   },
 };

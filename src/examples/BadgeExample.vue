@@ -10,8 +10,9 @@
     </template>
   <template #content-middle>
 
-  <section id="how-to-use">
-    <h4>Como usar</h4>
+    <section id="how-to-use">
+        <br />
+        <h4 class="mt-5">Como usar</h4>
     <div class="sidebar-separator"></div>    
     <h5 id="badge-headings">Headings</h5>
     <p>Dimensionados para corresponder ao tamanho do elemento pai imediato usando o dimensionamento e as unidades de fonte relativa.</p>

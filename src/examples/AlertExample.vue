@@ -9,8 +9,9 @@
     </template>
   <template #content-middle>
 
-  <section id="how-to-use">
-    <h4>Como usar</h4>
+    <section id="how-to-use">
+        <br />
+        <h4 class="mt-5">Como usar</h4>
     <div class="sidebar-separator"></div>    
     <h5 id="alert-basic">Uso básico</h5>
     <p>Os alertas podem ser usados de modo estático ou dinâmico. Deste modo, faz-se a chamada do componente para uso manual, 
