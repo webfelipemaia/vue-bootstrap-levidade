@@ -31,10 +31,10 @@
 
           <!-- Código do exemplo implementado -->
           <pre v-highlightjs><code class="javascript">
-    &lt;LeveBreadcrumb&gt;
-      &lt;LeveBreadcrumbItem :link="'#1'"&gt;Início&lt;/LeveBreadcrumbItem&gt;
-      &lt;LeveBreadcrumbItem :link="'#2'"&gt;Componentes&lt;/LeveBreadcrumbItem&gt;
-    &lt;/LeveBreadcrumb&gt;        
+    &lt;leve-breadcrumb&gt;
+      &lt;leve-breadcrumb-item :link="'#1'"&gt;Início&lt;/leve-breadcrumb-item&gt;
+      &lt;leve-breadcrumb-item :link="'#2'"&gt;Componentes&lt;/leve-breadcrumb-item&gt;
+    &lt;/leve-breadcrumb&gt;        
       </code></pre>
 
           <br />
@@ -45,10 +45,10 @@
             </span>
           </div>
 
-          <LeveBreadcrumb>
-            <LeveBreadcrumbItem :link="'#1'">Início</LeveBreadcrumbItem>
-            <LeveBreadcrumbItem :link="'#2'">Componentes</LeveBreadcrumbItem>
-          </LeveBreadcrumb>
+          <leve-breadcrumb>
+            <leve-breadcrumb-item :link="'#1'">Início</leve-breadcrumb-item>
+            <leve-breadcrumb-item :link="'#2'">Componentes</leve-breadcrumb-item>
+          </leve-breadcrumb>
 
           <br />
           <br />
@@ -67,11 +67,11 @@
 
           <!-- Código do exemplo implementado -->
           <pre v-highlightjs><code class="javascript">
-    &lt;LeveBreadcrumb&gt;
-      &lt;LeveBreadcrumbItem :link="'#1'"&gt;Home&lt;/LeveBreadcrumbItem&gt;
-      &lt;LeveBreadcrumbItem :link="'#2'"&gt;Wish List&lt;/LeveBreadcrumbItem&gt;
-      &lt;LeveBreadcrumbItem icon="cart" is-active current&gt;Cart&lt;/LeveBreadcrumbItem&gt;
-    &lt;/LeveBreadcrumb&gt;        
+    &lt;leve-breadcrumb&gt;
+      &lt;leve-breadcrumb-item :link="'#1'"&gt;Home&lt;/leve-breadcrumb-item&gt;
+      &lt;leve-breadcrumb-item :link="'#2'"&gt;Wish List&lt;/leve-breadcrumb-item&gt;
+      &lt;leve-breadcrumb-item icon="cart" is-active current&gt;Cart&lt;/leve-breadcrumb-item&gt;
+    &lt;/leve-breadcrumb&gt;        
       </code></pre>
 
           <br />
@@ -82,11 +82,11 @@
             </span>
           </div>
 
-          <LeveBreadcrumb>
-            <LeveBreadcrumbItem :link="'#1'">Home</LeveBreadcrumbItem>
-            <LeveBreadcrumbItem :link="'#2'">Wish List</LeveBreadcrumbItem>
-            <LeveBreadcrumbItem icon="cart" is-active current>Cart</LeveBreadcrumbItem>
-          </LeveBreadcrumb>
+          <leve-breadcrumb>
+            <leve-breadcrumb-item :link="'#1'">Home</leve-breadcrumb-item>
+            <leve-breadcrumb-item :link="'#2'">Wish List</leve-breadcrumb-item>
+            <leve-breadcrumb-item icon="cart" is-active current>Cart</leve-breadcrumb-item>
+          </leve-breadcrumb>
 
           <br />
           <br />
@@ -96,11 +96,11 @@
           <p>Você pode escolher o separador entre os itens da trilha, informando um caractere Unicode.</p>
           <!-- Código do exemplo implementado -->
           <pre v-highlightjs><code class="javascript">
-    &lt;LeveBreadcrumb :divider="'@'"&gt;
-      &lt;LeveBreadcrumbItem :link="'#1'"&gt;Home&lt;/LeveBreadcrumbItem&gt;
-      &lt;LeveBreadcrumbItem :link="'#2'"&gt;Wish List&lt;/LeveBreadcrumbItem&gt;
-      &lt;LeveBreadcrumbItem :link="'#3'"&gt;Cart&lt;/LeveBreadcrumbItem&gt;
-    &lt;/LeveBreadcrumb&gt;        
+    &lt;leve-breadcrumb :divider="'@'"&gt;
+      &lt;leve-breadcrumb-item :link="'#1'"&gt;Home&lt;/leve-breadcrumb-item&gt;
+      &lt;leve-breadcrumb-item :link="'#2'"&gt;Wish List&lt;/leve-breadcrumb-item&gt;
+      &lt;leve-breadcrumb-item :link="'#3'"&gt;Cart&lt;/leve-breadcrumb-item&gt;
+    &lt;/leve-breadcrumb&gt;        
       </code></pre>
 
           <br />
@@ -112,11 +112,11 @@
             </span>
           </div>
 
-          <LeveBreadcrumb :divider="'@'">
-            <LeveBreadcrumbItem :link="'#1'">Home</LeveBreadcrumbItem>
-            <LeveBreadcrumbItem :link="'#2'">Wish List</LeveBreadcrumbItem>
-            <LeveBreadcrumbItem :link="'#3'">Cart</LeveBreadcrumbItem>
-          </LeveBreadcrumb>
+          <leve-breadcrumb :divider="'@'">
+            <leve-breadcrumb-item :link="'#1'">Home</leve-breadcrumb-item>
+            <leve-breadcrumb-item :link="'#2'">Wish List</leve-breadcrumb-item>
+            <leve-breadcrumb-item :link="'#3'">Cart</leve-breadcrumb-item>
+          </leve-breadcrumb>
 
 
           <br />

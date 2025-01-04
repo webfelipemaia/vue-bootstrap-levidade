@@ -51,14 +51,14 @@
 
     <pre v-highlightjs="sourcecode"><code class="javascript">
 &lt;div class="d-flex justify-content-between p-2"&gt;
-  &lt;LeveBadge :constrast="true" :type="'primary'"&gt;primary&lt;/LeveBadge&gt;
-  &lt;LeveBadge :constrast="true" :type="'secondary'"&gt;secondary&lt;/LeveBadge&gt;
-  &lt;LeveBadge :constrast="true" :type="'success'"&gt;success&lt;/LeveBadge&gt;
-  &lt;LeveBadge :constrast="true" :type="'danger'"&gt;danger&lt;/LeveBadge&gt;
-  &lt;LeveBadge :constrast="true" :type="'warning'"&gt;warning&lt;/LeveBadge&gt;
-  &lt;LeveBadge :constrast="true" :type="'info'"&gt;info&lt;/LeveBadge&gt;
-  &lt;LeveBadge :constrast="true" :type="'light'"&gt;light&lt;/LeveBadge&gt;
-  &lt;LeveBadge :constrast="true" :type="'dark'"&gt;dark&lt;/LeveBadge&gt;
+  &lt;leve-badge :constrast="true" :type="'primary'"&gt;primary&lt;/leve-badge&gt;
+  &lt;leve-badge :constrast="true" :type="'secondary'"&gt;secondary&lt;/leve-badge&gt;
+  &lt;leve-badge :constrast="true" :type="'success'"&gt;success&lt;/leve-badge&gt;
+  &lt;leve-badge :constrast="true" :type="'danger'"&gt;danger&lt;/leve-badge&gt;
+  &lt;leve-badge :constrast="true" :type="'warning'"&gt;warning&lt;/leve-badge&gt;
+  &lt;leve-badge :constrast="true" :type="'info'"&gt;info&lt;/leve-badge&gt;
+  &lt;leve-badge :constrast="true" :type="'light'"&gt;light&lt;/leve-badge&gt;
+  &lt;leve-badge :constrast="true" :type="'dark'"&gt;dark&lt;/leve-badge&gt;
 &lt;/div&gt;
     </code></pre>
 
@@ -67,14 +67,14 @@
     <div class="howto-use__title"><span><i class="bi bi-eye"></i> preview</span></div>
 
       <div class="d-flex justify-content-between p-2">
-        <LeveBadge :constrast="true" :type="'primary'">primary</LeveBadge>
-        <LeveBadge :constrast="true" :type="'secondary'">secondary</LeveBadge>
-        <LeveBadge :constrast="true" :type="'success'">success</LeveBadge>
-        <LeveBadge :constrast="true" :type="'danger'">danger</LeveBadge>
-        <LeveBadge :constrast="true" :type="'warning'">warning</LeveBadge>
-        <LeveBadge :constrast="true" :type="'info'">info</LeveBadge>
-        <LeveBadge :constrast="true" :type="'light'">light</LeveBadge>
-        <LeveBadge :constrast="true" :type="'dark'">dark</LeveBadge>
+        <leve-badge :constrast="true" :type="'primary'">primary</leve-badge>
+        <leve-badge :constrast="true" :type="'secondary'">secondary</leve-badge>
+        <leve-badge :constrast="true" :type="'success'">success</leve-badge>
+        <leve-badge :constrast="true" :type="'danger'">danger</leve-badge>
+        <leve-badge :constrast="true" :type="'warning'">warning</leve-badge>
+        <leve-badge :constrast="true" :type="'info'">info</leve-badge>
+        <leve-badge :constrast="true" :type="'light'">light</leve-badge>
+        <leve-badge :constrast="true" :type="'dark'">dark</leve-badge>
       </div>
    </div>
     
@@ -87,10 +87,10 @@
         <div class="howto-use__title"><span><i class="bi bi-code-slash"></i> code</span></div>
 
         <pre v-highlightjs="sourcecode"><code class="javascript">
-    &lt;button type="button" class="btn btn-primary"&gt; 
+    &lt;leve-button type="button" class="btn btn-primary"&gt; 
         Notifications 
-        &lt;LeveBadge :type="'warning'"&gt;2&lt;/LeveBadge&gt;
-    &lt;/button&gt;
+        &lt;leve-badge :type="'warning'"&gt;2&lt;/leve-badge&gt;
+    &lt;/leve-button&gt;
         </code></pre>
 
         <br />
@@ -99,7 +99,7 @@
           <span><i class="bi bi-eye"></i> preview</span>
         </div>
 
-        <button type="button" class="btn btn-primary"> Notifications <LeveBadge :type="'warning'">2</LeveBadge></button>
+        <button type="button" class="btn btn-primary"> Notifications <leve-badge :type="'warning'">2</leve-badge></button>
 
       <br />
       <br />
@@ -127,41 +127,41 @@
 
       <pre v-highlightjs="sourcecode"><code class="javascript">
     &lt;div class="d-flex justify-content-between p-2"&gt;
-        &lt;LeveButton type="secondary" :class="'position-relative'"&gt;Bottom left
+        &lt;leve-button type="secondary" :class="'position-relative'"&gt;Bottom left
             &lt;leve-badge 
                 :isNotification="true" 
                 position="bottom-left" 
                 type="success"
                 badgeHiddenText="Nova notificação"&gt;
             &lt;/leve-badge&gt;
-        &lt;/LeveButton&gt;
+        &lt;/leve-button&gt;
 
-        &lt;LeveButton type="secondary" :class="'position-relative'"&gt;Bottom right
+        &lt;leve-button type="secondary" :class="'position-relative'"&gt;Bottom right
             &lt;leve-badge 
                 :isNotification="true" 
                 position="bottom-right" 
                 type="danger"
                 badgeHiddenText="Nova notificação"&gt;
             &lt;/leve-badge&gt;
-        &lt;/LeveButton&gt;
+        &lt;/leve-button&gt;
 
-        &lt;LeveButton type="secondary" :class="'position-relative'"&gt;Top left
+        &lt;leve-button type="secondary" :class="'position-relative'"&gt;Top left
             &lt;leve-badge 
                 :isNotification="true" 
                 position="top-left" 
                 type="info"
                 badgeHiddenText="Nova notificação"&gt;
             &lt;/leve-badge&gt;
-        &lt;/LeveButton&gt;
+        &lt;/leve-button&gt;
 
-        &lt;LeveButton type="secondary" :class="'position-relative'"&gt;Top right
+        &lt;leve-button type="secondary" :class="'position-relative'"&gt;Top right
             &lt;leve-badge 
                 :isNotification="true" 
                 position="top" 
                 type="primary"
                 badgeHiddenText="Nova notificação"&gt;
             &lt;/leve-badge&gt;
-        &lt;/LeveButton&gt;
+        &lt;/leve-button&gt;
     &lt;/div&gt;
         </code></pre>      
 
@@ -169,36 +169,36 @@
       <div class="howto-use__title"><span><i class="bi bi-eye"></i> preview</span></div>
 
         <div class="d-flex justify-content-between p-2">
-        <LeveButton type="secondary" :class="'position-relative'">Bottom left
+        <leve-button type="secondary" :class="'position-relative'">Bottom left
           <leve-badge 
           :isNotification="true" 
           position="bottom-left" 
           type="success"
           badgeHiddenText="Nova notificação">
         </leve-badge>
-      </LeveButton>
-    <LeveButton type="secondary" :class="'position-relative'">Bottom right
+      </leve-button>
+    <leve-button type="secondary" :class="'position-relative'">Bottom right
     <leve-badge 
         :isNotification="true" 
         position="bottom-right" 
         type="danger"
         badgeHiddenText="Nova notificação">
-    </leve-badge></LeveButton>
-    <LeveButton type="secondary" :class="'position-relative'">Top left
+    </leve-badge></leve-button>
+    <leve-button type="secondary" :class="'position-relative'">Top left
     <leve-badge 
         :isNotification="true" 
         position="top-left" 
         type="info"
         badgeHiddenText="Nova notificação">
-    </leve-badge></LeveButton>
+    </leve-badge></leve-button>
 
-    <LeveButton type="secondary" :class="'position-relative'">Top right
+    <leve-button type="secondary" :class="'position-relative'">Top right
     <leve-badge 
         :isNotification="true" 
         position="top" 
         type="primary"
         badgeHiddenText="Nova notificação">
-    </leve-badge></LeveButton>
+    </leve-badge></leve-button>
 
       </div>
     <br />
@@ -209,25 +209,25 @@
       <pre v-highlightjs="sourcecode"><code class="javascript">
 &lt;div class="d-flex justify-content-between p-2"&gt;
 
-&lt;LeveButton type="secondary" :class="'position-relative'"&gt;
+&lt;leve-button type="secondary" :class="'position-relative'"&gt;
     Messages 
-    &lt;LeveBadge :position="'top'"&gt;99+&lt;/LeveBadge&gt;
-&lt;/LeveButton&gt;
+    &lt;leve-badge :position="'top'"&gt;99+&lt;/leve-badge&gt;
+&lt;/leve-button&gt;
 
-&lt;LeveButton type="secondary" :class="'position-relative'"&gt;
+&lt;leve-button type="secondary" :class="'position-relative'"&gt;
     Messages 
-    &lt;LeveBadge :position="'bottom-right'"&gt;99+&lt;/LeveBadge&gt;
-&lt;/LeveButton&gt;
+    &lt;leve-badge :position="'bottom-right'"&gt;99+&lt;/leve-badge&gt;
+&lt;/leve-button&gt;
 
-&lt;button type="button" class="btn btn-primary"&gt;
+&lt;leve-button type="button" class="btn btn-primary"&gt;
     Badge Constrast true 
-    &lt;LeveBadge :constrast="true" :type="'warning'"&gt;2&lt;/LeveBadge&gt;
-&lt;/button&gt;
+    &lt;leve-badge :constrast="true" :type="'warning'"&gt;2&lt;/leve-badge&gt;
+&lt;/leve-button&gt;
 
-&lt;button type="button" class="btn btn-primary" :class="'position-relative'"&gt;
+&lt;leve-button type="button" class="btn btn-primary" :class="'position-relative'"&gt;
     Badge
-    &lt;LeveBadge :position="'top'" :constrast="true" :type="'warning'"&gt;2&lt;/LeveBadge&gt;
-&lt;/button&gt;
+    &lt;leve-badge :position="'top'" :constrast="true" :type="'warning'"&gt;2&lt;/leve-badge&gt;
+&lt;/leve-button&gt;
 
 &lt;/div&gt;
       </code></pre>      
@@ -237,34 +237,33 @@
 
       <div class="d-flex justify-content-between p-2">
               
-        <LeveButton type="secondary" :class="'position-relative'">
-          Messages <LeveBadge :position="'top'">99+</LeveBadge>
-        </LeveButton>
+        <leve-button type="secondary" :class="'position-relative'">
+          Messages <leve-badge :position="'top'">99+</leve-badge>
+        </leve-button>
 
 
-        <LeveButton type="secondary" :class="'position-relative'">
-          Messages <LeveBadge :position="'bottom-right'">99+</LeveBadge>
-        </LeveButton>
+        <leve-button type="secondary" :class="'position-relative'">
+          Messages <leve-badge :position="'bottom-right'">99+</leve-badge>
+        </leve-button>
 
-        <button type="button" class="btn btn-primary">
+        <leve-button type="button" class="btn btn-primary">
           Badge Constrast true 
-          <LeveBadge :constrast="true" :type="'warning'">2</LeveBadge>
-        </button>
+          <leve-badge :constrast="true" :type="'warning'">2</leve-badge>
+        </leve-button>
 
-        <button type="button" class="btn btn-primary"  :class="'position-relative'">
+        <leve-button type="button" class="btn btn-primary"  :class="'position-relative'">
           Badge
-          <LeveBadge :position="'top'" :constrast="true" :type="'warning'">2</LeveBadge>
-        </button>
+          <leve-badge :position="'top'" :constrast="true" :type="'warning'">2</leve-badge>
+        </leve-button>
       </div>  
     
 
 
     </div>
 
-    <div class="sidebar-separator"></div>
   </section>  
   
-  <section id="description">
+  <section id="description" style="margin-top: 8rem;">
     <h4>Descrição</h4>
     <div class="sidebar-separator"></div>
     <h5 class="mt-5">Propriedades (props)</h5>
