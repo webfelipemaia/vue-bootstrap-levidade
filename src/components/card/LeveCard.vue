@@ -1,43 +1,46 @@
 <template>
-    <div class="card" :class="helperClass" :style="helperStyle">
+  <div class="card" :class="[cardClass, textAlign]" :style="cardStyle">
+    <template v-if="imageOverlay">
+      <div class="card-img-overlay">
         <slot></slot>
-    </div>
+      </div>
+    </template>
+    <template v-else>
+      <slot></slot>
+    </template>
+  </div>
 </template>
-  
-<script>
 
-    import { defineComponent } from 'vue';
-  
-  /** 
-   * Cards are general-purpose containers for displaying any type of content.
-  */
-  export default defineComponent({
-    
-    name: "leve-card",
-        
-    props: {
-      
-      helperStyle: {
-            type: [Object,String]
-        },
-      helperClass: {
-        type: [Object,String]
-      },   
-      alignment: {
-      type: String,
-      default: "left",
-        validator(value) {
-          return [ "left", "center","right"].includes(value);        
-        }
-      },
-    },
-  
-    computed: {      
-      textAlign () {
-        return { 'text-align':  this.alignment }
-      },
-    },
-      
-  });
-  
+<script setup>
+import { computed } from "vue";
+
+// Definição das Props
+const props = defineProps({
+  cardStyle: {
+    type: [Object, String],
+    default: null
+  },
+  cardClass: {
+    type: [Object, String],
+    default: null
+  },
+  alignment: {
+    type: String,
+    default: "left",
+    validator: (value) => ["left", "center", "right"].includes(value)
+  },
+  imageOverlay: {
+    type: Boolean,
+    default: false
+  }
+});
+
+// Computed Property para definir a classe de alinhamento
+const textAlign = computed(() => {
+  return {
+    left: "text-start",
+    center: "text-center",
+    right: "text-end"
+  }[props.alignment];
+});
 </script>

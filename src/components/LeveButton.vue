@@ -1,7 +1,7 @@
 <template>
   <component
     :is="tag"
-    :type="(tag !== 'button' || tag ==='input') ? undefined : nativeType"
+    :type="(tag !== 'button' || tag === 'input') ? undefined : nativeType"
     :disabled="(disabled || loading) ? true : undefined"
     @click="handleClick"
     class="btn"
@@ -9,11 +9,11 @@
       { [`btn-outline-${outline}`]: outline },
       { [`btn-${type}`]: type },
       { [`btn-${size}`]: size },
-      { 'btn-link': link },
       { disabled: disabled && tag !== 'button' },
     ]"
-    :style="[buttonStyle,style]"
-    :ariaLabel=ariaLabel
+    :style="[buttonStyle, style]"
+    :ariaLabel="ariaLabel"
+    :href="tag === 'a' ? href : undefined"
   >
     <slot v-if="loading" name="loading">
       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -24,7 +24,6 @@
     </slot>
 
     <slot></slot>
-  
   </component>
 </template>
 
@@ -39,8 +38,12 @@ export default {
       type: String,
       default: "button",
       validator(value) {
-        return ["button", "a"].includes(value);        
+        return ["button", "a"].includes(value);
       }
+    },
+    href: {
+      type: String,
+      default: "#"
     },
     outline: {
       type: String,
@@ -62,9 +65,6 @@ export default {
       type: String,
       default: ''
     },
-    link: {
-      type: Boolean,
-    },
     ariaLabel: {
       type: String,
       default: '',
@@ -73,10 +73,6 @@ export default {
       type: String,
       default: '',
     },
-  },
-  data() {
-    return {
-    }
   },
   computed: {
     buttonStyle() {

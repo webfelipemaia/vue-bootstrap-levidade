@@ -17,6 +17,7 @@ import LeveCardHeader from '@/components/card/LeveCardHeader'
 import LeveCardFooter from '@/components/card/LeveCardFooter'
 import LeveCardContent from '@/components/card/LeveCardContent'
 import LeveCardFooterItem from '@/components/card/LeveCardFooterItem'
+import LeveCardOverlay from '@/components/card/LeveCardOverlay'
 import LeveImage from '@/components/LeveImage'
 import LeveDropdown from '@/components/LeveDropdown'
 
@@ -41,5 +42,6 @@ app.component('LeveCardHeader', LeveCardHeader)
 app.component('LeveCardFooter', LeveCardFooter)
 app.component('LeveCardContent', LeveCardContent)
 app.component('LeveCardFooterItem', LeveCardFooterItem)
+app.component('LeveCardOverlay', LeveCardOverlay)
 app.component('LeveImage', LeveImage)
 app.component('LeveDropdown', LeveDropdown)

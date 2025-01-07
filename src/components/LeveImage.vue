@@ -1,6 +1,11 @@
-
 <template>
-    <img :src="path" :class="[type ? 'img-' + type : undefined, helperClass]" :alt="alt">
+    <img :src="path" 
+         :class="[
+            { 'card-img-top': cardImgTop , 'card-img-bottom': cardImgBottom },
+            type ? 'img-' + type : '',
+            cardClass 
+         ]" 
+         :alt="alt">
 </template>
   
 <script>
@@ -13,7 +18,7 @@
         helperStyle: {
             type: [Object,String]
         },
-        helperClass: {
+        cardClass: {
             type: [Object,String]
         },
         path: {
@@ -26,22 +31,17 @@
             type: String,
             default: "fluid",
             validator(value) {
-            return [ "fluid", "thumbnail"].includes(value);
+                return ["fluid", "thumbnail"].includes(value);
             }
         },
+        cardImgTop: {
+            type: Boolean,
+            default: false
+        },
+        cardImgBottom: {
+            type: Boolean,
+            default: false
+        },
     },
-
-    data () {
-      return {}
-    },
-
-    methods: {},
-    computed: {},
-    created () {},
-    mounted () {},
-    updated () {},
   });
 </script>
-
-<style>
-</style>

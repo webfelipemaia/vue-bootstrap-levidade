@@ -10,7 +10,8 @@
   <template #content-middle>
 
   <section id="how-to-use">
-    <h4>Como usar</h4>
+    <br />
+    <h4 class="mt-5">Como usar</h4>
     <div class="sidebar-separator"></div>    
 
 
