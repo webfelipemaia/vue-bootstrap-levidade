@@ -1,47 +1,48 @@
 <template>
-    <img :src="path" 
-         :class="[
-            { 'card-img-top': cardImgTop , 'card-img-bottom': cardImgBottom },
-            type ? 'img-' + type : '',
-            cardClass 
-         ]" 
-         :alt="alt">
-</template>
+    <img 
+      :src="path" 
+      :class="[
+        { 'card-img-top': cardImgTop, 'card-img-bottom': cardImgBottom },
+        type ? 'img-' + type : '',
+        cardClass 
+      ]"
+      :style="cardStyle"
+      :alt="alt"
+    />
+  </template>
   
-<script>
-  import { defineComponent } from 'vue'
+  <script setup>
 
-  export default defineComponent({    
-    name: "leve-image",
-
-    props: {
-        helperStyle: {
-            type: [Object,String]
-        },
-        cardClass: {
-            type: [Object,String]
-        },
-        path: {
-            type: String
-        },
-        alt: {
-            type: String
-        },
-        type: {
-            type: String,
-            default: "fluid",
-            validator(value) {
-                return ["fluid", "thumbnail"].includes(value);
-            }
-        },
-        cardImgTop: {
-            type: Boolean,
-            default: false
-        },
-        cardImgBottom: {
-            type: Boolean,
-            default: false
-        },
+ defineProps({
+    cardClass: {
+      type: [Object, String],
+      default: null
     },
+    cardStyle: {
+      type: [Object, String],
+      default: null
+    },
+    path: {
+      type: String,
+      required: true
+    },
+    alt: {
+      type: String,
+      default: ""
+    },
+    type: {
+      type: String,
+      default: "fluid",
+      validator: (value) => ["fluid", "thumbnail"].includes(value)
+    },
+    cardImgTop: {
+      type: Boolean,
+      default: false
+    },
+    cardImgBottom: {
+      type: Boolean,
+      default: false
+    }
   });
-</script>
+  </script>
+  

@@ -20,40 +20,26 @@
 
 </template>
   
-<script>
-  import { defineComponent } from 'vue';
-  
-  /** 
-   * The content of the cards can be free text, a title or subtitle. By default, the component displays 
-   * as text surrounded by the <coede>div</code> tag.
-  */
-  export default defineComponent({
-    
-    name: "leve-card-content",
-        
-    props: { 
-      tag: {
-      type: String,
-      required: false,
-        validator(value) {
-          return ["p", "div", "span", "h1", "h2", "h3", "h4", "h5", "h6"].includes(value)
-        }
-      },
-      type: {
-      type: String,
-      default: "text",
-        validator(value) {
-          return [ "text", "title","subtitle"].includes(value);        
-        }
-      },
-    },
+<script setup>
+import { ref } from 'vue';
 
-    data() {
-      return {
-        contentTags: ["p", "div", "span", "h1", "h2", "h3", "h4", "h5", "h6"],
-      }
-    },
-      
-  });
-  
+/** 
+ * The content of the cards can be free text, a title or subtitle. By default, the component displays 
+ * as text surrounded by the <code>div</code> tag.
+*/
+
+defineProps({
+  tag: {
+    type: String,
+    required: false,
+    validator: (value) => ["p", "div", "span", "h1", "h2", "h3", "h4", "h5", "h6"].includes(value)
+  },
+  type: {
+    type: String,
+    default: "text",
+    validator: (value) => ["text", "title", "subtitle"].includes(value)
+  }
+});
+
+const contentTags = ref(["p", "div", "span", "h1", "h2", "h3", "h4", "h5", "h6"]);
 </script>

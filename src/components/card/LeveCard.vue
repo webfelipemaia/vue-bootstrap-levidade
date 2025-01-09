@@ -14,7 +14,6 @@
 <script setup>
 import { computed } from "vue";
 
-// Definição das Props
 const props = defineProps({
   cardStyle: {
     type: [Object, String],
