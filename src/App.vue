@@ -43,6 +43,7 @@
           <li class="nav-item"><router-link class="nav-link" to="/doc/badge">Badge</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/doc/breadcrumb">Breadcrumb</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/doc/button">Button</router-link></li>
+          <li class="nav-item"><router-link class="nav-link" to="/doc/button-group">ButtonGroup</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/doc/card">Card</router-link></li>          
           <li class="nav-item"><router-link class="nav-link" to="/doc/dropdown">Dropdown</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/doc/image">Image</router-link></li>

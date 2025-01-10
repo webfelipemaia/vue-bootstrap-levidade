@@ -6,6 +6,7 @@ import AlertExample from "./examples/AlertExample.vue";
 import BadgeExample from "./examples/BadgeExample.vue";
 import BreadcrumbExample from "./examples/BreadcrumbExample.vue";
 import ButtonExample from "./examples/ButtonExample.vue";
+import ButtonGroupExample from "./examples/ButtonGroupExample.vue";
 import CardExample from "./examples/CardExample.vue";
 import DropdownExample from "./examples/DropdownExample.vue";
 import ImageExample from "./examples/ImageExample.vue";
@@ -22,6 +23,7 @@ const routes = [
   { path: "/doc/badge", name: "Badge", component: BadgeExample },
   { path: "/doc/breadcrumb", name: "Breadcrumb", component: BreadcrumbExample },
   { path: "/doc/button", name: "Button", component: ButtonExample },
+  { path: "/doc/button-group", name: "ButtonGroup", component: ButtonGroupExample },
   { path: "/doc/card", name: "Card", component: CardExample },
   { path: "/doc/dropdown", name: "Dropdown", component: DropdownExample },
   { path: "/doc/image", name: "Image", component: ImageExample },
