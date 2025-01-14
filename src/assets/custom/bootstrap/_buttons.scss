@@ -19,3 +19,17 @@
   }
   
 }
+
+// Remove spaces when in a group of buttons
+.btn-toolbar {
+
+  .btn {
+  
+    & > .bi,
+    & > .spinner-border {
+      margin-right: 0;
+    }
+    
+  }
+  
+}

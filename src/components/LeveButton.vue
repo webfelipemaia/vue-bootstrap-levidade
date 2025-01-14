@@ -88,7 +88,7 @@ export default {
           height = '48px';
           break;
         default:
-          height = '38px';
+          height = undefined;
       }
       return { height };
     }

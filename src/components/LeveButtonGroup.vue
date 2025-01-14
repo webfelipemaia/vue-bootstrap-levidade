@@ -1,21 +1,20 @@
 <template>
   <component
     :is="tag"
-    :role="(role !== 'group' || role !== 'tollbar') ? undefined : role"
+    :role="(role !== 'group' || role !== 'toolbar') ? undefined : role"
     @click="handleClick"
     :class="[
-      { [`btn-group`]: (type === 'group') ? type: undefined },
-      { [`btn-group`]: (type === '') ? defaultType: undefined },
-      { [`btn-group-${type}`]: (type === 'vertical') ? type: undefined},
-      { [`btn-toolbar}`]: (type === 'toolbar') ? toolbar : undefined },
+      { [`btn-group`]: (type === 'group') ? type : undefined },
+      { [`btn-group`]: (type === '') ? defaultType : undefined },
+      { [`btn-group-${type}`]: (type === 'vertical') ? type : undefined },
+      { [`btn-toolbar`]: (type === 'toolbar') ? type : undefined },
+      { [`btn-group-${size}`]: size !== '' }, 
       { options: options },
     ]"
     :type="type"
-    :ariaLabel=ariaLabel
+    :ariaLabel="ariaLabel"
   >
-  
     <slot></slot>
-  
   </component>
 </template>
 
@@ -25,28 +24,23 @@ export default {
   props: {
     ariaLabel: {
       type: String,
-      default: "This is an button group",
+      default: "This is a button group",
     },
     tag: {
       type: String,
       default: "div",
       validator(value) {
-        return ["div"].includes(value);        
-      }
+        return ["div"].includes(value);
+      },
     },
-    
     type: {
       type: String,
       default: "group",
       validator(value) {
-        return ["group","vertical","toolbar",""].includes(value);        
-      }
+        return ["group", "vertical", "toolbar", ""].includes(value);
+      },
     },
     role: {
-      type: String,
-      default: "",
-    },
-    group: {
       type: String,
       default: "",
     },
@@ -57,17 +51,16 @@ export default {
     size: {
       type: String,
       default: "",
+      validator(value) {
+        return ["", "lg", "sm"].includes(value);
+      },
     },
     options: {
       type: Object,
       default() {
-        return {}
+        return {};
       },
     },
-  },
-  data() {
-    return {
-    }
   },
   methods: {
     handleClick(evt) {
@@ -77,4 +70,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+</style>
