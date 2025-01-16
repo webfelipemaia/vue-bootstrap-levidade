@@ -13,11 +13,11 @@
 
         <br />
         <p>&nbsp;</p>
-        <LeveButtonGroup role="group">
-          <LeveButton type="primary" icon="cart">Left</LeveButton>
-          <LeveButton type="secondary" icon="cart">Middle</LeveButton>
-          <LeveButton type="success" icon="cart">Right</LeveButton>
-        </LeveButtonGroup>
+        <leve-button-group role="group">
+          <leve-button type="primary" icon="cart">Left</leve-button>
+          <leve-button type="secondary" icon="cart">Middle</leve-button>
+          <leve-button type="success" icon="cart">Right</leve-button>
+        </leve-button-group>
       </section>
     </template>
     <template #content-middle>
@@ -28,8 +28,8 @@
         <div class="sidebar-separator"></div>
 
 
-        <h5 class="mt-5" id="button-themes">Uso básico</h5>
-        <p>Agrupe botões, usando as opções do componente <a href="http://localhost:8080/doc/button">LeveButton</a>
+        <h5 class="mt-5" id="button-group">Uso básico</h5>
+        <p>Agrupe botões, usando as opções do componente <a href="http://localhost:8080/doc/button">leve-button</a>
           normalmente.</p>
 
         <div class="howto-use">
@@ -40,11 +40,11 @@
 
           <!-- Código do exemplo implementado -->
           <pre v-highlightjs><code class="javascript">
-&lt;LeveButtonGroup role=&quot;group&quot;&gt;
-    &lt;LeveButton type=&quot;primary&quot;&gt;Left&lt;/LeveButton&gt;
-    &lt;LeveButton type=&quot;primary&quot;&gt;Middle&lt;/LeveButton&gt;
-    &lt;LeveButton type=&quot;primary&quot;&gt;Right&lt;/LeveButton&gt;
-&lt;/LeveButtonGroup&gt;
+&lt;leve-button-group role=&quot;group&quot;&gt;
+    &lt;leve-button type=&quot;primary&quot;&gt;Left&lt;/leve-button&gt;
+    &lt;leve-button type=&quot;primary&quot;&gt;Middle&lt;/leve-button&gt;
+    &lt;leve-button type=&quot;primary&quot;&gt;Right&lt;/leve-button&gt;
+&lt;/leve-button-group&gt;
       </code></pre>
 
           <br />
@@ -56,16 +56,16 @@
           </div>
 
           <!-- Exemplo implementado -->
-          <LeveButtonGroup role="group">
-            <LeveButton type="primary">Left</LeveButton>
-            <LeveButton type="primary">Middle</LeveButton>
-            <LeveButton type="primary">Right</LeveButton>
-          </LeveButtonGroup>
+          <leve-button-group role="group">
+            <leve-button type="primary">Left</leve-button>
+            <leve-button type="primary">Middle</leve-button>
+            <leve-button type="primary">Right</leve-button>
+          </leve-button-group>
         </div>
 
         <br />
 
-        <h5 class="mt-5" id="button-outline">Outline</h5>
+        <h5 class="mt-5" id="button-group-outline">Outline</h5>
 
         <div class="howto-use">
           <div class="howto-use__title">
@@ -75,11 +75,11 @@
 
           <!-- Código do exemplo implementado -->
           <pre v-highlightjs><code class="javascript">
-&lt;LeveButtonGroup role=&quot;group&quot;&gt;
-    &lt;LeveButton class=&quot;btn-outline-primary&quot;&gt;Left&lt;/LeveButton&gt;
-    &lt;LeveButton class=&quot;btn-outline-primary&quot;&gt;Middle&lt;/LeveButton&gt;
-    &lt;LeveButton class=&quot;btn-outline-primary&quot;&gt;Right&lt;/LeveButton&gt;
-&lt;/LeveButtonGroup&gt;
+&lt;leve-button-group role=&quot;group&quot;&gt;
+    &lt;leve-button class=&quot;btn-outline-primary&quot;&gt;Left&lt;/leve-button&gt;
+    &lt;leve-button class=&quot;btn-outline-primary&quot;&gt;Middle&lt;/leve-button&gt;
+    &lt;leve-button class=&quot;btn-outline-primary&quot;&gt;Right&lt;/leve-button&gt;
+&lt;/leve-button-group&gt;
           </code></pre>
 
           <br />
@@ -91,17 +91,17 @@
           </div>
 
           <!-- Exemplo implementado -->
-          <LeveButtonGroup role="group">
-            <LeveButton class="btn-outline-primary">Left</LeveButton>
-            <LeveButton class="btn-outline-primary">Middle</LeveButton>
-            <LeveButton class="btn-outline-primary">Right</LeveButton>
-          </LeveButtonGroup>
+          <leve-button-group role="group">
+            <leve-button class="btn-outline-primary">Left</leve-button>
+            <leve-button class="btn-outline-primary">Middle</leve-button>
+            <leve-button class="btn-outline-primary">Right</leve-button>
+          </leve-button-group>
 
         </div>
 
         <br />
 
-        <h5 class="mt-5" id="button-sizes">Temas</h5>
+        <h5 class="mt-5" id="button-group-themes">Temas</h5>
         <p>Combine os temas para uma melhor exploração visual do componente.</p>
 
         <div class="howto-use">
@@ -134,7 +134,7 @@
 
           <!-- Exemplo implementado -->
 
-          <LeveButtonGroup role="group">
+          <leve-button-group role="group">
             <leve-button type="primary">Primary</leve-button>
             <leve-button type="secondary">Secondary</leve-button>
             <leve-button type="success">Success</leve-button>
@@ -143,15 +143,15 @@
             <leve-button type="info">Info</leve-button>
             <leve-button type="light">Light</leve-button>
             <leve-button type="dark">Dark</leve-button>
-          </LeveButtonGroup>
+          </leve-button-group>
 
 
         </div>
 
         <br />
 
-        <h5 class="mt-5" id="button-disabled">Checkbox e Radio</h5>
-
+        <h5 class="mt-5" id="button-group-checkboxradio">Checkbox e Radio</h5>
+        <p>Agrupe checkbox e radio de diferentes maneiras.</p>
         <div class="howto-use">
           <div class="howto-use__title">
             <span><i class="bi bi-code-slash"></i> code
@@ -160,6 +160,29 @@
 
           <!-- Código do exemplo implementado -->
           <pre v-highlightjs><code class="javascript">
+//checkbox
+&lt;leve-button-group role=&quot;group&quot; aria-label=&quot;Checkbox button group&quot;&gt;
+    &lt;input type=&quot;checkbox&quot; class=&quot;btn-check&quot; id=&quot;btncheck1&quot; autocomplete=&quot;off&quot;&gt;
+    &lt;label class=&quot;btn btn-outline-primary&quot; for=&quot;btncheck1&quot;&gt;Checkbox 1&lt;/label&gt;
+
+    &lt;input type=&quot;checkbox&quot; class=&quot;btn-check&quot; id=&quot;btncheck2&quot; autocomplete=&quot;off&quot;&gt;
+    &lt;label class=&quot;btn btn-outline-primary&quot; for=&quot;btncheck2&quot;&gt;Checkbox 2&lt;/label&gt;
+
+    &lt;input type=&quot;checkbox&quot; class=&quot;btn-check&quot; id=&quot;btncheck3&quot; autocomplete=&quot;off&quot;&gt;
+    &lt;label class=&quot;btn btn-outline-primary&quot; for=&quot;btncheck3&quot;&gt;Checkbox 3&lt;/label&gt;
+&lt;/leve-button-group&gt;
+
+//radio
+&lt;leve-button-group role=&quot;group&quot; aria-label=&quot;Radio button group&quot;&gt;
+    &lt;input type=&quot;radio&quot; class=&quot;btn-check&quot; name=&quot;btnradio&quot; id=&quot;btnradio1&quot; autocomplete=&quot;off&quot; checked&gt;
+    &lt;label class=&quot;btn btn-outline-primary&quot; for=&quot;btnradio1&quot;&gt;Radio 1&lt;/label&gt;
+
+    &lt;input type=&quot;radio&quot; class=&quot;btn-check&quot; name=&quot;btnradio&quot; id=&quot;btnradio2&quot; autocomplete=&quot;off&quot;&gt;
+    &lt;label class=&quot;btn btn-outline-primary&quot; for=&quot;btnradio2&quot;&gt;Radio 2&lt;/label&gt;
+
+    &lt;input type=&quot;radio&quot; class=&quot;btn-check&quot; name=&quot;btnradio&quot; id=&quot;btnradio3&quot; autocomplete=&quot;off&quot;&gt;
+    &lt;label class=&quot;btn btn-outline-primary&quot; for=&quot;btnradio3&quot;&gt;Radio 3&lt;/label&gt;
+&lt;/leve-button-group&gt;
           </code></pre>
 
           <br />
@@ -201,7 +224,7 @@
 
         <br />
 
-        <h5 class="mt-5" id="button-loadings">Tamanhos</h5>
+        <h5 class="mt-5" id="button-group-sizes">Tamanhos</h5>
 
         <div class="howto-use">
           <div class="howto-use__title">
@@ -211,7 +234,24 @@
 
           <!-- Código do exemplo implementado -->
           <pre v-highlightjs><code class="javascript">
-
+//size = sm
+&lt;leve-button-group size=&quot;sm&quot; role=&quot;group&quot;&gt;
+    &lt;leve-button type=&quot;primary&quot; icon=&quot;cart&quot;&gt;Left&lt;/leve-button&gt;
+    &lt;leve-button type=&quot;secondary&quot; icon=&quot;cart&quot;&gt;Middle&lt;/leve-button&gt;
+    &lt;leve-button type=&quot;success&quot; icon=&quot;cart&quot;&gt;Right&lt;/leve-button&gt;
+&lt;/leve-button-group&gt;
+//normal size
+&lt;leve-button-group size=&quot;&quot; role=&quot;group&quot;&gt;
+    &lt;leve-button type=&quot;primary&quot; icon=&quot;cart&quot;&gt;Left&lt;/leve-button&gt;
+    &lt;leve-button type=&quot;secondary&quot; icon=&quot;cart&quot;&gt;Middle&lt;/leve-button&gt;
+    &lt;leve-button type=&quot;success&quot; icon=&quot;cart&quot;&gt;Right&lt;/leve-button&gt;
+&lt;/leve-button-group&gt;
+//size = lg
+&lt;leve-button-group size=&quot;lg&quot; role=&quot;group&quot;&gt;
+    &lt;leve-button type=&quot;primary&quot; icon=&quot;cart&quot;&gt;Left&lt;/leve-button&gt;
+    &lt;leve-button type=&quot;secondary&quot; icon=&quot;cart&quot;&gt;Middle&lt;/leve-button&gt;
+    &lt;leve-button type=&quot;success&quot; icon=&quot;cart&quot;&gt;Right&lt;/leve-button&gt;
+&lt;/leve-button-group&gt;
           </code></pre>
 
           <br />
@@ -225,32 +265,33 @@
           <!-- Exemplo implementado -->
 
 
-          <LeveButtonGroup size="sm" role="group">
-            <LeveButton type="primary" icon="cart">Left</LeveButton>
-            <LeveButton type="secondary" icon="cart">Middle</LeveButton>
-            <LeveButton type="success" icon="cart">Right</LeveButton>
-          </LeveButtonGroup>
+          <leve-button-group size="sm" role="group">
+            <leve-button type="primary" icon="cart">Left</leve-button>
+            <leve-button type="secondary" icon="cart">Middle</leve-button>
+            <leve-button type="success" icon="cart">Right</leve-button>
+          </leve-button-group>
           <br /><br />
-          <LeveButtonGroup size="" role="group">
-            <LeveButton type="primary" icon="cart">Left</LeveButton>
-            <LeveButton type="secondary" icon="cart">Middle</LeveButton>
-            <LeveButton type="success" icon="cart">Right</LeveButton>
-          </LeveButtonGroup>
+          <leve-button-group size="" role="group">
+            <leve-button type="primary" icon="cart">Left</leve-button>
+            <leve-button type="secondary" icon="cart">Middle</leve-button>
+            <leve-button type="success" icon="cart">Right</leve-button>
+          </leve-button-group>
           <br /><br />
-          <LeveButtonGroup size="lg" role="group">
-            <LeveButton type="primary" icon="cart">Left</LeveButton>
-            <LeveButton type="secondary" icon="cart">Middle</LeveButton>
-            <LeveButton type="success" icon="cart">Right</LeveButton>
-          </LeveButtonGroup>
+          <leve-button-group size="lg" role="group">
+            <leve-button type="primary" icon="cart">Left</leve-button>
+            <leve-button type="secondary" icon="cart">Middle</leve-button>
+            <leve-button type="success" icon="cart">Right</leve-button>
+          </leve-button-group>
 
         </div>
 
         <br />
-        <h5 class="mt-5" id="button-custom">Tipos de agrumanento</h5>
+        <h5 class="mt-5" id="button-group-types">Tipos de agrupamento</h5>
         <p>O tipo básico pode ser usado indicando <code>type="group"</code> ou não informando a propriedade
           <code>type</code>. Se
           quiser usar no modo vertical, basta indicar <code>type="vertical"</code>.</p>
 
+        <h6 class="mt-5">Vertical</h6>
         <div class="howto-use">
           <div class="howto-use__title">
             <span><i class="bi bi-code-slash"></i> code
@@ -259,11 +300,11 @@
 
           <!-- Código do exemplo implementado -->
           <pre v-highlightjs><code class="javascript">
-&lt;div class="hstack gap-3"&gt;
-    &lt;leve-button :outline="'primary'" :style="'--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;'"&gt;Button&lt;/leve-button&gt;
-    &lt;leve-button type="primary" :style="'background-color:grey;border-color:black;color:black;'"&gt;Large button&lt;/leve-button&gt;
-    &lt;leve-button type="primary" :size="'sm'" :style="'background-color:transparent;color:blue;'"&gt;Small button&lt;/leve-button&gt;        
-&lt;/div&gt;        
+&lt;leve-button-group type=&quot;vertical&quot; role=&quot;group&quot;&gt;
+    &lt;leve-button type=&quot;primary&quot; icon=&quot;cart&quot;&gt;Left&lt;/leve-button&gt;
+    &lt;leve-button type=&quot;secondary&quot; icon=&quot;cart&quot;&gt;Middle&lt;/leve-button&gt;
+    &lt;leve-button type=&quot;success&quot; icon=&quot;cart&quot;&gt;Right&lt;/leve-button&gt;
+&lt;/leve-button-group&gt;
       </code></pre>
 
           <br />
@@ -276,30 +317,85 @@
 
           <!-- Exemplo implementado -->
 
-          <h6>Vertical</h6>
-          <LeveButtonGroup type="vertical" role="group">
-            <LeveButton type="primary" icon="cart">Left</LeveButton>
-            <LeveButton type="secondary" icon="cart">Middle</LeveButton>
-            <LeveButton type="success" icon="cart">Right</LeveButton>
-          </LeveButtonGroup>
+          <leve-button-group type="vertical" role="group">
+            <leve-button type="primary" icon="cart">Left</leve-button>
+            <leve-button type="secondary" icon="cart">Middle</leve-button>
+            <leve-button type="success" icon="cart">Right</leve-button>
+          </leve-button-group>
           <br /><br />
 
-          <div class="hstack gap-3 p-2 justify-content-between border border-dark-subtle rounded">
-            <div class="mb-0">Total: 29t items</div>
-            <LeveButtonGroup type="toolbar" role="group">
-              <LeveButton type="primary" icon="chevron-left"></LeveButton>
-              <LeveButton type="primary">1</LeveButton>
-              <LeveButton type="primary">2</LeveButton>
-              <LeveButton type="primary">3</LeveButton>
-              <LeveButton type="primary" icon="chevron-right"></LeveButton>
-            </LeveButtonGroup>
+          <h6 class="mt-5">Barra de paginação</h6>
+          <div class="howto-use__title">
+            <span><i class="bi bi-code-slash"></i> code
+            </span>
           </div>
 
+          <pre v-highlightjs><code class="javascript">
+&lt;div class=&quot;hstack gap-3 p-2 justify-content-between border border-dark-subtle rounded&quot;&gt;
+    &lt;div class=&quot;mb-0&quot;&gt;Total: 29 items&lt;/div&gt;
+    &lt;leve-button-group type=&quot;toolbar&quot; role=&quot;group&quot;&gt;
+        &lt;leve-button type=&quot;primary&quot; icon=&quot;chevron-left&quot;&gt;&lt;/leve-button&gt;
+        &lt;leve-button type=&quot;primary&quot;&gt;1&lt;/leve-button&gt;
+        &lt;leve-button type=&quot;primary&quot;&gt;2&lt;/leve-button&gt;
+        &lt;leve-button type=&quot;primary&quot;&gt;3&lt;/leve-button&gt;
+        &lt;leve-button type=&quot;primary&quot; icon=&quot;chevron-right&quot;&gt;&lt;/leve-button&gt;
+    &lt;/leve-button-group&gt;
+&lt;/div&gt;
+        </code></pre>
+
+          <br />
+
+          <div class="howto-use__title">
+            <span><i class="bi bi-eye"></i>
+              preview
+            </span>
+          </div>
+
+          <!-- Exemplo implementado -->
+          
+          <div class="hstack gap-3 p-2 justify-content-between border border-dark-subtle rounded">
+            <div class="mb-0">Total: 29t items</div>
+            <leve-button-group type="toolbar" role="group">
+              <leve-button type="primary" icon="chevron-left"></leve-button>
+              <leve-button type="primary">1</leve-button>
+              <leve-button type="primary">2</leve-button>
+              <leve-button type="primary">3</leve-button>
+              <leve-button type="primary" icon="chevron-right"></leve-button>
+            </leve-button-group>
+          </div>
+          <br /><br />
+
+          <h6 class="mt-5">Seleção de tema</h6>
+
+          <div class="howto-use__title">
+            <span><i class="bi bi-code-slash"></i> code
+            </span>
+          </div>
+
+          <pre v-highlightjs><code class="javascript">
+&lt;leve-button-group class=&quot;me-2&quot; type=&quot;toolbar&quot; role=&quot;toolbar&quot; aria-label=&quot;Toolbar with button groups&quot;&gt;
+    &lt;input type=&quot;radio&quot; class=&quot;btn-check&quot; name=&quot;btntheme&quot; id=&quot;btnradiosun&quot; autocomplete=&quot;off&quot; checked&gt;
+    &lt;label class=&quot;btn btn-outline-primary&quot; for=&quot;btnradiosun&quot;&gt;&lt;i class=&quot;bi bi-sun&quot;&gt;&lt;/i&gt;&lt;/label&gt;
+    &lt;p class=&quot;me-1&quot;&gt;&lt;/p&gt;
+    &lt;input type=&quot;radio&quot; class=&quot;btn-check&quot; name=&quot;btntheme&quot; id=&quot;btnradiomoon&quot; autocomplete=&quot;off&quot;&gt;
+    &lt;label class=&quot;btn btn-outline-primary&quot; for=&quot;btnradiomoon&quot;&gt;&lt;i class=&quot;bi bi-moon&quot;&gt;&lt;/i&gt;&lt;/label&gt;
+&lt;/leve-button-group&gt;
+        </code></pre>
+
+          <br />
+
+          <div class="howto-use__title">
+            <span><i class="bi bi-eye"></i>
+              preview
+            </span>
+          </div>
+
+          <!-- Exemplo implementado -->
 
           <leve-button-group class="me-2" type="toolbar" role="toolbar" aria-label="Toolbar with button groups">
             <input type="radio" class="btn-check" name="btntheme" id="btnradiosun" autocomplete="off" checked>
             <label class="btn btn-outline-primary" for="btnradiosun"><i class="bi bi-sun"></i></label>
-
+            <p class="me-1"></p>
             <input type="radio" class="btn-check" name="btntheme" id="btnradiomoon" autocomplete="off">
             <label class="btn btn-outline-primary" for="btnradiomoon"><i class="bi bi-moon"></i></label>
           </leve-button-group>
@@ -419,12 +515,12 @@
           </li>
           <li class="detail-entry detail-h2"><a href="#how-to-use">Como usar</a>
             <ul>
-              <li class="detail-entry detail-h2"><a href="#button-themes">Temas</a></li>
-              <li class="detail-entry detail-h2"><a href="#button-outline">Outline</a></li>
-              <li class="detail-entry detail-h2"><a href="#button-sizes">Tamanhos</a></li>
-              <li class="detail-entry detail-h2"><a href="#button-disabled">Desabilitado</a></li>
-              <li class="detail-entry detail-h2"><a href="#button-loadings">Carregamento</a></li>
-              <li class="detail-entry detail-h2"><a href="#button-custom">Estilo personalizado</a></li>
+              <li class="detail-entry detail-h2"><a href="#button-group">Uso básico</a></li>
+              <li class="detail-entry detail-h2"><a href="#button-group-outline">Outline</a></li>
+              <li class="detail-entry detail-h2"><a href="#button-group-themes">Temas</a></li>
+              <li class="detail-entry detail-h2"><a href="#button-group-checkboxradio">Checkbox e Radio</a></li>
+              <li class="detail-entry detail-h2"><a href="#button-group-sizes">Tamanhos</a></li>
+              <li class="detail-entry detail-h2"><a href="#button-group-types">Tipos de agrupamento</a></li>
             </ul>
           </li>
           <li class="detail-entry detail-h2"><a href="#description">Descrição</a></li>
