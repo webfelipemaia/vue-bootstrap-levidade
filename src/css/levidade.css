@@ -15866,6 +15866,9 @@ mark, .mark {
 .content-wrapper section:first-child {
   margin-top: 0;
 }
+.content-wrapper .dropdown-menu h6, .content-wrapper .dropdown-menu .h6 {
+  margin-bottom: 0;
+}
 
 .bd-sidebar {
   grid-area: sidebar;
