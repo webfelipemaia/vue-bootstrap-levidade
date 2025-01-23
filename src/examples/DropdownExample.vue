@@ -16,7 +16,7 @@
       <section id="how-to-use">
         <h4 class="mt-5">Como usar</h4>
         <div class="sidebar-separator"></div>
-        <h5 id="alert-basic">Formas de usar</h5>
+        <h5 id="dropdown-basic">Formas de usar</h5>
         <p>O componente <strong>Dropdown</strong> é ideal para:</p>
         <ul>
           <li>Menus de navegação compactos.</li>
@@ -65,7 +65,7 @@
 
         <div class="howto-use mt-5">
 
-          <h5 class="dropdowns-split">Split</h5>
+          <h5 id="dropdown-split" class="dropdowns-split">Split</h5>
           <div class="howto-use__title">
             <span>
               <i class="bi bi-code-slash"></i> code
@@ -98,7 +98,7 @@
 
         <div class="howto-use mt-5">
 
-          <h5 class="dropdowns-themes">Temas</h5>
+          <h5 id="dropdown-themes">Temas</h5>
           <div class="howto-use__title">
             <span>
               <i class="bi bi-code-slash"></i> code
@@ -207,7 +207,7 @@
 
         <div class="howto-use mt-5">
 
-          <h5 class="dropdowns-sizes">Tamanhos</h5>
+          <h5 id="dropdown-sizes">Tamanhos</h5>
           <div class="howto-use__title">
             <span>
               <i class="bi bi-code-slash"></i> code
@@ -275,7 +275,7 @@
 
         <div class="howto-use mt-5">
 
-          <h5 class="dropdowns-directions">Offset</h5>
+          <h5 id="dropdown-offset">Offset</h5>
 
           <p>Modifica a referência do menu suspenso (dropdown) em relação ao botão ou elemento de ativação.</p>
 
@@ -318,12 +318,12 @@
 
       <section id="how-to-use">
         <br />
-        <h4 class="mt-5">Posicionamento</h4>
+        <h4 id="dropdown-position" class="mt-5">Posicionamento</h4>
 
 
         <div class="howto-use mt-5">
 
-          <h5 class="dropdowns-directions">Direção</h5>
+          <h5 id="dropdown-directions">Direção</h5>
           <div class="howto-use__title">
             <span>
               <i class="bi bi-code-slash"></i> code
@@ -426,7 +426,7 @@
 
         <div class="howto-use mt-5">
 
-          <h5 class="dropdowns-directions">Alinhamento</h5>
+          <h5 id="dropdown-alignment">Alinhamento</h5>
           <p>O Bootstrap disponibiliza muitas <a href="https://getbootstrap.com/docs/5.3/components/dropdowns/#menu-alignment">opções de utilização de alinhamento</a>, pois considera também a responsividade. 
             Portanto, caso seja necessário, <a href="https://getbootstrap.com/docs/5.3/components/dropdowns/#menu-alignment">consulte a API</a> para saber como alinhar da maneira que preferir</p>
         </div>
@@ -435,7 +435,7 @@
 
       <br />
 
-      <section id="how-to-use">
+      <section id="dropdown-content">
         <br />
         <h4 class="mt-5">Conteúdo</h4>
         <p>Os exemplos que se seguem são para demonstrar os estados dos itens do menu Dropdown disponíveis na distribuição 
@@ -444,7 +444,7 @@
 
         <div class="howto-use mt-5">
 
-          <h5 class="dropdowns-directions">Itens</h5>
+          <h5 id="dropdown-items" class="dropdown-items">Itens</h5>
           <div class="howto-use__title">
             <span>
               <i class="bi bi-code-slash"></i> code
@@ -469,7 +469,7 @@
             </span>
           </div>
           
-          <h6>Non-iterative, active, disabled</h6>
+          <h6 id="dropdown-options">Non-iterative, active, disabled</h6>
           <ul class="dropdown-menu d-block position-static">
             <li><span class="dropdown-item-text">Dropdown item text</span></li>
             <li><a class="dropdown-item" href="#">Regular item</a></li>
@@ -485,7 +485,7 @@
 
         <div class="howto-use mt-5">
 
-          <h5 class="dropdowns-directions">Layout</h5>
+          <h5 id="dropdown-layout">Layout</h5>
           <div class="howto-use__title">
             <span>
               <i class="bi bi-code-slash"></i> code
@@ -521,7 +521,7 @@
           </div>
 
 
-          <h6>Header, dividers e text</h6>
+          <h6 id="dropdown-options2">Header, dividers e text</h6>
           <ul class="dropdown-menu d-block position-static">
             <li><h6 class="dropdown-header">Dropdown header</h6></li>
             <li><a class="dropdown-item" href="#">Action</a></li>
@@ -553,7 +553,7 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Propriedade</th>
+              <th>Prop</th>
               <th>Tipo</th>
               <th>Padrão</th>
               <th>Descrição</th>
@@ -561,58 +561,46 @@
           </thead>
           <tbody>
             <tr>
-              <td>icon</td>
+              <td>title</td>
               <td>String</td>
-              <td>-</td>
-              <td>Ícone a ser exibido no alerta.</td>
+              <td>""</td>
+              <td>Define o texto exibido no botão do dropdown.</td>
             </tr>
             <tr>
-              <td>headingText</td>
+              <td>placement</td>
               <td>String</td>
-              <td>-</td>
-              <td>Título do alerta.</td>
+              <td>"bottom-start"</td>
+              <td>Define o posicionamento do dropdown (valores aceitos: "auto", "top", "bottom", "left", "right", etc.).</td>
             </tr>
             <tr>
-              <td>bodyText</td>
+              <td>btnClass</td>
               <td>String</td>
-              <td>-</td>
-              <td>Mensagem principal do alerta.</td>
+              <td>""</td>
+              <td>Adiciona classes personalizadas ao botão do dropdown.</td>
             </tr>
             <tr>
-              <td>commentText</td>
-              <td>String</td>
-              <td>-</td>
-              <td>Texto adicional exibido no rodapé do alerta.</td>
-            </tr>
-            <tr>
-              <td>alertType</td>
-              <td>String</td>
-              <td>'primary'</td>
-              <td>Estilo do alerta (ex.: primary, success, warning, danger).</td>
-            </tr>
-            <tr>
-              <td>isDismissible</td>
+              <td>btnSplit</td>
               <td>Boolean</td>
               <td>false</td>
-              <td>Determina se o alerta pode ser fechado pelo usuário.</td>
+              <td>Se true, separa o botão principal e o botão de toggle do dropdown.</td>
             </tr>
             <tr>
-              <td>isAlert</td>
-              <td>Boolean</td>
-              <td>true</td>
-              <td>Define se é um alerta único.</td>
-            </tr>
-            <tr>
-              <td>timeout</td>
-              <td>Number</td>
-              <td>5000</td>
-              <td>Tempo (em ms) para ocultar o alerta automaticamente.</td>
-            </tr>
-            <tr>
-              <td>alignment</td>
+              <td>dropdownClass</td>
               <td>String</td>
-              <td>'left'</td>
-              <td>Alinhamento do texto e conteúdo do alerta (left, center, right).</td>
+              <td>""</td>
+              <td>Adiciona classes personalizadas ao menu do dropdown.</td>
+            </tr>
+            <tr>
+              <td>offset</td>
+              <td>String</td>
+              <td>"0,0"</td>
+              <td>Define o deslocamento do menu dropdown em relação ao botão (formato: "x,y").</td>
+            </tr>
+            <tr>
+              <td>size</td>
+              <td>String</td>
+              <td>null</td>
+              <td>Define o tamanho do botão do dropdown. Valores aceitos: "sm" (pequeno), "lg" (grande) ou null.</td>
             </tr>
           </tbody>
         </table>
@@ -623,31 +611,30 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Método/Evento</th>
+              <th>Nome</th>
+              <th>Tipo</th>
               <th>Descrição</th>
-              <th>Parâmetros</th>
+              <th>Parâmetros do Callback</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>createItem</td>
-              <td>Cria um novo alerta.</td>
-              <td>-</td>
+              <td>switchState</td>
+              <td>Método</td>
+              <td>Alterna o estado de visibilidade do dropdown.</td>
+              <td>—</td>
             </tr>
             <tr>
-              <td>deleteItem</td>
-              <td>Remove um alerta existente pelo ID.</td>
-              <td>id (Number): ID do alerta a ser removido.</td>
+              <td>@click</td>
+              <td>Evento</td>
+              <td>Disparado ao clicar em qualquer item do menu do dropdown.</td>
+              <td>(event: Event)</td>
             </tr>
             <tr>
-              <td>getLastIndex</td>
-              <td>Retorna o ID do último alerta adicionado.</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>checkTimeoutValue</td>
-              <td>Valida o valor do tempo limite (timeout).</td>
-              <td>value (Number): Valor do tempo a ser validado.</td>
+              <td>@toggle</td>
+              <td>Evento</td>
+              <td>Emitido quando o estado do dropdown muda (abre ou fecha).</td>
+              <td>(isShow: Boolean)</td>
             </tr>
           </tbody>
         </table>
@@ -658,7 +645,6 @@
 
     </template>
     <template #content-bottom>
-      <p>Bottom Content for Alert</p>
     </template>
     <template #aside-right>
       <leve-fixednav>
@@ -668,10 +654,24 @@
           </li>
           <li class="detail-entry detail-h2"><a href="#how-to-use">Como usar</a>
             <ul>
-              <li class="detail-entry detail-h2"><a href="#alert-basic">Uso básico</a></li>
-              <li class="detail-entry detail-h2"><a href="#alert-slot">Com slots</a></li>
-              <li class="detail-entry detail-h2"><a href="#alert-icon">Com ícones</a></li>
-              <li class="detail-entry detail-h2"><a href="#alert-themes">Com temas</a></li>
+              <li class="detail-entry detail-h2"><a href="#dropdown-basic">Uso básico</a></li>
+              <li class="detail-entry detail-h2"><a href="#dropdown-split">Split</a></li>
+              <li class="detail-entry detail-h2"><a href="#dropdown-themes">Temas</a></li>
+              <li class="detail-entry detail-h2"><a href="#dropdown-sizes">Tamanhos</a></li>
+              <li class="detail-entry detail-h2"><a href="#dropdown-directions">Offset</a></li>              
+            </ul>
+          </li>
+
+          <li class="detail-entry detail-h2"><a href="#dropdown-position">Posicionamento</a>
+            <ul>
+              <li class="detail-entry detail-h2"><a href="#dropdown-directions">Direção</a></li>
+              <li class="detail-entry detail-h2"><a href="#dropdown-alignment">Alinhamento</a></li>
+              <li class="detail-entry detail-h2"><a href="#dropdown-content">Conteúdo</a></li>
+              <li class="detail-entry detail-h2"><a href="#dropdown-items">Itens</a></li>
+              <li class="detail-entry detail-h2"><a href="#dropdown-options">Non-iterative, active, disabled</a></li>
+              <li class="detail-entry detail-h2"><a href="#dropdown-layout">Layout</a></li>
+              <li class="detail-entry detail-h2"><a href="#dropdown-options2">Header, dividers e text</a></li>
+              
             </ul>
           </li>
           <li class="detail-entry detail-h2"><a href="#description">Descrição</a></li>
