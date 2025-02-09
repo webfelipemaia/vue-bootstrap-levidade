@@ -235,3 +235,18 @@ mark {
       }
   }
 }
+
+.example-box {
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 1rem;
+  position: relative;
+  margin: 0 -1.5rem 1rem;
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .example-box {
+    flex-flow: row wrap;
+  }
+}

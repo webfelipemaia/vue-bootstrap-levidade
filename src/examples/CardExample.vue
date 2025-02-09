@@ -39,7 +39,7 @@
           <!-- Código do exemplo implementado -->
           <pre v-highlightjs><code class="javascript">
     &lt;leve-card :style="'width: 18rem;'"&gt;
-      &lt;leve-image cardImage :path="image" alt="Lorem ipsum dolor"&gt;&lt;/leve-image&gt;
+      &lt;leve-card-image cardImage :path="image" alt="Lorem ipsum dolor"&gt;&lt;/leve-card-image&gt;
       &lt;leve-card-body&gt;
         &lt;leve-card-content type="title" tag="h5"&gt;Card Title&lt;/leve-card-content&gt;
         &lt;p&gt;{{ lipsum }}&lt;/p&gt;
@@ -59,7 +59,7 @@
           <!-- Exemplo implementado -->
 
           <leve-card :style="'width: 18rem;'">
-            <leve-image :path="image" alt="Lorem ipsum dolor"></leve-image>
+            <leve-card-image :path="image" alt="Lorem ipsum dolor"></leve-card-image>
             <leve-card-body>
               <leve-card-content type="title" tag="h5">Card Title</leve-card-content>
               <p>{{ lipsum }}</p>
@@ -367,7 +367,7 @@
           <pre v-highlightjs><code class="javascript">
     &lt;leve-card style="width: 18rem;"&gt;
       &lt;leve-card-header&gt;Featured&lt;/leve-card-header&gt;
-      &lt;leve-image style="card-img" path="image.jpg" alt="Lorem ipsum dolor"&gt;&lt;/leve-image&gt;
+      &lt;leve-card-image style="card-img" path="image.jpg" alt="Lorem ipsum dolor"&gt;&lt;/leve-card-image&gt;
       &lt;leve-card-body&gt;
         &lt;leve-card-content type="text" tag="p"&gt;&lt;/leve-card-content&gt;
         &lt;leve-card-content type="title" tag="h5"&gt;Card Title&lt;/leve-card-content&gt;
@@ -397,7 +397,7 @@
 
           <leve-card style="width: 18rem;">
             <leve-card-header>Featured</leve-card-header>
-            <leve-image :style="{ 'card-img': true }" :path="image" alt="Lorem ipsum dolor"></leve-image>
+            <leve-card-image :style="{ 'card-img': true }" :path="image" alt="Lorem ipsum dolor"></leve-card-image>
             <leve-card-body>
               <leve-card-content type="text" tag="p"></leve-card-content>
               <leve-card-content type="title" tag="h5">Card Title</leve-card-content>
@@ -438,7 +438,7 @@
           &lt;p&gt;&lt;strong&gt;Imagem no topo&lt;/strong&gt;&lt;/p&gt;
 
           &lt;leve-card style="width: 18rem;"&gt;
-            &lt;leve-image cardImgTop path="image.jpg" alt="Lorem ipsum dolor"&gt;&lt;/leve-image&gt;
+            &lt;leve-card-image cardImgTop path="image.jpg" alt="Lorem ipsum dolor"&gt;&lt;/leve-card-image&gt;
             &lt;leve-card-body&gt;
               &lt;leve-card-content type="title" tag="h5"&gt;Card Title&lt;/leve-card-content&gt;
               &lt;p&gt;{{ lipsum }}&lt;/p&gt;
@@ -456,7 +456,7 @@
               &lt;p&gt;{{ lipsum }}&lt;/p&gt;
               &lt;leve-button tag="a" href="https://google.com" type="link"&gt;Link&lt;/leve-button&gt;
             &lt;/leve-card-body&gt;
-            &lt;leve-image cardImgBottom path="image.jpg" alt="Lorem ipsum dolor"&gt;&lt;/leve-image&gt;
+            &lt;leve-card-image cardImgBottom path="image.jpg" alt="Lorem ipsum dolor"&gt;&lt;/leve-card-image&gt;
           &lt;/leve-card&gt;
         &lt;/div&gt;
 
@@ -464,8 +464,8 @@
           &lt;p&gt;&lt;strong&gt;Imagem como background&lt;/strong&gt;&lt;/p&gt;
 
           &lt;leve-card style="width: 18rem;"&gt;
-            &lt;leve-image cardClass="card-img" cardStyle="opacity: 0.3;" path="image.jpg"
-              alt="Lorem ipsum dolor"&gt;&lt;/leve-image&gt;
+            &lt;leve-card-image cardClass="card-img" cardStyle="opacity: 0.3;" path="image.jpg"
+              alt="Lorem ipsum dolor"&gt;&lt;/leve-card-image&gt;
             &lt;leve-card-overlay&gt;
               &lt;leve-card-content type="title" tag="h5"&gt;Card Title&lt;/leve-card-content&gt;
               &lt;p&gt;Lorem ipsum dolor sit amet.&lt;/p&gt;
@@ -492,7 +492,7 @@
           <p><strong>Imagem no topo</strong></p>
 
           <leve-card :style="'width: 18rem;'">
-            <leve-image cardImgTop :path="image" alt="Lorem ipsum dolor"></leve-image>
+            <leve-card-image cardImgTop :path="image" alt="Lorem ipsum dolor"></leve-card-image>
             <leve-card-body>
               <leve-card-content type="title" tag="h5">Card Title</leve-card-content>
               <p>{{ lipsum }}</p>
@@ -510,7 +510,7 @@
               <p>{{ lipsum }}</p>
               <leve-button tag="a" :href="'https://google.com'" type="link">Link</leve-button>
             </leve-card-body>
-            <leve-image cardImgBottom :path="image" alt="Lorem ipsum dolor"></leve-image>
+            <leve-card-image cardImgBottom :path="image" alt="Lorem ipsum dolor"></leve-card-image>
           </leve-card>
         </div>
 
@@ -518,8 +518,8 @@
           <p><strong>Imagem como backgound</strong></p>
 
           <leve-card :style="'width: 18rem;'">
-            <leve-image :cardClass="['card-img']" :cardStyle="{ opacity: 0.3 }" :path="image"
-              alt="Lorem ipsum dolor"></leve-image>
+            <leve-card-image :cardClass="['card-img']" :cardStyle="{ opacity: 0.3 }" :path="image"
+              alt="Lorem ipsum dolor"></leve-card-image>
             <leve-card-overlay>
               <leve-card-content type="title" tag="h5">Card Title</leve-card-content>
               <p>Lorem ipsum dolor sit amet.</p>
@@ -676,7 +676,7 @@
 <script setup>
 import LeveWrapper from '@/views/layout/LeveWrapper.vue';
 import LeveFixednav from '@/components/LeveFixednav.vue';
-import image from "@/assets/img/ian-schneider-TamMbr4okv4-unsplash.jpg"
+import image from "@/assets/img/sample-img.jpg"
 
 const lipsum = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto eius, error minus quis necessitatibus quidem tenetur iure, deserunt maiores harum sequi laboriosam quasi dolore explicabo id deleniti!'
 </script>
