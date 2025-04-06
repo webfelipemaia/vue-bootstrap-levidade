@@ -1,6 +1,6 @@
 {
   "name": "vue-levidade",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A collection of Vue.js interface components.",
   "author": {
     "name": "Felipe Maia",
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "https://github.com/webfelipemaia/vue-bootstrap-levidade.git"
   },
-"main": "./dist/lib/levidade.umd.js",
+  "main": "./dist/lib/levidade.umd.js",
   "module": "./dist/lib/levidade.es.js",
   "types": "./dist/types/index.d.ts",
   "exports": {
@@ -26,7 +26,7 @@
     "dist/lib/*",
     "dist/types/*"
   ],
-"keywords": [
+  "keywords": [
     "vue",
     "bootstrap",
     "components",
@@ -37,7 +37,7 @@
     "dev": "vite",
     "build": "npm run build:app && npm run build:lib",
     "build:app": "vite build",
-    "build:lib": "vite build --mode library",    
+    "build:lib": "vite build --mode library",
     "preview": "vite preview",
     "prepublishOnly": "npm run build",
     "jsdoc": "jsdoc -c config.json"
