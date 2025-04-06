@@ -47,11 +47,18 @@
           <li class="nav-item"><router-link class="nav-link" to="/doc/card">Card</router-link></li>          
           <li class="nav-item"><router-link class="nav-link" to="/doc/dropdown">Dropdown</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/doc/image">Image</router-link></li>
-          <li class="nav-item"><router-link class="nav-link" to="/doc/notification">Notification</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/doc/offcanvas">Offcanvas</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/doc/toast">Toast</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/doc/tooltip">Tooltip</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/doc/typography">Typography</router-link></li>
+
+          <li>
+            <div class="sidebar-separator"></div>
+          </li>
+          <li class="navbar-header">
+            <h5 class="heading">Plugins</h5>
+          </li>
+          <li class="nav-item"><router-link class="nav-link" to="/doc/notification">Notification</router-link></li>
         </ul>
       </nav>
       <LeveOffcanvas

@@ -1,20 +1,22 @@
-import { createRouter, createWebHistory } from "vue-router";
-import TypographyExample from "./examples/TypographyExample.vue";
-import IndexExample from "./examples/IndexExample.vue";
-import AccordionExample from "./examples/AccordionExample.vue";
-import AlertExample from "./examples/AlertExample.vue";
-import BadgeExample from "./examples/BadgeExample.vue";
-import BreadcrumbExample from "./examples/BreadcrumbExample.vue";
-import ButtonExample from "./examples/ButtonExample.vue";
-import ButtonGroupExample from "./examples/ButtonGroupExample.vue";
-import CardExample from "./examples/CardExample.vue";
-import DropdownExample from "./examples/DropdownExample.vue";
-import ImageExample from "./examples/ImageExample.vue";
-import NotificationExample from "./examples/NotificationExample.vue";
-import OffcanvasExample from "./examples/OffcanvasExample.vue";
-import ToastExample from "./examples/ToastExample.vue";
-import TooltipExample from "./examples/TooltipExample.vue";
-import CustomizeExample from "./examples/CustomizeExample.vue";
+// src/router/index.js
+import { createRouter, createWebHistory } from 'vue-router'
+
+import TypographyExample from "../examples/TypographyExample.vue";
+import IndexExample from "../examples/IndexExample.vue";
+import AccordionExample from "../examples/AccordionExample.vue";
+import AlertExample from "../examples/AlertExample.vue";
+import BadgeExample from "../examples/BadgeExample.vue";
+import BreadcrumbExample from "../examples/BreadcrumbExample.vue";
+import ButtonExample from "../examples/ButtonExample.vue";
+import ButtonGroupExample from "../examples/ButtonGroupExample.vue";
+import CardExample from "../examples/CardExample.vue";
+import DropdownExample from "../examples/DropdownExample.vue";
+import ImageExample from "../examples/ImageExample.vue";
+import NotificationExample from "../examples/NotificationExample.vue";
+import OffcanvasExample from "../examples/OffcanvasExample.vue";
+import ToastExample from "../examples/ToastExample.vue";
+import TooltipExample from "../examples/TooltipExample.vue";
+import CustomizeExample from "../examples/CustomizeExample.vue";
 
 const routes = [
   { path: "/doc/", name: "Index", component: IndexExample },
@@ -37,7 +39,7 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
-});
+  routes
+})
 
-export default router;
+export default router

@@ -53,8 +53,8 @@
 
 <script setup>
 import { defineProps, onMounted, onUpdated, ref, computed} from "vue";
-import { useNotificationStore } from '../store/Notifications.ts';
-//import { fakeNotificationData } from '../utils/items.ts';
+import { useNotificationStore } from '../store/Notifications.js';
+//import { fakeNotificationData } from '../utils/items.js';
 import { inject } from 'vue'
 
 // Toasts are simple notifications created either statically or dynamically.

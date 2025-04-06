@@ -1,14 +1,5 @@
-# vue-bootstrap-levidade
+# Vue 3 + Vite
 
-This is a set of Vue+Bootstrap components for use in my personal projects.
+This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-Note that this version of Bootstrap adapted for Vue is a prototype and should be evaluated and modified if used for production applications.
-
-## Development configuration
-
-For more details on customizing components you can consult the [Vue](https://vuejs.org/) and [Bootstrap](https://getbootstrap.com/) documentation. To install, run the following commands:
-
-```bash
-npm install
-npm run dev
-```
+Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).

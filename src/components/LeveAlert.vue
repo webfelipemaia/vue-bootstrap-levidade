@@ -74,7 +74,7 @@
 
 <script setup>
 import { defineProps, onMounted, onUpdated, getCurrentInstance, ref, computed, useSlots} from 'vue';
-import { useAlertStore } from '../store/Alerts.ts';
+import { useAlertStore } from '../store/Alerts.js';
 
 // Alerts are simple notifications designed to respond to typical user interaction actions.
 const props = defineProps ({
@@ -175,7 +175,7 @@ const props = defineProps ({
     // Create a notification
     function createItem() {
       if(checkTimeoutValue(props.timeout) === -1) {
-        console.log(`The timeout property expects a numeric value greater than or equal to zero. ${this.timeout} was assigned.`);
+        console.log(`The timeout property expects a numeric value greater than or equal to zero. ${props.timeout} was assigned.`);
       } else {
         alertStore.createNewItem(props.singleAlert,uid)
       }
