@@ -12,19 +12,19 @@
     "type": "git",
     "url": "https://github.com/webfelipemaia/vue-bootstrap-levidade.git"
   },
-  "main": "./dist/lib/levidade.umd.js",
-  "module": "./dist/lib/levidade.es.js",
-  "types": "./dist/types/index.d.ts",
+  "main": "./dist/levidade.umd.js",
+  "module": "./dist/levidade.es.js",
   "exports": {
     ".": {
-      "import": "./dist/lib/levidade.es.js",
-      "require": "./dist/lib/levidade.umd.js"
-    },
-    "./styles.css": "./dist/app/levidade.css"
+      "import": "./dist/levidade.es.js",
+      "require": "./dist/levidade.umd.js"
+    }
   },
+  "unpkg": "./dist/levidade.umd.js",
+  "jsdelivr": "./dist/levidade.umd.js",
   "files": [
-    "dist/lib/*",
-    "dist/types/*"
+    "dist",
+    "src"
   ],
   "keywords": [
     "vue",
@@ -43,9 +43,9 @@
     "jsdoc": "jsdoc -c config.json"
   },
   "peerDependencies": {
-    "vue": "^3.3.0",
+    "@popperjs/core": "^2.11.0",
     "bootstrap": "^5.3.0",
-    "@popperjs/core": "^2.11.0"
+    "vue": "^3.3.0"
   },
   "dependencies": {
     "@vue/cli-plugin-babel": "^5.0.8",

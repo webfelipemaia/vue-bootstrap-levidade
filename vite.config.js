@@ -10,9 +10,27 @@ export default defineConfig(({ command, mode }) => {
 
     build: {
       outDir: isLibBuild ? resolve(__dirname, 'dist/lib') : resolve(__dirname, 'dist/app'),
-      emptyOutDir: true,
+      emptyOutDir: isLibBuild, // Só limpa no modo lib para evitar apagar builds alternativos
+      cssCodeSplit: true, // Habilita geração de CSS em ambos os modos
       
-      // Modo Biblioteca
+      // Configurações comuns
+      rollupOptions: {
+        output: {
+          assetFileNames: (assetInfo) => {
+            if (assetInfo.name?.endsWith('.css')) return 'levidade.css';
+            return 'assets/[name]-[hash][extname]';
+          },
+          ...(isLibBuild ? {
+            globals: { vue: 'Vue' }
+          } : {
+            entryFileNames: 'levidade.js',
+            format: 'iife',
+            name: 'LevidadeApp'
+          })
+        }
+      },
+
+      // Configurações específicas da biblioteca
       ...(isLibBuild && {
         lib: {
           entry: resolve(__dirname, 'src/lib-entry.js'),
@@ -21,32 +39,19 @@ export default defineConfig(({ command, mode }) => {
           fileName: (format) => `levidade.${format}.js`
         },
         rollupOptions: {
-          external: ['vue'],
-          output: {
-            globals: {
-              vue: 'Vue'
-            }
-          }
+          external: ['vue']
         }
       }),
 
-      // Modo Aplicação
+      // Configurações específicas da aplicação
       ...(!isLibBuild && {
         rollupOptions: {
-          input: resolve(__dirname, 'src/main.js'),
-          output: {
-            entryFileNames: 'levidade.js',
-            assetFileNames: 'levidade.[ext]',
-            format: 'iife',
-            name: 'LevidadeApp',
-            globals: {
-              vue: 'Vue'
-            }
-          }
+          input: resolve(__dirname, 'src/main.js')
         }
       })
     },
     
+    // Restante da configuração...
     define: {
       'process.env.NODE_ENV': JSON.stringify(command === 'build' ? 'production' : 'development'),
       __APP_MODE__: JSON.stringify(isLibBuild ? 'library' : 'application')

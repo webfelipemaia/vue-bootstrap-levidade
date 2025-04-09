@@ -1,5 +1,5 @@
 <template>
-  <button @click="createItem">New Toast</button>
+<!--   <button @click="createItem">New Toast</button> -->
     <div 
         class="toast-container p-3" 
         :class="[toastPosition.start,toastPosition.end]">
@@ -14,11 +14,12 @@
           :id="`leveToast-${index}`"
           :class="[{[`text-bg-${item.type}`]: item.type}]"
       >
-
-        <div class="toast-header" :class="[{[`text-bg-${item.type}`]: item.type}]">
+        <div v-if="item.comment" class="toast-header" :class="[{[`text-bg-${item.type}`]: item.type}]">
             
           <strong class="me-auto">{{ item.comment }}</strong>
+
           <small>{{ item.notificationTime }}</small>
+
           <button v-if="item.type != 'dark'"
                   @click.prevent="deleteItem(item.id)" 
                   type="button" 
@@ -35,13 +36,35 @@
         </div>
 
         <div class="toast-body">
+            
+          <div class="d-flex justify-content-between"> 
             <small>{{ item.text }}</small>
+            
+            <div v-if="item.comment"></div>
+            <div v-else>
+              <button v-if="item.type != 'dark'"
+                    @click.prevent="deleteItem(item.id)" 
+                    type="button" 
+                    class="btn-close" 
+                    data-bs-dismiss="toast" 
+                    aria-label="Close"></button>
+              <button v-if="item.type === 'dark'"
+                    @click.prevent="deleteItem(item.id)" 
+                    type="button" 
+                    class="btn-close-icon"
+                    aria-label="Close">
+                    <span class="btn-close-icon__icon" aria-hidden="true"><i class="bi bi-x-lg"></i></span>
+              </button>
+            </div>
+          </div>
             <slot></slot>
-            <div :class="defaultActionClass">
+            <div v-if="showActions" :class="defaultActionClass">
                 <button type="button" class="btn btn-sm btn-light">Take action</button>
                 <button type="button" 
                         class="btn btn-sm" 
-                        :class="'btn-outline-'+getBackgroundColor(item.type)" data-bs-dismiss="toast">Close</button>
+                        :class="'btn-outline-'+getBackgroundColor(item.type)" 
+                        data-bs-dismiss="toast"
+                        @click.prevent="deleteItem(item.id)">Close</button>
             </div>
 
         </div>
@@ -53,9 +76,7 @@
 
 <script setup>
 import { defineProps, onMounted, onUpdated, ref, computed} from "vue";
-import { useNotificationStore } from '../store/Notifications.js';
-//import { fakeNotificationData } from '../utils/items.js';
-import { inject } from 'vue'
+import { useNotificationStore } from '@/store/Notifications.js';
 
 // Toasts are simple notifications created either statically or dynamically.
   
@@ -96,7 +117,11 @@ const props = defineProps ({
     isToast: {
       type: Boolean,
       default: true
-    },    
+    },
+    showActions: {
+      type: Boolean,
+      default: true
+    }, 
     timeout: {
       type: Number,
       default: 5000,
@@ -104,10 +129,9 @@ const props = defineProps ({
   })
 
     
-  const notification = inject('notification')
   const notificationStore = useNotificationStore();
-  const items = ref([]);
-
+  const items = computed(() => notificationStore.items);
+   
   // Start the items
   onMounted(() => {
     items.value = notificationStore.items;
@@ -186,6 +210,6 @@ const props = defineProps ({
     let darkThemes = ['primary','secondary','success','danger','dark']
     const found = darkThemes.find((element) => element === theme)
     return (found === undefined) ? 'dark' : 'light'
-  }  
+  }
 
 </script>
