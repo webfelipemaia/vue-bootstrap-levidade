@@ -4,14 +4,13 @@ export const useNotificationStore = defineStore('notificationStore',{
 
   state: () => ({
     items: [],
+    maxItems: 5
   }),
 
   actions: {
-    createNewItem(item, uid) {
+    createNewItem(item) {
       if (!item) return;
-      item.uid = uid;
-      const obj_size = Object.keys(this.items).length;
-      item.id = obj_size > 0 ? obj_size : 0;
+      item.id = Date.now();
       this.items.push(item);
     },
 

@@ -256,22 +256,20 @@ const showError = () =&gt; {
 </template>
 
 <script setup>
-import { provide, ref } from 'vue'
+import { debounce } from 'lodash';
 import LeveWrapper from '@/views/layout/LeveWrapper.vue';
 import LeveFixednav from '@/components/LeveFixednav.vue';
-import LeveToast from '@/components/LeveToast.vue';
-import LeveButton from '@/components/LeveButton.vue'
 import { useNotification } from '@/utils/useNotification';
 const { notify } = useNotification();
 
-const showSuccess = () => {
+const showSuccess =  debounce(() => {
   notify({
     type: 'success',
     title: 'title',
     text: 'Operação concluída com sucesso!',
     comment: 'Sucesso',
-    timeout: 8000
+    timeout: 300000
   });
-};
+}, 300);
 
 </script>

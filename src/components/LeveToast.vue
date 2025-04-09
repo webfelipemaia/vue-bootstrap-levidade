@@ -132,20 +132,15 @@ const props = defineProps ({
   const notificationStore = useNotificationStore();
   const items = computed(() => notificationStore.items);
    
-  // Start the items
-  onMounted(() => {
-    items.value = notificationStore.items;
-  });
-
   // Removes alert after x seconds (see props.timeout)
   onUpdated(() => {
-    const lastId = getLastIndex();    
-    if (lastId !== null) {
-      setTimeout(() => {
-        deleteItem(lastId);
-      }, props.timeout);
-    }
-  });
+  if (notificationStore.items.length > 0) {
+    const lastItem = notificationStore.items[notificationStore.items.length - 1];
+    setTimeout(() => {
+      notificationStore.deleteItem(lastItem.id);
+    }, props.timeout);
+  }
+});
 
   // Get the toast alignment
   const toastPosition = computed(() => {
@@ -160,17 +155,10 @@ const props = defineProps ({
     notificationStore.deleteItem(id);
   }
 
-  // function updateItem(id) {
-  //    notificationStore.updateItem(id, fakeNotificationData());
-  // }
-
   function getLastIndex() {
-    const size = notificationStore.items.length;
-    if(size > 0) {
-      const itemId = notificationStore.items[size-1].id;
-      return itemId;
-    }
-    return null;
+    return notificationStore.items.length > 0 
+        ? notificationStore.items[notificationStore.items.length - 1].id 
+        : null;
   }
 
   // Sets toast alignment
