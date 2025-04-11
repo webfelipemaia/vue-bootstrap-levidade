@@ -3,307 +3,332 @@
     <template #content-top>
       <section id="introduction">
       <h3>Notifications</h3>
-      <p>O componente Alert é utilizado para exibir notificações simples e interativas, permitindo a customização de estilo, 
-        alinhamento e conteúdo. Pode ser utilizado tanto para alertas únicos quanto para sistemas de notificação mais complexos.</p>
-        
-        <!--
-        Notificação com Toast Component:
-        precisa do provide/inject para enviar os dados de notificação para o componente
-        utiliza o helper (store) Notification
+      <p>Um sistema de notificação é um mecanismo para exibir mensagens temporárias (toasts, alerts, banners) para o usuário, 
+        geralmente para informar sobre eventos, sucessos, erros ou ações necessárias. A seguir, descrevemos como funciona o 
+      sistema implementado nessa biblioteca.</p>
+      <br>
 
-        Notificação com Alert:
-        não precisa do provide/inject para enviar os dados de notificação para o componente
-        alimenta o helper Alert (store) passando um objeto singleAlert = { type: 'primary', heading: '', text: '', comment: '',uid: ''}
+<!-- Exemplo com ações -->
+<LeveAlert
+  headingText="Confirmação"
+  bodyText="Deseja prosseguir com esta ação?"
+  :primaryAction="{
+    text: 'Confirmar',
+    url: '/confirm'
+  }"
+  :secondaryAction="{
+    text: 'Cancelar',
+    url: '/cancel',
+    type: 'danger'
+  }"
+/>
+
+    <!-- Exemplo 1: Alerta Simples com Ações -->
+    <LeveAlert
+      class="mt-4"
+      headingText="Atualização Disponível"
+      bodyText="Uma nova versão do sistema está disponível para instalação."
+      commentText="Recomendamos atualizar durante horário de menor movimento."
+      alertType="info"
+      icon="info-circle"
+      :isDismissible="true"
+      :timeout="0"
+      alignment="left"
+      :primaryAction="{
+        text: 'Atualizar Agora',
+        url: '/update',
+        type: 'primary'
+      }"
+      :secondaryAction="{
+        text: 'Lembrar Depois',
+        url: '/remind-later',
+        type: 'secondary'
+      }"
+    />
+
+    <!-- Exemplo 2: Alerta de Sucesso via singleAlert -->
+    <LeveAlert
+      class="mt-4"
+      :singleAlert="{
+        type: 'success',
+        heading: 'Operação Concluída!',
+        text: 'Seus dados foram salvos com sucesso no sistema.',
+        comment: 'Um e-mail de confirmação foi enviado para sua caixa postal.',
+        primaryAction: {
+          text: 'Ver Detalhes',
+          url: '/details/123',
+          type: 'info'
+        }
+      }"
+      icon="check-circle"
+      :isDismissible="true"
+      alignment="center"
+    />
+
+    <!-- Exemplo 3: Alerta de Erro com Timeout -->
+    <LeveAlert
+      class="mt-4"
+      headingText="Erro no Processamento"
+      bodyText="Não foi possível completar a operação solicitada."
+      alertType="danger"
+      icon="exclamation-triangle"
+      :timeout="8000"
+      alignment="right"
+      :primaryAction="{
+        text: 'Tentar Novamente',
+        url: '/retry',
+        type: 'danger'
+      }"
+    />
+
+    <!-- Exemplo 4: Botão para Acionar Alerta -->
+    <LeveAlert
+      class="mt-4"
+      :isAlert="false"
+      btnText="Clique para Mostrar Alerta"
+      alertType="warning"
+      :singleAlert="{
+        type: 'warning',
+        heading: 'Atenção!',
+        text: 'Esta operação não pode ser desfeita.',
+        comment: 'Certifique-se das informações antes de confirmar.',
+        primaryAction: {
+          text: 'Confirmar',
+          url: '/confirm-action',
+          type: 'warning'
+        },
+        secondaryAction: {
+          text: 'Cancelar',
+          url: '/cancel',
+          type: 'secondary'
+        }
+      }"
+      :isDismissible="true"
+    />
+
+    <!-- Exemplo 5: Alerta com Slots Personalizados -->
+    <LeveAlert
+      class="mt-4"
+      alertType="dark"
+      :isDismissible="true"
+      alignment="center"
+    >
+      <template #header>
+        <span style="color: var(--bs-warning)">Notificação Personalizada</span>
+      </template>
+      
+      <template #icon>
+        <i class="bi bi-star-fill text-warning me-2"></i>
+      </template>
+      
+      <div>
+        <p>Este é um conteúdo <strong>totalmente personalizado</strong> usando slots.</p>
+        <p>Você pode incluir qualquer HTML aqui.</p>
+      </div>
+      
+      <template #footer>
+        <small class="text-muted">Atualizado em: {{ new Date().toLocaleDateString() }}</small>
+      </template>
+    </LeveAlert>
+
+<!-- Exemplo com apenas uma ação -->
+<LeveAlert
+  :singleAlert="{
+    heading: 'Aviso',
+    text: 'Sua sessão irá expirar em breve.',
+    primaryAction: {
+      text: 'Estender Sessão',
+      url: '/extend-session'
+    }
+  }"
+/>
+
+<!-- Exemplo sem ações (não serão exibidos botões) -->
+<LeveAlert
+  bodyText="Esta é uma notificação simples."
+/>
+
+      
+        <p class="mt-5">O componente <code>LeveAlert</code>, com a propriedade <code>:is-alert="false"</code>, assume a ação de notificar por meio do botão 
+        embutido. Veja o trecho de código a seguir:</p>
+
+
+        <pre v-highlightjs="sourcecode">
+          <code class="javascript">
+// LeveAlert.vue
+&lt;button v-if=&quot;!isAlert&quot; @click=&quot;createItem&quot; :class=&quot;{ hideAlert: !isOpen }&quot;&gt;
+&#123;&#123; btnText &#125;&#125;
+&lt;/button&gt;
+          </code>
+        </pre>
+
+        <p>Para modificar o conteúdo, você pode usar <code>props</code> (como <code>btnText="New Alert"</code> ) para modificar o texto do 
+          button. E passar um objeto <em>notification</em>, como na prop <code>:single-alert="notification"</code>, para o conteúdo do componente. Por exemplo:</p>
+
+          <pre v-highlightjs="sourcecode">
+          <code class="javascript">
+// Defines the toast content in an object
+const notification = ref(
+  {
+        id: 1,
+        type: "primary",
+        heading: 'Heading text',
+        text: "Lorem ipsusm dolor sit amet",
+        comment: "Sample comment text here",
+        notificationTime: 'just now',
+        createdAt: new Date(),
+    }
+)
+          </code>
+        </pre>
+
         
-        -->
-        <leve-toast>Teste</leve-toast>
-        
-        <leve-alert :timeout=3000 :is-alert=false>Alert</leve-alert>
-        <leve-alert is-dismissible 
-                    :is-alert="false" 
-                    :single-alert="notification">
-        </leve-alert>
-        <LeveAlert is-dismissible icon="heart">Lorem ipsum dolor sit amet.</LeveAlert>
-        <LeveAlert is-dismissible>
-              <template #header>
-                Header text goes here.
-              </template>
-              <template #default>
-                A text for the main content.
-              </template>
-              <template #footer>
-                A little text here in the footer
-              </template>
-            </LeveAlert>
       </section>
     </template>
   <template #content-middle>
 
     <section id="how-to-use">
         <br />
-        <h4 class="mt-5">Como usar</h4>
-    <div class="sidebar-separator"></div>    
-    <h5 id="alert-basic">Uso básico</h5>
-    <p>Lorem ipsum dolor sit amet.</p>
+        <h4 class="mt-5">Como funciona</h4>
+        <div class="sidebar-separator"></div>
+        
+        <h5>Componentes Básicos de um Sistema de Notificação</h5>
+        
+        <div class="component-card">
+            <h6 class="component-title">1. Store de Notificações</h6>
+            <p class="component-description">As notificações podem ser criadas implicitamente, com a store <code>Alerts.js</code>, ou 
+              explicitamente com a store <code>Notifications.js</code>. Ambas gerenciam o estado e o ciclo de vida das notificações. A 
+              diferença é que, no primeiro caso, faz-se configurando o componente <code>LeveAlert</code>, em suas propriedades, como vimos 
+              acima. No segundo caso, pode-se criar diferentes tipos de notificações para as situações mais diversas. Com o apoio de um 
+            utilitário <code>useNotifications.js</code>, o conteúdo da notificação é passado para um método <code>notify()</code>, que 
+            por sua vez é chamado no método criado no componente que se faz necessário emitir a notificação.</p>
+            <p>O que elas fazem?</p>
+            <ul class="feature-list">
+                <li>Gerenciam o estado das notificações</li>
+                <li>Armazenam a lista de notificações ativas</li>
+                <li>Controlam o tempo de exibição de cada notificação</li>
+                <li>Implementam métodos para adicionar/remover notificações</li>
+            </ul>
+        </div>
+        
+        <div class="component-card">
+            <h6 class="component-title">2. Componente de UI</h6>
+            <p class="component-description">A parte visual que exibe as notificações para o usuário. Destacamos os componentes <code>LeveAlert</code> e
+            <code>LeveToast</code>, mas você pode criar seu próprio componente baseado nos métodos de um destes.</p>
+            <p>O que ele faz?</p>
+            <ul class="feature-list">
+                <li>Renderiza as notificações na tela</li>
+                <li>Controla animações de entrada e saída</li>
+                <li>Oferece botões de ação/fechamento</li>
+                <li>Estiliza diferentes tipos de notificação (sucesso, erro, etc.)</li>
+            </ul>
+        </div>
     
-    <div class="howto-use">
-      <div class="howto-use__title"><span><i class="bi bi-code-slash"></i> code</span></div>
+        <br />      
 
-    <pre v-highlightjs><code class="javascript">
-  &lt;leve-alert 
-   icon="info-circle" 
-   headingText="Título do Alerta" 
-   bodyText="Mensagem do alerta" 
-   commentText="Comentário adicional" 
-   alertType="warning" 
-   :isDismissible="true" 
-   alignment="center" 
-  /&gt;
-    </code></pre>
-
-    <br />
-    
-    <div class="howto-use__title"><span><i class="bi bi-eye"></i> preview</span></div>
-
-      <leve-alert 
-      icon="info-circle" 
-      headingText="Título do Alerta" 
-      bodyText="Mensagem do alerta" 
-      commentText="Comentário adicional" 
-      alertType="warning" 
-      :isDismissible="true" 
-      alignment="center" 
-      />
-    </div>
-    <br />      
-    <div class="howto-use">
-      <h5 id="alert-slot">Uso com Slots</h5>
-      <p>Você pode usar os seguintes slots para mais flexibilidade:</p>
-          <dl>
-            <dt>header</dt>
-            <dd>Personalize o cabeçalho do alerta.</dd>
-            <dt>icon</dt>
-            <dd>Adicione um ícone personalizado.</dd>
-            <dt>default</dt>
-            <dd>Adicione conteúdo personalizado ao corpo.</dd>
-            <dt>footer</dt>
-            <dd>Adicione conteúdo ao rodapé do alerta.</dd>
-          </dl>
+    <div class="howto-notify">
+      <h5>Emitir notificações com Notifications.js</h5>
+      <p>Para implementar precisamos de poucos passos. Basicamente, um utilitário <code>useNotifications.js</code> instancia a store 
+        <code>Notifications.js</code> e cria um objeto exemplo com textos e outros atributos pré-definidos.</p>
 
       <br />
 
-      <div class="howto-use__title"><span><i class="bi bi-code-slash"></i> code</span></div>
+      <div class="howto-use__title">
+        <span><i class="bi bi-code-slash"></i> code</span>
+      </div>
 
-        <pre v-highlightjs="sourcecode"><code class="javascript">
-&lt;leve-alert alertType="success"&gt;
-   &lt;template #header&gt;
-      Título Customizado
-   &lt;/template&gt;
-   &lt;template #icon&gt;
-      &lt;i class="bi bi-check-circle"&gt;&lt;/i&gt;
-   &lt;/template&gt;
-   Mensagem do alerta com conteúdo customizado.
-   &lt;template #footer&gt;
-      Comentário adicional customizado.
-   &lt;/template&gt;
-&lt;/leve-alert&gt;
-        </code></pre>
+        <pre v-highlightjs="sourcecode">
+          <code class="javascript">
+// utils/useNotification.js
+&lt;script&gt;
+import { useNotificationStore } from &apos;../store/Notifications&apos;;
+
+export const useNotification = () =&gt; {
+  const notificationStore = useNotificationStore();
+
+  const notify = (options) =&gt; {
+    const defaultOptions = {
+      type: &apos;light&apos;,
+      text: &apos;Notification message&apos;,
+      comment: &apos;&apos;,
+      notificationTime: &apos;just now&apos;,
+      timeout: 5000
+    };
+
+    const notification = { ...defaultOptions, ...options };
+    notificationStore.createNewItem(notification);
+  };
+
+  return { notify };
+};
+&lt;/script&gt;
+          </code>
+        </pre>
+
+      <p>Em um componente de exemplo, que você queira notificar algo, é preciso importar o utilitário <code>useNotification</code>. Se você estiver 
+        usando o Starter Kit, os componentes já foram carregados e basta referenciar com as tags correspondentes, mas o utilitário precisa 
+        ser declado. Como queremos exibir a notificação em um componente do tipo toast, vamos referenciar <code>LeveToast</code>.</p>
+
 
         <br />
 
-        <div class="howto-use__title"><span><i class="bi bi-eye"></i> preview</span></div>
+        <div class="howto-use__title">
+          <span><i class="bi bi-code-slash"></i> code</span>
+        </div>
 
-          <leve-alert alertType="success">
-            <template #header>
-                Título Customizado
-            </template>
-            <template #icon>
-                <i class="bi bi-check-circle"></i>
-            </template>
-            Mensagem do alerta com conteúdo customizado.
-            <template #footer>
-                Comentário adicional customizado.
-            </template>
-          </leve-alert>
+          <pre v-highlightjs="sourcecode">
+            <code class="javascript">
+// ExampleComponent.vue
+&lt;template&gt;
+  &lt;button @click=&quot;showSuccess&quot;&gt;Success&lt;/button&gt;
+  &lt;button @click=&quot;showError&quot;&gt;Error&lt;/button&gt;
+  
+  &lt;LeveToast /&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { useNotification } from &#039;@/utils/useNotification&#039;;
+import LeveToast from &#039;@/components/LeveToast.vue&#039;;
+
+const { notify } = useNotification();
+
+const showSuccess = () =&gt; {
+  notify({
+    type: &#039;success&#039;,
+    text: &#039;Operação concluída com sucesso!&#039;,
+    comment: &#039;Sucesso&#039;
+  });
+};
+
+const showError = () =&gt; {
+  notify({
+    type: &#039;danger&#039;,
+    text: &#039;Ocorreu um erro ao processar sua solicitação&#039;,
+    comment: &#039;Erro&#039;,
+    timeout: 8000 // Tempo personalizado
+  });
+};
+&lt;/script&gt;              
+            </code>
+          </pre>        
 
       </div>
 
       <div class="sidebar-separator"></div>
       
-      <h5 id="alert-icon">Ícones</h5>
-      <p>Você pode acessar ao <a href="https://icons.getbootstrap.com/">https://icons.getbootstrap.com/</a> e consultar os ícones 
-        disponíveis. Para uso nos componentes, o prefixo <code>bi-</code> deve ser desconsiderado, pois ele já está imbutido no 
-        slote que contém o ícone.</p>
+      <h5 id="store-notifications">Store Notifications.js</h5>
+      <p>No início desta página, descrevemos rapidamente como gerar alertas com o componente <code>LeveAlert</code>, que usa um button 
+        configurável para emitir as notificações. Agora, vimos outra maneira de criar notificações, porém, deixando parte do trabalho 
+        para ser feito manualmente.</p>
+      <p>Para gerar notificações usamos a biblioteca <a href="https://pinia-docs-pt.netlify.app/introduction.html">Pinia</a> para o 
+        gerenciamento de estados. Uma store no Pinia é um gerenciador de estado global para aplicações Vue.js, permitindo compartilhar dados 
+        e lógica entre componentes de forma organizada e reativa. Uma store Pinia possui:</p>
+        <ul>
+          <li>Estado (state): Dados reativos.</li>
+          <li>Ações (actions): Métodos para manipular o estado.</li>
+          <li>Getters (getters): Computed properties baseadas no estado.</li>
+        </ul>
 
-      <pre v-highlightjs><code class="javascript">
-&lt;slot v-if="icon" name="icon"&gt;
-  &lt;i class="bi flex-shrink-0 me-2" :class="[{ [`bi-${icon}`]: icon }]"&gt;&lt;/i&gt;
-&lt;/slot&gt;
-      </code></pre>
-
-      <p>Então, ao invés de passar para o componente <code>bi bi-info-circle</code>, escreva apenas  <code>info-circle</code></p>
-
-      <pre v-highlightjs><code class="javascript">
-  &lt;leve-alert 
-   icon="info-circle" 
-   headingText="Título do Alerta"
-   ...
-      </code></pre>
-
-    <h5 class="mt-5">Exemplos com ícones</h5>
-
-    <div class="howto-use">
-      <div class="howto-use__title"><span><i class="bi bi-code-slash"></i> code</span></div>
-          <pre v-highlightjs="sourcecode"><code class="javascript">      
-      
-&lt;leve-alert 
-  icon="info-circle"
-  bodyText="An example alert with an icon" 
-  alertType="info" 
-/&gt;
-
-&lt;leve-alert 
-  icon="check-circle"
-  bodyText="An example success alert with an icon" 
-  alertType="success" 
-/&gt;
-
-&lt;leve-alert 
-  icon="exclamation-triangle-fill"
-  bodyText="An example warning alert with an icon" 
-  alertType="warning" 
-/&gt;
-
-&lt;leve-alert 
-  icon="exclamation-triangle-fill"
-  bodyText="An example danger alert with an icon" 
-  alertType="danger" 
-/&gt;
-
-</code></pre>
-      <br />
-      <div class="howto-use__title"><span><i class="bi bi-eye"></i> preview</span></div>
-      <leve-alert 
-      icon="info-circle"
-      bodyText="An example alert with an icon" 
-      alertType="info" 
-      />
-
-      <leve-alert 
-      icon="check-circle"
-      bodyText="An example success alert with an icon" 
-      alertType="success" 
-      />
-
-      <leve-alert 
-      icon="exclamation-triangle-fill"
-      bodyText="An example warning alert with an icon" 
-      alertType="warning" 
-      />
-
-      <leve-alert 
-      icon="exclamation-triangle-fill"
-      bodyText="An example danger alert with an icon" 
-      alertType="danger" 
-      />
-    </div>
-
-
-    <h5 class="mt-5" id="alert-themes">Exemplos com temas</h5>
-
-    <div class="howto-use">
-      <div class="howto-use__title"><span><i class="bi bi-code-slash"></i> code</span></div>
-          <pre v-highlightjs="sourcecode"><code class="javascript">      
-      
-&lt;leve-alert 
-  bodyText="A simple primary alert" 
-  alertType="primary" 
-/&gt;
-
-&lt;leve-alert 
-  bodyText="A simple secondary alert" 
-  alertType="secondary" 
-/&gt;
-
-&lt;leve-alert 
-  bodyText="A simple success alert" 
-  alertType="success" 
-/&gt;
-
-&lt;leve-alert 
-  bodyText="A simple danger alert" 
-  alertType="danger" 
-/&gt;
-
-&lt;leve-alert 
-  bodyText="A simple warning alert" 
-  alertType="warning" 
-/&gt;
-
-&lt;leve-alert 
-  icon="info-circle"
-  bodyText="A simple info alert" 
-  alertType="info" 
-/&gt;
-
-&lt;leve-alert 
-  bodyText="A simple light alert" 
-  alertType="light" 
-/&gt;
-
-&lt;leve-alert 
-  icon="info-circle"
-  bodyText="A simple dark alert" 
-  alertType="dark" 
-/&gt;
-
-</code></pre>
-      <br />
-      <div class="howto-use__title"><span><i class="bi bi-eye"></i> preview</span></div>
-      
-      <leve-alert 
-      bodyText="A simple primary alert" 
-      alertType="primary" 
-      />
-
-      <leve-alert 
-      bodyText="A simple secondary alert" 
-      alertType="secondary" 
-      />
-
-      <leve-alert 
-      bodyText="A simple success alert" 
-      alertType="success" 
-      />
-
-      <leve-alert 
-      bodyText="A simple danger alert" 
-      alertType="danger" 
-      />
-
-      <leve-alert 
-      bodyText="A simple warning alert" 
-      alertType="warning" 
-      />
-
-      <leve-alert 
-      icon="info-circle"
-      bodyText="A simple info alert" 
-      alertType="info" 
-      />
-
-      <leve-alert 
-      bodyText="A simple light alert" 
-      alertType="light" 
-      />
-
-      <leve-alert 
-      icon="info-circle"
-      bodyText="A simple dark alert" 
-      alertType="dark" 
-      />
-      
-    </div>
   </section>
   
   <br />
@@ -312,109 +337,75 @@
   <section id="description">
     <h4>Descrição</h4>
     <div class="sidebar-separator"></div>
-    <h5 class="mt-5">Propriedades (props)</h5>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Propriedade</th>
-          <th>Tipo</th>
-          <th>Padrão</th>
-          <th>Descrição</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>icon</td>
-          <td>String</td>
-          <td>-</td>
-          <td>Ícone a ser exibido no alerta.</td>
-        </tr>
-        <tr>
-          <td>headingText</td>
-          <td>String</td>
-          <td>-</td>
-          <td>Título do alerta.</td>
-        </tr>
-        <tr>
-          <td>bodyText</td>
-          <td>String</td>
-          <td>-</td>
-          <td>Mensagem principal do alerta.</td>
-        </tr>
-        <tr>
-          <td>commentText</td>
-          <td>String</td>
-          <td>-</td>
-          <td>Texto adicional exibido no rodapé do alerta.</td>
-        </tr>
-        <tr>
-          <td>alertType</td>
-          <td>String</td>
-          <td>'primary'</td>
-          <td>Estilo do alerta (ex.: primary, success, warning, danger).</td>
-        </tr>
-        <tr>
-          <td>isDismissible</td>
-          <td>Boolean</td>
-          <td>false</td>
-          <td>Determina se o alerta pode ser fechado pelo usuário.</td>
-        </tr>
-        <tr>
-          <td>isAlert</td>
-          <td>Boolean</td>
-          <td>true</td>
-          <td>Define se é um alerta único.</td>
-        </tr>
-        <tr>
-          <td>timeout</td>
-          <td>Number</td>
-          <td>5000</td>
-          <td>Tempo (em ms) para ocultar o alerta automaticamente.</td>
-        </tr>
-        <tr>
-          <td>alignment</td>
-          <td>String</td>
-          <td>'left'</td>
-          <td>Alinhamento do texto e conteúdo do alerta (left, center, right).</td>
-        </tr>
-      </tbody>
-    </table>
+    <h5>Estado (State)</h5>
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Propriedade</th>
+                        <th>Tipo</th>
+                        <th>Descrição</th>
+                        <th>Valor Padrão</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>items</code></td>
+                        <td><code>Array</code></td>
+                        <td>Lista de notificações armazenadas.</td>
+                        <td><code>[]</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>maxItems</code></td>
+                        <td><code>Number</code></td>
+                        <td>Número máximo de notificações permitidas.</td>
+                        <td><code>5</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      <br />
 
-  <br />
-
-  <h5 class="mt-5">Métodos e Eventos</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Método/Evento</th>
-        <th>Descrição</th>
-        <th>Parâmetros</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>createItem</td>
-        <td>Cria um novo alerta.</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>deleteItem</td>
-        <td>Remove um alerta existente pelo ID.</td>
-        <td>id (Number): ID do alerta a ser removido.</td>
-      </tr>
-      <tr>
-        <td>getLastIndex</td>
-        <td>Retorna o ID do último alerta adicionado.</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>checkTimeoutValue</td>
-        <td>Valida o valor do tempo limite (timeout).</td>
-        <td>value (Number): Valor do tempo a ser validado.</td>
-      </tr>
-    </tbody>
-  </table>
-  <br />
+      <h5 class="mt-5">Ações (Actions)</h5>
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Função</th>
+                        <th>Parâmetros</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>createNewItem</code></td>
+                        <td><code>item: Object</code></td>
+                        <td>Adiciona um novo item ao array <code>items</code> com um ID baseado no timestamp.</td>
+                    </tr>
+                    <tr>
+                        <td><code>updateItem</code></td>
+                        <td><code>id: Number</code>, <code>payload: Object</code></td>
+                        <td>Atualiza um item existente com base no ID.</td>
+                    </tr>
+                    <tr>
+                        <td><code>deleteItem</code></td>
+                        <td><code>id: Number</code></td>
+                        <td>Remove um item do array <code>items</code> com base no ID.</td>
+                    </tr>
+                    <tr>
+                        <td><code>findIndexById</code></td>
+                        <td><code>id: Number</code></td>
+                        <td>Retorna o índice de um item no array <code>items</code> (ou <code>-1</code> se não existir).</td>
+                    </tr>
+                    <tr>
+                        <td><code>getLastItem</code></td>
+                        <td>—</td>
+                        <td>Retorna o último item do array <code>items</code> (ou <code>null</code> se vazio).</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      <br />
   
   </section>
   
@@ -429,15 +420,15 @@
         <li class="detail-entry detail-h2">
           <a href="#introduction">Introdução</a>
         </li>
-        <li class="detail-entry detail-h2"><a href="#how-to-use">Como usar</a>
-          <ul>
-            <li class="detail-entry detail-h2"><a href="#alert-basic">Uso básico</a></li>
-            <li class="detail-entry detail-h2"><a href="#alert-slot">Com slots</a></li>
-            <li class="detail-entry detail-h2"><a href="#alert-icon">Com ícones</a></li>
-            <li class="detail-entry detail-h2"><a href="#alert-themes">Com temas</a></li>
-          </ul>
+        <li class="detail-entry detail-h2">
+          <a href="#how-to-use">Como funciona</a>
         </li>
-        <li class="detail-entry detail-h2"><a href="#description">Descrição</a></li>
+        <li class="detail-entry detail-h2">
+          <a href="#store-notifications">Store Notifications.js</a>
+        </li>
+        <li class="detail-entry detail-h2">
+          <a href="#description">Descrição</a>
+        </li>
       </template>
     </leve-fixednav>
   </template>

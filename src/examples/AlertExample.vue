@@ -36,6 +36,25 @@
     
     <div class="howto-use__title"><span><i class="bi bi-eye"></i> preview</span></div>
 
+  <LeveAlert
+    headingText="Atenção"
+    bodyText="Seu plano está quase vencendo."
+    commentText="Validade: 15/04"
+    alertType="danger"
+    icon="exclamation-triangle"
+    :alignment="'right'"
+    :iconAlign="'middle'"
+    :primaryAction="{
+      text: 'Renovar agora',
+      url: '#',
+      type: 'danger'
+    }"
+    :secondaryAction="{
+      text: 'Ver detalhes',
+      url: '#',
+      type: 'secondary'
+    }"
+  />
       <leve-alert 
       icon="info-circle" 
       headingText="Título do Alerta" 

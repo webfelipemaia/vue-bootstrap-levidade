@@ -1,209 +1,224 @@
 <template>
+  <button 
+    v-if="!isAlert" 
+    @click="isOpen = !isOpen" 
+    :class="[{
+      [`btn btn-${alertType || singleAlert.type} mb-3`]: alertType || singleAlert.type
+    }, { hideAlert: !isOpen }]"
+  >
+    {{ btnText }}
+  </button>
 
-  <button v-if="!isAlert" @click="createItem" :class="{ hideAlert: !isOpen }">New Alert</button>
+  <!-- Alerts -->
+  <div 
+    v-if="isAlert && isOpen"
+    class="alert alert-dismissible fade alert-container"
+    :class="[{ 
+      [`alert-${alertType || singleAlert.type}`]: alertType || singleAlert.type 
+    }, { show: isOpen }]"
+    :isDismissible="isDismissible"
+    :style="setAlignment"
+    role="alert"
+  >
+    <h4 class="alert-heading" v-if="headingText || singleAlert.heading || hasHeaderSlotContent">
+      <slot name="header">{{ headingText || singleAlert.heading }}</slot>
+    </h4>
 
-    <!-- Alerts -->
-  
-    <div 
-        v-if="isAlert"
-        class="alert alert-dismissible fade alert-container"
-        :class="[{ [`alert-${alertType || singleAlert.type}`]: alertType || singleAlert.type },{ show: isOpen },{ hideAlert: !isOpen }]"
-        :isDismissible="('' || null) ? false : true"
-        :style="setAlignment"
-        role="alert"
-        >
-
-        <h4 class="alert-heading" v-if="headingText || singleAlert.heading || hasHeaderSlotContent">
-          <slot name="header">{{ headingText || singleAlert.heading }}</slot>
-        </h4>
-
-        <div class="alert-body">
-       
-          <div class="alert-body-content" :style="setFlexAlignment">
-            <slot v-if="icon" name="icon">
-              <i class="bi flex-shrink-0 me-2" :class="[{ [`bi-${icon}`]: icon }]"></i>
-            </slot>
-            <div>
-              <slot>{{ bodyText || singleAlert.text }}</slot>
-            </div>
-
-          </div>
-          <hr v-if="hasFooterSlotContent|| singleAlert.text">
-          
-          <div class="alert-body-additional" :style="setFlexAlignment">            
-            <slot name="footer">{{ commentText || singleAlert.comment }}</slot>
-          </div>
-
+    <div class="alert-body">
+      <div class="alert-body-content" :style="setFlexAlignment">
+        <slot v-if="icon" name="icon">
+          <i class="bi flex-shrink-0 me-2" :class="[{ [`bi-${icon}`]: icon }]"></i>
+        </slot>
+        <div class="alert-text-content">
+          <slot>{{ bodyText || singleAlert.text }}</slot>
         </div>
-        
-        <button v-if="isDismissible" @click="isOpen = !isOpen" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        
-    </div>
-
-    <!-- System notification -->
-    <div
-      v-for="(item, index) in filteredItems"
-      :key="index"
-      class="alert alert-dismissible fade show alert-container"
-      :class="[{ [`alert-${alertType || singleAlert.type}`]: alertType || singleAlert.type }]"
-      :isDismissible="('' || null) ? false : true"
-      :style="setAlignment"
-      >
-      <h4 class="alert-heading">{{ item.heading }}</h4>
-      <div class="alert-body">
-
-        <div class="alert-body-content" :style="setFlexAlignment">
-          <slot v-if="icon" name="icon">
-            <i class="bi flex-shrink-0 me-2" :class="[{ [`bi-${icon}`]: icon }]"></i>
-          </slot>
-          <div> {{ item.text }} </div>
-        </div>
-
-        <hr v-if="hasFooterSlotContent || item.comment">
-        <div 
-            v-if="item.comment" 
-            class="alert-body-additional"
-            :style="setFlexAlignment"
-          > {{ item.comment }} </div>
-
       </div>
-      <button v-if="isDismissible" @click="deleteItem(item.id)" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      
+      <hr v-if="hasFooterSlotContent || commentText || singleAlert.comment || hasActions">
+      
+      <div class="alert-body-additional" :style="setFlexAlignment">            
+        <div class="alert-text-footer">
+          <slot name="footer">{{ commentText || singleAlert.comment }}</slot>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="alert-actions mt-3" v-if="hasActions">
+          <a
+            v-if="showPrimaryAction"
+            :href="effectivePrimaryAction.url"
+            class="btn me-2"
+            :class="`btn-${effectivePrimaryAction.type}`"
+          >
+            {{ effectivePrimaryAction.text }}
+          </a>
+          
+          <a
+            v-if="showSecondaryAction"
+            :href="effectiveSecondaryAction.url"
+            class="btn"
+            :class="`btn-${effectiveSecondaryAction.type}`"
+          >
+            {{ effectiveSecondaryAction.text }}
+          </a>
+        </div>
+      </div>
     </div>
     
+    <button 
+      v-if="isDismissible" 
+      @click="isOpen = false" 
+      type="button" 
+      class="btn-close" 
+      aria-label="Close"
+    ></button>
+  </div>
 </template>
 
 <script setup>
-import { defineProps, onMounted, onUpdated, getCurrentInstance, ref, computed, useSlots} from 'vue';
-import { useAlertStore } from '../store/Alerts.js';
+import { ref, computed, useSlots } from 'vue';
 
-// Alerts are simple notifications designed to respond to typical user interaction actions.
-const props = defineProps ({
-    icon: {
-      type: String,
-    },
-    headingText: {
-      type: String,
-    },
-    bodyText: {
-      type: String,
-    },
-    commentText: {
-      type: String,
-    },
-    alertType: {
-      type: String,
-    },
-    type: {
-      type: [Object,String],
-      default: 'primary'
-    },
-    isDismissible: {
-      type: Boolean,
-      default: false
-    },
-    isAlert: {
-      type: Boolean,
-      default: true
-    },    
-    timeout: {
-      type: Number,
-      default: 5000,
-    },
-    alignment: {
-      type: String,
-      default: 'left',
-      validator(value) {
-        return ['left', 'center', 'right',].includes(value)
-      }
-    },
-    singleAlert: {
-      type: Object,
-      default() {
-        return { type: 'primary', heading: '', text: '', comment: '',uid: ''}
+const props = defineProps({
+  icon: String,
+  headingText: String,
+  bodyText: String,
+  commentText: String,
+  alertType: String,
+  type: {
+    type: [Object, String],
+    default: 'primary'
+  },
+  isDismissible: {
+    type: Boolean,
+    default: false
+  },
+  isAlert: {
+    type: Boolean,
+    default: true
+  },
+  timeout: {
+    type: Number,
+    default: 5000,
+  },
+  alignment: {
+    type: String,
+    default: 'left',
+    validator(value) {
+      return ['left', 'center', 'right'].includes(value)
+    }
+  },
+  singleAlert: {
+    type: Object,
+    default() {
+      return { 
+        type: 'primary', 
+        heading: '', 
+        text: '', 
+        comment: '',
+        primaryAction: null,
+        secondaryAction: null
       }
     }
-  })
-   
-    const alertStore = useAlertStore();
-    const items = ref([]);
-    const isOpen = ref(true);
-    const instance = getCurrentInstance();
-    const uid = instance?.uid;
-    const slots = useSlots();
-    
-    // Verifies that the slot footer has received data. If the answer is yes, the dividing line is displayed.
-    const hasFooterSlotContent = computed(() => { 
-      return slots.footer && slots.footer().length > 0
-    });
+  },
+  btnText: {
+    type: String,
+    default: 'Notify with Alert'
+  },
+  primaryAction: Object,
+  secondaryAction: Object,
+});
 
-    // Verifies that the slot header has received data.
-    const hasHeaderSlotContent = computed(() => {
-      return slots.header && slots.header().length > 0;
-    });
+const slots = useSlots();
+const isOpen = ref(true);
 
-    // Configures the item display for the source component.
-    // Eliminates duplication of display
-    const filteredItems = computed(() => {
-      return items.value.filter(item => item.uid === uid);
-    });
+const hasFooterSlotContent = computed(() => slots.footer && slots.footer().length > 0);
+const hasHeaderSlotContent = computed(() => slots.header && slots.header().length > 0);
 
-    // Sets text alignment
-    const setAlignment = computed(() => {
-      return { "text-align": props.alignment }
-    });
+const effectivePrimaryAction = computed(() => {
+  const action = props.primaryAction || props.singleAlert.primaryAction;
+  return {
+    url: action?.url || '#',
+    text: action?.text || '',
+    type: action?.type || 'primary'
+  };
+});
 
-    // Align items in a Flex container
-    const setFlexAlignment = computed(() => {
-      return {  "justify-content": props.alignment }
-    });
+const effectiveSecondaryAction = computed(() => {
+  const action = props.secondaryAction || props.singleAlert.secondaryAction;
+  return {
+    url: action?.url || '#',
+    text: action?.text || '',
+    type: action?.type || 'secondary'
+  };
+});
 
-    // Removes alert after x seconds (see props.timeout)
-    onUpdated(() => { 
-      const lastId = getLastIndex();    
-      if (lastId !== null) {
-        setTimeout(() => {
-          deleteItem(lastId);
-        }, props.timeout);
-      }
-    });
+const showPrimaryAction = computed(() => Boolean(effectivePrimaryAction.value.text));
+const showSecondaryAction = computed(() => Boolean(effectiveSecondaryAction.value.text));
+const hasActions = computed(() => showPrimaryAction.value || showSecondaryAction.value);
 
-    // Start the items
-    onMounted(() => {
-      items.value = alertStore.items;
-    });
+const setAlignment = computed(() => {
+  return { "text-align": props.alignment };
+});
 
-    // Create a notification
-    function createItem() {
-      if(checkTimeoutValue(props.timeout) === -1) {
-        console.log(`The timeout property expects a numeric value greater than or equal to zero. ${props.timeout} was assigned.`);
-      } else {
-        alertStore.createNewItem(props.singleAlert,uid)
-      }
-    }
+const setFlexAlignment = computed(() => {
+  const align = props.alignment;
+  const justify =
+    align === 'left' ? 'flex-start' :
+    align === 'center' ? 'center' : 'flex-end';
 
-    // Delete a notification
-    function deleteItem(id) {
-      alertStore.deleteItem(id);
-    }
+  const textAlign =
+    align === 'left' ? 'left' :
+    align === 'center' ? 'center' : 'right';
 
-    // Get the id of the last added item
-    function getLastIndex() {
-      const size = alertStore.items.length;
-      if(size > 0) {
-      const itemId = alertStore.items[size-1].id;
-        return itemId;
-      }
-      return null;
-    }
+  return {
+    'justify-content': justify,
+    'text-align': textAlign,
+    'width': '100%'
+  };
+});
 
-    // Check the value of timeout
-    function checkTimeoutValue(value) {
-      const delayNumber = new Number(value);
-      if(delayNumber.valueOf() < 0 ) {
-        return -1;
-      }
-      return value;
-    }
-  
-
+if (props.isDismissible && props.timeout > 0) {
+  setTimeout(() => {
+    isOpen.value = false;
+  }, props.timeout);
+}
 </script>
+
+<style scoped>
+.hideAlert {
+  display: none;
+}
+
+.alert-container {
+  transition: opacity 0.3s ease;
+}
+
+.alert-container.show {
+  opacity: 1;
+}
+
+.alert-container:not(.show) {
+  opacity: 0;
+}
+
+.alert-body-content,
+.alert-body-additional {
+  display: flex;
+  align-items: center;
+}
+
+.alert-body-content > div,
+.alert-body-additional > div,
+.alert-actions {
+  width: 100%;
+}
+
+.alert-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.alert-actions .btn {
+  text-align: left;
+}
+</style>
