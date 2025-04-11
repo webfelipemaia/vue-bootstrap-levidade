@@ -1,15 +1,4 @@
 <template>
-  <button 
-    v-if="!isAlert" 
-    @click="isOpen = !isOpen" 
-    :class="[{
-      [`btn btn-${alertType || singleAlert.type} mb-3`]: alertType || singleAlert.type
-    }, { hideAlert: !isOpen }]"
-  >
-    {{ btnText }}
-  </button>
-
-  <!-- Alerts -->
   <div 
     v-if="isAlert && isOpen"
     class="alert alert-dismissible fade alert-container"
@@ -20,50 +9,58 @@
     :style="setAlignment"
     role="alert"
   >
-    <h4 class="alert-heading" v-if="headingText || singleAlert.heading || hasHeaderSlotContent">
-      <slot name="header">{{ headingText || singleAlert.heading }}</slot>
-    </h4>
+  <div class="alert-wrapper">
 
-    <div class="alert-body">
-      <div class="alert-body-content" :style="setFlexAlignment">
-        <slot v-if="icon" name="icon">
-          <i class="bi flex-shrink-0 me-2" :class="[{ [`bi-${icon}`]: icon }]"></i>
-        </slot>
-        <div class="alert-text-content">
-          <slot>{{ bodyText || singleAlert.text }}</slot>
-        </div>
-      </div>
-      
-      <hr v-if="hasFooterSlotContent || commentText || singleAlert.comment || hasActions">
-      
-      <div class="alert-body-additional" :style="setFlexAlignment">            
-        <div class="alert-text-footer">
-          <slot name="footer">{{ commentText || singleAlert.comment }}</slot>
+    <div class="alert_icon-area" style="border: 1px solid green;">
+      <slot v-if="icon" name="icon">
+        <i class="bi flex-shrink-0 me-2" :class="[{ [`bi-${icon}`]: icon }]"></i>
+      </slot>
+    </div>
+
+    <div class="alert_content-area" style="border: 1px solid blue;">
+      <h4 class="alert-heading" v-if="headingText || singleAlert.heading || hasHeaderSlotContent">
+        <slot name="header">{{ headingText || singleAlert.heading }}</slot>
+      </h4>
+
+      <div class="alert-body">
+        <div class="alert-body-content" :style="setFlexAlignment">
+
+          <div class="alert-text-content">
+            <slot>{{ bodyText || singleAlert.text }}</slot>
+          </div>
         </div>
         
-        <!-- Action Buttons -->
-        <div class="alert-actions mt-3" v-if="hasActions">
-          <a
-            v-if="showPrimaryAction"
-            :href="effectivePrimaryAction.url"
-            class="btn me-2"
-            :class="`btn-${effectivePrimaryAction.type}`"
-          >
-            {{ effectivePrimaryAction.text }}
-          </a>
+        <hr v-if="hasFooterSlotContent || commentText || singleAlert.comment || hasActions">
+        
+        <div class="alert-body-additional" :style="setFlexAlignment">            
+          <div class="alert-text-footer">
+            <slot name="footer">{{ commentText || singleAlert.comment }}</slot>
+          </div>
           
-          <a
-            v-if="showSecondaryAction"
-            :href="effectiveSecondaryAction.url"
-            class="btn"
-            :class="`btn-${effectiveSecondaryAction.type}`"
-          >
-            {{ effectiveSecondaryAction.text }}
-          </a>
+          <!-- Action Buttons -->
+          <div class="alert-actions mt-3" v-if="hasActions">
+            <a
+              v-if="showPrimaryAction"
+              :href="effectivePrimaryAction.url"
+              class="btn me-2"
+              :class="`btn-${effectivePrimaryAction.type}`"
+            >
+              {{ effectivePrimaryAction.text }}
+            </a>
+            
+            <a
+              v-if="showSecondaryAction"
+              :href="effectiveSecondaryAction.url"
+              class="btn"
+              :class="`btn-${effectiveSecondaryAction.type}`"
+            >
+              {{ effectiveSecondaryAction.text }}
+            </a>
+          </div>
         </div>
       </div>
     </div>
-    
+  </div>
     <button 
       v-if="isDismissible" 
       @click="isOpen = false" 
@@ -71,6 +68,7 @@
       class="btn-close" 
       aria-label="Close"
     ></button>
+    
   </div>
 </template>
 
@@ -220,5 +218,22 @@ if (props.isDismissible && props.timeout > 0) {
 
 .alert-actions .btn {
   text-align: left;
+}
+
+.alert-wrapper {
+  border: 1px solid red;
+  display: flex;
+}
+
+
+.alert_content-area {
+  margin-left: 1rem;
+  flex-grow: 1
+}
+
+@media (max-width: 576px) {
+  .alert_content-area {
+    margin-left: 0;
+  }
 }
 </style>
