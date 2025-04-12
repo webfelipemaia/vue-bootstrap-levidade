@@ -8,7 +8,7 @@ export const useNotificationStore = defineStore('notificationStore',{
   }),
 
   actions: {
-    createNewItem(item) {
+    createItem(item) {
       if (!item) return;
       item.id = Date.now();
       this.items.push(item);

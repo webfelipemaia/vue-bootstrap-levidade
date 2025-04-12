@@ -3,7 +3,7 @@
     <template #content-top>
       <section id="introduction">
       <h3>Alert</h3>
-      <p>O componente Alert é utilizado para exibir notificações simples e interativas, permitindo a customização de estilo, 
+      <p>O componente <strong>LeveAlert</strong> é utilizado para exibir notificações simples e interativas, permitindo a customização de estilo, 
         alinhamento e conteúdo. Pode ser utilizado tanto para alertas únicos quanto para sistemas de notificação mais complexos.</p>
       </section>
     </template>
@@ -14,57 +14,56 @@
         <h4 class="mt-5">Como usar</h4>
     <div class="sidebar-separator"></div>    
     <h5 id="alert-basic">Uso básico</h5>
-    <p>Os alertas podem ser usados de modo estático ou dinâmico. Deste modo, faz-se a chamada do componente para uso manual, 
-        da maneira mais simples.</p>
+    <p>Os alertas podem ser usados de modo estático ou dinâmico. A seguir, apresentaremos exemplos de uso de modo estático.</p>
     
     <div class="howto-use">
       <div class="howto-use__title"><span><i class="bi bi-code-slash"></i> code</span></div>
 
     <pre v-highlightjs><code class="javascript">
-  &lt;leve-alert 
-   icon="info-circle" 
-   headingText="Título do Alerta" 
-   bodyText="Mensagem do alerta" 
-   commentText="Comentário adicional" 
-   alertType="warning" 
-   :isDismissible="true" 
-   alignment="center" 
-  /&gt;
+&lt;leve-alert&gt;Message here&lt;/leve-alert&gt;
+
+&lt;leve-alert
+  headingText=&quot;Heading text&quot;
+  bodyText=&quot;Message here&quot;
+  commentText=&quot;Just comment&quot;
+  :iconAlign=&quot;&#39;middle&#39;&quot;
+  :primaryAction=&quot;{
+    text: &#39;Primary action&#39;,
+    url: &#39;#&#39;,
+    type: &#39;primary&#39;
+  }&quot;
+  :secondaryAction=&quot;{
+    text: &#39;Secondary action&#39;,
+    url: &#39;#&#39;,
+    type: &#39;secondary&#39;
+  }&quot;
+/&gt;
     </code></pre>
 
     <br />
     
     <div class="howto-use__title"><span><i class="bi bi-eye"></i> preview</span></div>
 
-  <LeveAlert
-    headingText="Atenção"
-    bodyText="Seu plano está quase vencendo."
-    commentText="Validade: 15/04"
-    alertType="danger"
-    icon="exclamation-triangle"
-    :alignment="'right'"
-    :iconAlign="'middle'"
-    :primaryAction="{
-      text: 'Renovar agora',
-      url: '#',
-      type: 'danger'
-    }"
-    :secondaryAction="{
-      text: 'Ver detalhes',
-      url: '#',
-      type: 'secondary'
-    }"
-  />
-      <leve-alert 
-      icon="info-circle" 
-      headingText="Título do Alerta" 
-      bodyText="Mensagem do alerta" 
-      commentText="Comentário adicional" 
-      alertType="warning" 
-      :isDismissible="true" 
-      alignment="center" 
-      />
-    </div>
+    <leve-alert>Message here</leve-alert>
+
+    <leve-alert
+      headingText="Heading text"
+      bodyText="Message here"
+      commentText="Just comment"
+      :iconAlign="'middle'"
+      :primaryAction="{
+        text: 'Primary action',
+        url: '#',
+        type: 'primary'
+      }"
+      :secondaryAction="{
+        text: 'Secondary action',
+        url: '#',
+        type: 'secondary'
+      }"
+    />
+
+  </div>
     <br />      
     <div class="howto-use">
       <h5 id="alert-slot">Uso com Slots</h5>
@@ -84,7 +83,8 @@
 
       <div class="howto-use__title"><span><i class="bi bi-code-slash"></i> code</span></div>
 
-        <pre v-highlightjs="sourcecode"><code class="javascript">
+        <pre v-highlightjs="sourcecode">
+          <code class="javascript">
 &lt;leve-alert alertType="success"&gt;
    &lt;template #header&gt;
       Título Customizado
@@ -101,7 +101,9 @@
 
         <br />
 
-        <div class="howto-use__title"><span><i class="bi bi-eye"></i> preview</span></div>
+        <div class="howto-use__title">
+          <span><i class="bi bi-eye"></i> preview</span>
+        </div>
 
           <leve-alert alertType="success">
             <template #header>
@@ -117,10 +119,10 @@
           </leve-alert>
 
       </div>
-
+      <br>
       <div class="sidebar-separator"></div>
       
-      <h5 id="alert-icon">Ícones</h5>
+      <h5 id="alert-icon" class="mt-5">Ícones</h5>
       <p>Você pode acessar ao <a href="https://icons.getbootstrap.com/">https://icons.getbootstrap.com/</a> e consultar os ícones 
         disponíveis. Para uso nos componentes, o prefixo <code>bi-</code> deve ser desconsiderado, pois ele já está imbutido no 
         slote que contém o ícone.</p>
@@ -170,9 +172,13 @@
   alertType="danger" 
 /&gt;
 
-</code></pre>
-      <br />
-      <div class="howto-use__title"><span><i class="bi bi-eye"></i> preview</span></div>
+  </code>
+</pre>
+      
+  <br />
+      <div class="howto-use__title">
+        <span><i class="bi bi-eye"></i> preview</span>
+      </div>
       <leve-alert 
       icon="info-circle"
       bodyText="An example alert with an icon" 
@@ -196,6 +202,125 @@
       bodyText="An example danger alert with an icon" 
       alertType="danger" 
       />
+
+      <br>
+      <h5 class="mt-5" id="align-icons">Alinhamento dos ícones</h5>
+
+
+      <div class="howto-use__title"><span><i class="bi bi-code-slash"></i> code</span></div>
+
+        <pre v-highlightjs="sourcecode">
+          <code class="javascript">
+&lt;leve-alert
+  icon=&quot;info-circle&quot;
+  iconAlign=&quot;top&quot;
+  headingText=&quot;Align to top&quot;
+  bodyText=&quot;Lorem ipsum dolor sit amet&quot;
+  :primaryAction=&quot;{
+    text: &#39;Primary Action&#39;,
+    url: &#39;/action&#39;,
+    type: &#39;primary&#39;
+  }&quot;
+  :secondaryAction=&quot;{
+    text: &#39;Secondary Action&#39;,
+    url: &#39;/secondary&#39;,
+    type: &#39;secondary&#39;
+  }&quot;
+/&gt;
+
+&lt;leve-alert
+  icon=&quot;info-circle&quot;
+  iconAlign=&quot;center&quot;
+  headingText=&quot;Align to center&quot;
+  bodyText=&quot;Lorem ipsum dolor sit amet&quot;
+  :primaryAction=&quot;{
+    text: &#39;Primary Action&#39;,
+    url: &#39;/action&#39;,
+    type: &#39;primary&#39;
+  }&quot;
+  :secondaryAction=&quot;{
+    text: &#39;Secondary Action&#39;,
+    url: &#39;/secondary&#39;,
+    type: &#39;secondary&#39;
+  }&quot;
+/&gt;
+
+&lt;leve-alert
+  icon=&quot;info-circle&quot;
+  iconAlign=&quot;bottom&quot;
+  headingText=&quot;Align to footer&quot;
+  bodyText=&quot;Lorem ipsum dolor sit amet&quot;
+  :primaryAction=&quot;{
+    text: &#39;Primary Action&#39;,
+    url: &#39;/action&#39;,
+    type: &#39;primary&#39;
+  }&quot;
+  :secondaryAction=&quot;{
+    text: &#39;Secondary Action&#39;,
+    url: &#39;/secondary&#39;,
+    type: &#39;secondary&#39;
+  }&quot;
+/&gt;            
+          </code>
+        </pre>
+
+        <br />
+
+        <div class="howto-use__title">
+          <span><i class="bi bi-eye"></i> preview</span>
+        </div>
+        <leve-alert
+          icon="info-circle"
+          iconAlign="top"
+          headingText="Align to top"
+          bodyText="Lorem ipsum dolor sit amet"
+          :primaryAction="{
+            text: 'Primary Action',
+            url: '/action',
+            type: 'primary'
+          }"
+          :secondaryAction="{
+            text: 'Secondary Action',
+            url: '/secondary',
+            type: 'secondary'
+          }"
+        />
+
+        <leve-alert
+          icon="info-circle"
+          iconAlign="center"
+          headingText="Align to center"
+          bodyText="Lorem ipsum dolor sit amet"
+          :primaryAction="{
+            text: 'Primary Action',
+            url: '/action',
+            type: 'primary'
+          }"
+          :secondaryAction="{
+            text: 'Secondary Action',
+            url: '/secondary',
+            type: 'secondary'
+          }"
+        />
+
+        <leve-alert
+          icon="info-circle"
+          iconAlign="bottom"
+          headingText="Align to footer"
+          bodyText="Lorem ipsum dolor sit amet"
+          :primaryAction="{
+            text: 'Primary Action',
+            url: '/action',
+            type: 'primary'
+          }"
+          :secondaryAction="{
+            text: 'Secondary Action',
+            url: '/secondary',
+            type: 'secondary'
+          }"
+        />
+      
+
     </div>
 
 
@@ -317,55 +442,67 @@
           <td>icon</td>
           <td>String</td>
           <td>-</td>
-          <td>Ícone a ser exibido no alerta.</td>
+          <td>Icon to be displayed in the alert.</td>
         </tr>
         <tr>
           <td>headingText</td>
           <td>String</td>
           <td>-</td>
-          <td>Título do alerta.</td>
+          <td>Alert title.</td>
         </tr>
         <tr>
           <td>bodyText</td>
           <td>String</td>
           <td>-</td>
-          <td>Mensagem principal do alerta.</td>
+          <td>Main message of the alert.</td>
         </tr>
         <tr>
           <td>commentText</td>
           <td>String</td>
           <td>-</td>
-          <td>Texto adicional exibido no rodapé do alerta.</td>
+          <td>Additional text displayed in the alert footer.</td>
         </tr>
         <tr>
           <td>alertType</td>
           <td>String</td>
           <td>'primary'</td>
-          <td>Estilo do alerta (ex.: primary, success, warning, danger).</td>
+          <td>Alert style (e.g. primary, success, warning, danger).</td>
         </tr>
         <tr>
           <td>isDismissible</td>
           <td>Boolean</td>
           <td>false</td>
-          <td>Determina se o alerta pode ser fechado pelo usuário.</td>
+          <td>Determines whether the alert can be closed by the user.</td>
         </tr>
         <tr>
           <td>isAlert</td>
           <td>Boolean</td>
           <td>true</td>
-          <td>Define se é um alerta único.</td>
+          <td>Defines whether it is a single alert.</td>
         </tr>
         <tr>
           <td>timeout</td>
           <td>Number</td>
-          <td>5000</td>
-          <td>Tempo (em ms) para ocultar o alerta automaticamente.</td>
+          <td>0</td>
+          <td>Time (in ms) to automatically hide the alert.</td>
         </tr>
         <tr>
           <td>alignment</td>
           <td>String</td>
           <td>'left'</td>
-          <td>Alinhamento do texto e conteúdo do alerta (left, center, right).</td>
+          <td>Alignment of text and alert content (left, center, right).</td>
+        </tr>
+        <tr>
+          <td>primaryAction</td>
+          <td>Object</td>
+          <td>null</td>
+          <td>Configuration for the primary action button displayed in the alert footer.</td>
+        </tr>
+        <tr>
+          <td>secondaryAction</td>
+          <td>Object</td>
+          <td>null</td>
+          <td>Configuration for the secondary action button displayed in the alert footer.</td>
         </tr>
       </tbody>
     </table>
@@ -383,24 +520,9 @@
     </thead>
     <tbody>
       <tr>
-        <td>createItem</td>
-        <td>Cria um novo alerta.</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>deleteItem</td>
-        <td>Remove um alerta existente pelo ID.</td>
-        <td>id (Number): ID do alerta a ser removido.</td>
-      </tr>
-      <tr>
-        <td>getLastIndex</td>
-        <td>Retorna o ID do último alerta adicionado.</td>
-        <td>-</td>
-      </tr>
-      <tr>
         <td>checkTimeoutValue</td>
-        <td>Valida o valor do tempo limite (timeout).</td>
-        <td>value (Number): Valor do tempo a ser validado.</td>
+        <td>Validates the timeout value.</td>
+        <td>value (Number): Value of time to be validated.</td>
       </tr>
     </tbody>
   </table>
@@ -424,6 +546,7 @@
             <li class="detail-entry detail-h2"><a href="#alert-basic">Uso básico</a></li>
             <li class="detail-entry detail-h2"><a href="#alert-slot">Com slots</a></li>
             <li class="detail-entry detail-h2"><a href="#alert-icon">Com ícones</a></li>
+            <li class="detail-entry detail-h2"><a href="#align-icons">Alinhamento dos ícones</a></li>
             <li class="detail-entry detail-h2"><a href="#alert-themes">Com temas</a></li>
           </ul>
         </li>

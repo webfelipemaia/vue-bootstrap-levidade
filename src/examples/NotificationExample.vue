@@ -7,181 +7,7 @@
         geralmente para informar sobre eventos, sucessos, erros ou ações necessárias. A seguir, descrevemos como funciona o 
       sistema implementado nessa biblioteca.</p>
       <br>
-
-<!-- Exemplo com ações -->
-<LeveAlert
-  headingText="Confirmação"
-  bodyText="Deseja prosseguir com esta ação?"
-  :primaryAction="{
-    text: 'Confirmar',
-    url: '/confirm'
-  }"
-  :secondaryAction="{
-    text: 'Cancelar',
-    url: '/cancel',
-    type: 'danger'
-  }"
-/>
-
-    <!-- Exemplo 1: Alerta Simples com Ações -->
-    <LeveAlert
-      class="mt-4"
-      headingText="Atualização Disponível"
-      bodyText="Uma nova versão do sistema está disponível para instalação."
-      commentText="Recomendamos atualizar durante horário de menor movimento."
-      alertType="info"
-      icon="info-circle"
-      :isDismissible="true"
-      :timeout="0"
-      alignment="left"
-      :primaryAction="{
-        text: 'Atualizar Agora',
-        url: '/update',
-        type: 'primary'
-      }"
-      :secondaryAction="{
-        text: 'Lembrar Depois',
-        url: '/remind-later',
-        type: 'secondary'
-      }"
-    />
-
-    <!-- Exemplo 2: Alerta de Sucesso via singleAlert -->
-    <LeveAlert
-      class="mt-4"
-      :singleAlert="{
-        type: 'success',
-        heading: 'Operação Concluída!',
-        text: 'Seus dados foram salvos com sucesso no sistema.',
-        comment: 'Um e-mail de confirmação foi enviado para sua caixa postal.',
-        primaryAction: {
-          text: 'Ver Detalhes',
-          url: '/details/123',
-          type: 'info'
-        }
-      }"
-      icon="check-circle"
-      :isDismissible="true"
-      alignment="center"
-    />
-
-    <!-- Exemplo 3: Alerta de Erro com Timeout -->
-    <LeveAlert
-      class="mt-4"
-      headingText="Erro no Processamento"
-      bodyText="Não foi possível completar a operação solicitada."
-      alertType="danger"
-      icon="exclamation-triangle"
-      :timeout="8000"
-      alignment="right"
-      :primaryAction="{
-        text: 'Tentar Novamente',
-        url: '/retry',
-        type: 'danger'
-      }"
-    />
-
-    <!-- Exemplo 4: Botão para Acionar Alerta -->
-    <LeveAlert
-      class="mt-4"
-      :isAlert="false"
-      btnText="Clique para Mostrar Alerta"
-      alertType="warning"
-      :singleAlert="{
-        type: 'warning',
-        heading: 'Atenção!',
-        text: 'Esta operação não pode ser desfeita.',
-        comment: 'Certifique-se das informações antes de confirmar.',
-        primaryAction: {
-          text: 'Confirmar',
-          url: '/confirm-action',
-          type: 'warning'
-        },
-        secondaryAction: {
-          text: 'Cancelar',
-          url: '/cancel',
-          type: 'secondary'
-        }
-      }"
-      :isDismissible="true"
-    />
-
-    <!-- Exemplo 5: Alerta com Slots Personalizados -->
-    <LeveAlert
-      class="mt-4"
-      alertType="dark"
-      :isDismissible="true"
-      alignment="center"
-    >
-      <template #header>
-        <span style="color: var(--bs-warning)">Notificação Personalizada</span>
-      </template>
       
-      <template #icon>
-        <i class="bi bi-star-fill text-warning me-2"></i>
-      </template>
-      
-      <div>
-        <p>Este é um conteúdo <strong>totalmente personalizado</strong> usando slots.</p>
-        <p>Você pode incluir qualquer HTML aqui.</p>
-      </div>
-      
-      <template #footer>
-        <small class="text-muted">Atualizado em: {{ new Date().toLocaleDateString() }}</small>
-      </template>
-    </LeveAlert>
-
-<!-- Exemplo com apenas uma ação -->
-<LeveAlert
-  :singleAlert="{
-    heading: 'Aviso',
-    text: 'Sua sessão irá expirar em breve.',
-    primaryAction: {
-      text: 'Estender Sessão',
-      url: '/extend-session'
-    }
-  }"
-/>
-
-<!-- Exemplo sem ações (não serão exibidos botões) -->
-<LeveAlert
-  bodyText="Esta é uma notificação simples."
-/>
-
-      
-        <p class="mt-5">O componente <code>LeveAlert</code>, com a propriedade <code>:is-alert="false"</code>, assume a ação de notificar por meio do botão 
-        embutido. Veja o trecho de código a seguir:</p>
-
-
-        <pre v-highlightjs="sourcecode">
-          <code class="javascript">
-// LeveAlert.vue
-&lt;button v-if=&quot;!isAlert&quot; @click=&quot;createItem&quot; :class=&quot;{ hideAlert: !isOpen }&quot;&gt;
-&#123;&#123; btnText &#125;&#125;
-&lt;/button&gt;
-          </code>
-        </pre>
-
-        <p>Para modificar o conteúdo, você pode usar <code>props</code> (como <code>btnText="New Alert"</code> ) para modificar o texto do 
-          button. E passar um objeto <em>notification</em>, como na prop <code>:single-alert="notification"</code>, para o conteúdo do componente. Por exemplo:</p>
-
-          <pre v-highlightjs="sourcecode">
-          <code class="javascript">
-// Defines the toast content in an object
-const notification = ref(
-  {
-        id: 1,
-        type: "primary",
-        heading: 'Heading text',
-        text: "Lorem ipsusm dolor sit amet",
-        comment: "Sample comment text here",
-        notificationTime: 'just now',
-        createdAt: new Date(),
-    }
-)
-          </code>
-        </pre>
-
         
       </section>
     </template>
@@ -196,31 +22,27 @@ const notification = ref(
         
         <div class="component-card">
             <h6 class="component-title">1. Store de Notificações</h6>
-            <p class="component-description">As notificações podem ser criadas implicitamente, com a store <code>Alerts.js</code>, ou 
-              explicitamente com a store <code>Notifications.js</code>. Ambas gerenciam o estado e o ciclo de vida das notificações. A 
-              diferença é que, no primeiro caso, faz-se configurando o componente <code>LeveAlert</code>, em suas propriedades, como vimos 
-              acima. No segundo caso, pode-se criar diferentes tipos de notificações para as situações mais diversas. Com o apoio de um 
-            utilitário <code>useNotifications.js</code>, o conteúdo da notificação é passado para um método <code>notify()</code>, que 
-            por sua vez é chamado no método criado no componente que se faz necessário emitir a notificação.</p>
-            <p>O que elas fazem?</p>
+            <p class="component-description">As notificações são criadas com a store <code>Notifications.js</code>, que gerencia o estado 
+              e o ciclo de vida das notificações. Pode-se criar diferentes tipos de notificações para as situações mais diversas. Com o apoio do 
+            utilitário <code>useNotifications.js</code>, o conteúdo da notificação é passado para o método <code>notify()</code>, que 
+            por sua vez é chamado pelo componente que deseja emitir a notificação.</p>
+            <p>O que ela faz?</p>
             <ul class="feature-list">
-                <li>Gerenciam o estado das notificações</li>
-                <li>Armazenam a lista de notificações ativas</li>
-                <li>Controlam o tempo de exibição de cada notificação</li>
-                <li>Implementam métodos para adicionar/remover notificações</li>
+                <li>Gerencia o estado das notificações</li>
+                <li>Armazena a lista de notificações ativas</li>
+                <li>Controla o tempo de exibição de cada notificação</li>
+                <li>Implementa métodos para adicionar/remover notificações</li>
             </ul>
         </div>
         
         <div class="component-card">
             <h6 class="component-title">2. Componente de UI</h6>
-            <p class="component-description">A parte visual que exibe as notificações para o usuário. Destacamos os componentes <code>LeveAlert</code> e
-            <code>LeveToast</code>, mas você pode criar seu próprio componente baseado nos métodos de um destes.</p>
+            <p class="component-description">A parte visual que exibe as notificações para o usuário utilizando o componente <code>LeveToast</code>.</p>
             <p>O que ele faz?</p>
             <ul class="feature-list">
                 <li>Renderiza as notificações na tela</li>
-                <li>Controla animações de entrada e saída</li>
                 <li>Oferece botões de ação/fechamento</li>
-                <li>Estiliza diferentes tipos de notificação (sucesso, erro, etc.)</li>
+                <li>Estiliza diferentes tipos de notificação de acordo com o tema</li>
             </ul>
         </div>
     
@@ -317,11 +139,9 @@ const showError = () =&gt; {
       <div class="sidebar-separator"></div>
       
       <h5 id="store-notifications">Store Notifications.js</h5>
-      <p>No início desta página, descrevemos rapidamente como gerar alertas com o componente <code>LeveAlert</code>, que usa um button 
-        configurável para emitir as notificações. Agora, vimos outra maneira de criar notificações, porém, deixando parte do trabalho 
-        para ser feito manualmente.</p>
-      <p>Para gerar notificações usamos a biblioteca <a href="https://pinia-docs-pt.netlify.app/introduction.html">Pinia</a> para o 
-        gerenciamento de estados. Uma store no Pinia é um gerenciador de estado global para aplicações Vue.js, permitindo compartilhar dados 
+      
+      <p>Para gerar notificações usamos a biblioteca <a href="https://pinia-docs-pt.netlify.app/introduction.html">Pinia</a> que realiza o 
+        gerenciamento de estados. Uma store no Pinia é um gerenciador de estados global para aplicações Vue.js, permitindo compartilhar dados 
         e lógica entre componentes de forma organizada e reativa. Uma store Pinia possui:</p>
         <ul>
           <li>Estado (state): Dados reativos.</li>
@@ -378,7 +198,7 @@ const showError = () =&gt; {
                 </thead>
                 <tbody>
                     <tr>
-                        <td><code>createNewItem</code></td>
+                        <td><code>createItem</code></td>
                         <td><code>item: Object</code></td>
                         <td>Adiciona um novo item ao array <code>items</code> com um ID baseado no timestamp.</td>
                     </tr>
@@ -434,25 +254,10 @@ const showError = () =&gt; {
   </template>
   </leve-wrapper>
 </template>
-  <script setup>
-import { provide, ref } from 'vue'
+
+<script setup>
+
 import LeveWrapper from '@/views/layout/LeveWrapper.vue';
 import LeveFixednav from '@/components/LeveFixednav.vue';
-import LeveAlert from '@/components/LeveAlert.vue';
-
-// Defines the toast content in an object
-const notification = ref(
-  {
-        id: 1,
-        type: "primary",
-        heading: 'Heading text',
-        text: "Lorem ipsusm dolor sit amet",
-        comment: "Sample comment text here",
-        notificationTime: 'just now',
-        createdAt: new Date(),
-    }
-)
-// Sends the information to be displayed
-provide('notification', notification)
-  
+ 
 </script>

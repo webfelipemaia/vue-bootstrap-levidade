@@ -14,7 +14,7 @@ export const useNotification = () => {
     };
 
     const notification = { ...defaultOptions, ...options };
-    notificationStore.createNewItem(notification);
+    notificationStore.createItem(notification);
   };
 
   return { notify };
