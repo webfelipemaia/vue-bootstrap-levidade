@@ -11,20 +11,24 @@
   >
   <div class="alert-wrapper">
 
-    <div class="alert_icon-area" style="border: 1px solid green;">
+    <!-- Área do ícone com largura condicional -->
+    <div 
+      class="alert_icon-area"
+      :class="{ 'no-icon': !hasIcon }"
+      :style="hasIcon ? '' : 'width: 0; padding: 0; margin: 0; border: none;'"
+    >
       <slot v-if="icon" name="icon">
         <i class="bi flex-shrink-0 me-2" :class="[{ [`bi-${icon}`]: icon }]"></i>
       </slot>
     </div>
 
-    <div class="alert_content-area" style="border: 1px solid blue;">
+    <div class="alert_content-area">
       <h4 class="alert-heading" v-if="headingText || singleAlert.heading || hasHeaderSlotContent">
         <slot name="header">{{ headingText || singleAlert.heading }}</slot>
       </h4>
 
       <div class="alert-body">
         <div class="alert-body-content" :style="setFlexAlignment">
-
           <div class="alert-text-content">
             <slot>{{ bodyText || singleAlert.text }}</slot>
           </div>
@@ -37,7 +41,6 @@
             <slot name="footer">{{ commentText || singleAlert.comment }}</slot>
           </div>
           
-          <!-- Action Buttons -->
           <div class="alert-actions mt-3" v-if="hasActions">
             <a
               v-if="showPrimaryAction"
@@ -68,7 +71,6 @@
       class="btn-close" 
       aria-label="Close"
     ></button>
-    
   </div>
 </template>
 
@@ -130,6 +132,12 @@ const isOpen = ref(true);
 
 const hasFooterSlotContent = computed(() => slots.footer && slots.footer().length > 0);
 const hasHeaderSlotContent = computed(() => slots.header && slots.header().length > 0);
+const showPrimaryAction = computed(() => Boolean(effectivePrimaryAction.value.text));
+const showSecondaryAction = computed(() => Boolean(effectiveSecondaryAction.value.text));
+const hasActions = computed(() => showPrimaryAction.value || showSecondaryAction.value);
+const hasIcon = computed(() => {
+  return props.icon || (slots.icon && slots.icon().length > 0);
+});
 
 const effectivePrimaryAction = computed(() => {
   const action = props.primaryAction || props.singleAlert.primaryAction;
@@ -149,10 +157,6 @@ const effectiveSecondaryAction = computed(() => {
   };
 });
 
-const showPrimaryAction = computed(() => Boolean(effectivePrimaryAction.value.text));
-const showSecondaryAction = computed(() => Boolean(effectiveSecondaryAction.value.text));
-const hasActions = computed(() => showPrimaryAction.value || showSecondaryAction.value);
-
 const setAlignment = computed(() => {
   return { "text-align": props.alignment };
 });
@@ -170,7 +174,8 @@ const setFlexAlignment = computed(() => {
   return {
     'justify-content': justify,
     'text-align': textAlign,
-    'width': '100%'
+    'width': '100%',
+    'margin-left': hasIcon.value ? '0' : '0'
   };
 });
 
@@ -198,6 +203,25 @@ if (props.isDismissible && props.timeout > 0) {
   opacity: 0;
 }
 
+.alert-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.alert_icon-area {
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.alert_content-area {
+  flex-grow: 1;
+  margin-left: 1rem;
+}
+
+.alert_content-area.no-icon {
+  margin-left: 0;
+}
+
 .alert-body-content,
 .alert-body-additional {
   display: flex;
@@ -214,21 +238,6 @@ if (props.isDismissible && props.timeout > 0) {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
-}
-
-.alert-actions .btn {
-  text-align: left;
-}
-
-.alert-wrapper {
-  border: 1px solid red;
-  display: flex;
-}
-
-
-.alert_content-area {
-  margin-left: 1rem;
-  flex-grow: 1
 }
 
 @media (max-width: 576px) {
