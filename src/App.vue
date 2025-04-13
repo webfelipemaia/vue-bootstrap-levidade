@@ -61,16 +61,7 @@
           <li class="nav-item"><router-link class="nav-link" to="/doc/notification">Notification</router-link></li>
         </ul>
       </nav>
-      <LeveOffcanvas
-      :offcanvas-visible="false" 
-      title="My Menu" 
-      placement="start"
-      >
-      <template #offcanvas-nav>
-        <li class="nav-item"><a class="nav-link" href="#">Link 1</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Link 2</a></li>
-      </template>
-      </LeveOffcanvas>
+      
     </template>
 
 
@@ -82,7 +73,8 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import LeveContainer from './views/layout/LeveContainer.vue';
 //import LeveFixednav from './components/LeveFixednav.vue';
-import LeveOffcanvas from './components/LeveOffcanvas.vue';
+
 </script>
