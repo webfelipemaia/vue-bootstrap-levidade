@@ -1,13 +1,14 @@
 <template>
   <button
-    @click="$emit('toggle')"
-    class="navbar-toggler leve-offcanvas-button"
-    :class="buttonClass"
+    @click="handleClick"
+    class="leve-offcanvas-button"
+    :class="[buttonClass, { 'disabled': isDisabled }]"
     :style="buttonStyle"
     type="button"
-    aria-controls="offcanvasNavbar"
+    :aria-controls="ariaControls"
     :aria-expanded="isOpen.toString()"
-    aria-label="Toggle navigation"
+    :aria-label="ariaLabel"
+    :disabled="isDisabled"
   >
     <slot>
       <span class="navbar-toggler-icon"></span>
@@ -38,17 +39,37 @@ const props = defineProps({
       'link'
     ].includes(value)
   },
+  buttonClass: {
+    type: [String, Array, Object],
+    default: ''
+  },
   buttonStyle: {
     type: [String, Object],
     default: null
-  }
+  },
+  ariaControls: {
+    type: String,
+    default: 'offcanvasNavbar'
+  },
+  ariaLabel: {
+    type: String,
+    default: 'Toggle navigation'
+  },
+  disabled: Boolean
 })
 
-defineEmits(['toggle'])
+const emit = defineEmits(['toggle'])
 
 const buttonClass = computed(() => {
   return ['btn', `btn-${props.variant}`]
-})
+});
+
+const isDisabled = computed(() => props.disabled);
+
+const handleClick = () => {
+  if (isDisabled.value) return;
+  emit('toggle');
+};
 </script>
 
 <style>
@@ -64,6 +85,11 @@ const buttonClass = computed(() => {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
+}
+
+.leve-offcanvas-button.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .leve-offcanvas-button:hover {

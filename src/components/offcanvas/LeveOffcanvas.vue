@@ -3,11 +3,14 @@
     <!-- Slot para o botão toggle -->
     <slot name="toggle-button" :toggle="toggleOffcanvas" :is-open="isVisible">
       <LeveOffcanvasButton
+        v-if="showInternalButton"
         :is-open="isVisible"
+        :disabled="disabled"
         :button-class="buttonClass"
         :button-style="buttonStyle"
         @toggle="toggleOffcanvas"
       />
+
     </slot>
 
     <!-- OffCanvas Content -->
@@ -65,7 +68,7 @@
 </template>
 
 <script setup>
-import { ref, watch, computed, onMounted, onBeforeUnmount, useSlots } from 'vue'
+import { ref, watch, computed, onMounted, onBeforeUnmount, useSlots, provide } from 'vue'
 import LeveOffcanvasButton from './LeveOffcanvasButton.vue'
 
 const props = defineProps({
@@ -147,26 +150,37 @@ const props = defineProps({
   backdropStyle: {
     type: [String, Object],
     default: null
-  }
+  },
+  showInternalButton: {
+    type: Boolean,
+    default: true
+  },
+  disabled: Boolean,
 })
 
 const emit = defineEmits(['update:modelValue', 'toggle'])
 
-const numericBreakpoint = computed(() => Number(props.breakpoint))
 const isVisible = ref(props.modelValue)
 const windowWidth = ref(window.innerWidth)
 const hasToggleButton = ref(false)
 
+const toggleOffcanvas = () => {
+  if (props.disabled) return;
+  isVisible.value = !isVisible.value;
+  emit('update:modelValue', isVisible.value);
+  emit('toggle', isVisible.value);
+};
+
+provide('leveOffcanvas', {
+  isOpen: isVisible,
+  toggle: toggleOffcanvas,
+  disabled: computed(() => props.disabled)
+});
+
+const numericBreakpoint = computed(() => Number(props.breakpoint))
 const shouldRender = computed(() => hasToggleButton.value || isMobileView.value)
 const isMobileView = computed(() => windowWidth.value < props.breakpoint)
-
 const placementClass = computed(() => `leve-offcanvas-${props.placement}`)
-
-const toggleOffcanvas = () => {
-  isVisible.value = !isVisible.value
-  emit('update:modelValue', isVisible.value)
-  emit('toggle', isVisible.value)
-}
 
 const handleResize = () => {
   windowWidth.value = window.innerWidth
@@ -267,6 +281,7 @@ watch(() => props.modelValue, (newVal) => {
 .leve-offcanvas-title {
   margin-bottom: 0;
   line-height: 1.5;
+  color: #4246d4;
 }
 
 .leve-offcanvas-close {

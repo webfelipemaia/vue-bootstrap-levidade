@@ -1,8 +1,26 @@
 <template>
   <LeveContainer>
+    
     <!-- Header Slots -->
     <template #navbar>
+
       <ul class="nav">
+
+
+        <LeveOffcanvas 
+          v-model="menuOpen" 
+          title="Menu Principal" 
+        >          
+          <template #offcanvas-nav>
+            <li class="nav-item">
+              <router-link to="/" class="nav-link">Home</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/about" class="nav-link">Sobre</router-link>
+            </li>
+          </template>
+        </LeveOffcanvas>
+        
         <li class="nav-item"><a class="nav-link text-white" href="#">Home</a></li>
         <li class="nav-item"><a class="nav-link text-white" href="#">About</a></li>
         <li class="nav-item"><a class="nav-link text-white" href="#">Contact</a></li>
@@ -44,7 +62,7 @@
           <li class="nav-item"><router-link class="nav-link" to="/doc/breadcrumb">Breadcrumb</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/doc/button">Button</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/doc/button-group">ButtonGroup</router-link></li>
-          <li class="nav-item"><router-link class="nav-link" to="/doc/card">Card</router-link></li>          
+          <li class="nav-item"><router-link class="nav-link" to="/doc/card">Card</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/doc/dropdown">Dropdown</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/doc/image">Image</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/doc/offcanvas">Offcanvas</router-link></li>
@@ -61,7 +79,7 @@
           <li class="nav-item"><router-link class="nav-link" to="/doc/notification">Notification</router-link></li>
         </ul>
       </nav>
-      
+
     </template>
 
 
@@ -73,8 +91,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, provide } from 'vue';
 import LeveContainer from './views/layout/LeveContainer.vue';
 //import LeveFixednav from './components/LeveFixednav.vue';
+import LeveOffcanvas from '@/components/offcanvas/LeveOffcanvas.vue'
+const menuOpen = ref(false)
+import ContentHeader from './views/layout/ContentHeader.vue';
+
+provide('mainMenu', {
+  isOpen: menuOpen,
+  toggle: () => menuOpen.value = !menuOpen.value
+});
 
 </script>
