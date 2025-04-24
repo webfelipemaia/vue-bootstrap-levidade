@@ -1,0 +1,108 @@
+// Navbar
+//
+// Provide a static navbar from which we expand to create full-width, fixed, and
+// other navbar variations.
+
+
+// Navbar brand
+//
+// Used for brand, project, or site names.
+
+
+// Navbar nav
+//
+// Custom navbar navigation (doesn't require `.nav`, but does make use of `.nav-link`).
+.navbar {
+
+  .navbar-nav {
+
+      .nav-item {
+        
+        .nav-link {
+
+          &.active{
+
+            font-weight: 700;
+        
+            &:hover {
+              color: var(--#{$prefix}navbar-active-color);
+            }
+          }
+    
+        }
+      
+        .dropdown.show {
+            
+          .btn[aria-expanded="true"] {
+            font-weight: 700;
+          }
+
+        }
+
+      }
+
+    }
+
+}
+
+.navbar-nav {
+
+  .nav-item {
+    .dropdown {
+      .btn {
+        color: var(--#{$prefix}navbar-color);
+        &:hover {
+          color: var(--#{$prefix}navbar-hover-color);
+        }
+        
+      }
+
+  }
+    
+    
+  .show > .nav-link,
+  .nav-link {
+    color: var(--#{$prefix}navbar-color);
+    &:hover {
+      color: var(--#{$prefix}navbar-hover-color);
+    }
+    
+  }
+  .nav-link.active {
+      font-weight: 700;
+      &:hover {
+        color: var(--#{$prefix}navbar-active-color);
+      }
+  }
+  }
+
+}
+
+
+// Navbar text
+//
+//
+
+
+
+// Responsive navbar
+//
+// Custom styles for responsive collapsing and toggling of navbar contents.
+// Powered by the collapse Bootstrap JavaScript plugin.
+
+// When collapsed, prevent the toggleable navbar contents from appearing in
+// the default flexbox row orientation. Requires the use of `flex-wrap: wrap`
+// on the `.navbar` parent.
+
+
+// Button for toggling the navbar when in its collapsed state
+
+// scss-docs-start navbar-expand-loop
+// Generate series of `.navbar-expand-*` responsive classes for configuring
+// where your navbar collapses.
+
+// scss-docs-end navbar-expand-loop
+
+// Navbar themes
+//
+// Styles for switching between navbars with light or dark background.

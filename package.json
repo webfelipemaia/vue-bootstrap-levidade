@@ -40,7 +40,8 @@
     "build:lib": "vite build --mode library",
     "preview": "vite preview",
     "prepublishOnly": "npm run build",
-    "jsdoc": "jsdoc -c config.json"
+    "jsdoc": "jsdoc -c config.json",
+    "sass": "sass --watch ./src/assets/levidade.scss ./src/css/levidade.css"
   },
   "peerDependencies": {
     "@popperjs/core": "^2.11.0",

@@ -1,7 +1,18 @@
-// Definição de variáveis reutilizáveis
-$popper-theme-background-color: #000000;
-$popper-theme-background-color-hover: #000000;
-$popper-theme-text-color: white;
+$white: #ffffff;
+$black: #000000;
+
+// theme
+$prefix: 'bs';
+$navbar-light-color:                rgba(var(--#{$prefix}emphasis-color-rgb), .7) !default;
+$navbar-light-hover-color:          rgba(var(--#{$prefix}emphasis-color-rgb), .9) !default;
+$navbar-dark-color:                 rgba($white, .80) !default;
+$navbar-dark-hover-color:           rgba($white, .65) !default;
+
+
+// popper
+$popper-theme-background-color: $black;
+$popper-theme-background-color-hover: $black;
+$popper-theme-text-color: $white;
 $popper-theme-border-width: 0px;
 $popper-theme-border-style: solid;
 $popper-theme-border-radius: .375rem;
