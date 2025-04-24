@@ -4,9 +4,21 @@
     <!-- Header Slots -->
     <template #navbar>
 
-      <ul class="nav">
-
-
+      <NavbarMain bg-color="bg-primary">
+        <template #navbar-nav>
+          <NavbarNav :items="navItems" />
+        </template>
+        
+        <template #navbar-search>
+          <NavbarSearch 
+            placeholder="Buscar..."
+            button-text="Buscar"
+            button-icon="bi bi-search"
+            show-button-icon
+          />
+        </template>
+      </NavbarMain>
+<!-- 
         <LeveOffcanvas 
           v-model="menuOpen" 
           title="Menu Principal" 
@@ -19,12 +31,9 @@
               <router-link to="/about" class="nav-link">Sobre</router-link>
             </li>
           </template>
-        </LeveOffcanvas>
+        </LeveOffcanvas> -->
         
-        <li class="nav-item"><a class="nav-link text-white" href="#">Home</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="#">About</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="#">Contact</a></li>
-      </ul>
+
     </template>
 
     <template #wrapper />
@@ -37,19 +46,19 @@
             <h5 class="heading">Início</h5>
           </li>
           <li class="nav-item"><router-link class="nav-link" to="/doc">Introdução</router-link></li>
-          <li class="nav-item"><router-link class="nav-link" to="/doc/#">Começar</router-link></li>
-          <li class="nav-item"><router-link class="nav-link" to="/doc/#">Customizar</router-link></li>
-          <li class="nav-item"><router-link class="nav-link" to="/doc/#">Vue</router-link></li>
+          <li class="nav-item"><router-link class="nav-link" to="/#">Começar</router-link></li>
+          <li class="nav-item"><router-link class="nav-link" to="/#">Customizar</router-link></li>
+          <li class="nav-item"><router-link class="nav-link" to="/#">Vue</router-link></li>
           <li>
             <div class="sidebar-separator"></div>
           </li>
           <li class="navbar-header">
             <h5 class="heading">Conhecimento Básico</h5>
           </li>
-          <li class="nav-item"><router-link class="nav-link" to="/doc/#">Cores</router-link></li>
-          <li class="nav-item"><router-link class="nav-link" to="/doc/#">CSS</router-link></li>
-          <li class="nav-item"><router-link class="nav-link" to="/doc/#">Layout</router-link></li>
-          <li class="nav-item"><router-link class="nav-link" to="/doc/#">CSS</router-link></li>
+          <li class="nav-item"><router-link class="nav-link" to="/#">Cores</router-link></li>
+          <li class="nav-item"><router-link class="nav-link" to="/#">CSS</router-link></li>
+          <li class="nav-item"><router-link class="nav-link" to="/#">Layout</router-link></li>
+          <li class="nav-item"><router-link class="nav-link" to="/#">CSS</router-link></li>
           <li>
             <div class="sidebar-separator"></div>
           </li>
@@ -97,10 +106,39 @@ import LeveContainer from './views/layout/LeveContainer.vue';
 import LeveOffcanvas from '@/components/offcanvas/LeveOffcanvas.vue'
 const menuOpen = ref(false)
 import ContentHeader from './views/layout/ContentHeader.vue';
+import NavbarMain from '@/components/navbar/NavbarMain.vue';
+import NavbarNav from '@/components/navbar/NavbarNav.vue';
+import NavbarSearch from '@/components/navbar/NavbarSearch.vue';
 
 provide('mainMenu', {
   isOpen: menuOpen,
   toggle: () => menuOpen.value = !menuOpen.value
 });
+
+
+const navItems = [
+  {
+    text: 'Home',
+    href: '/',
+    active: false, // Estado inicial
+    icon: 'bi bi-house'
+  },
+  { 
+    text: 'Index', 
+    href: '/doc', 
+    active: false, // Estado inicial
+    icon: 'bi bi-person' 
+  },
+  {
+    text: 'Dropdown',
+    dropdown: true,
+    items: [
+      { text: 'Accordion', href: '/doc/accordion', active: false },
+      { text: 'Alert', href: '/doc/alert', active: false }, // Ativo por padrão
+      { isDivider: true },
+      { text: 'Badge', href: '/doc/badge', active: false }
+    ]
+  }
+]
 
 </script>

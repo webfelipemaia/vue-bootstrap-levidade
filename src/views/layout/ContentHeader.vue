@@ -1,11 +1,14 @@
 <template>
     <header>
+      
+      <ul class="nav">
       <LeveOffcanvasTrigger context="mainMenu" />
-      <!-- Resto do header -->
        
       <li class="nav-item"><a class="nav-link text-white" href="#">Home</a></li>
         <li class="nav-item"><a class="nav-link text-white" href="#">About</a></li>
         <li class="nav-item"><a class="nav-link text-white" href="#">Contact</a></li>
+
+      </ul>
     </header>
   </template>
   

@@ -1,10 +1,8 @@
 <template>
   <div class="container-fluid">
     <!-- Header Section -->
-    <header class="bg-primary text-white p-3">     
-      <div class="mt-2">
+    <header>
         <slot name="navbar"></slot>
-      </div>
     </header>
 
 

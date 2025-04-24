@@ -19,7 +19,8 @@ import TooltipExample from "../examples/TooltipExample.vue";
 import CustomizeExample from "../examples/CustomizeExample.vue";
 
 const routes = [
-  { path: "/doc/", name: "Index", component: IndexExample },
+  { path: "/", name: "Home", component: IndexExample },
+  { path: "/doc", name: "Index", component: IndexExample },
   { path: "/doc/accordion", name: "Accordion", component: AccordionExample },
   { path: "/doc/alert", name: "Alert", component: AlertExample },
   { path: "/doc/badge", name: "Badge", component: BadgeExample },
@@ -39,7 +40,9 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
+  linkActiveClass: 'active',
+  linkExactActiveClass: 'active',
 })
 
 export default router

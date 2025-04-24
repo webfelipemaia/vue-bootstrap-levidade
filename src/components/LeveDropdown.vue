@@ -11,6 +11,9 @@
       ref="button" 
       @click="switchState" 
       :aria-expanded="isShow">
+
+      <slot name="dropdown-icon">
+      </slot>
       {{ title }}
     </button>
     <div class="btn-group">
