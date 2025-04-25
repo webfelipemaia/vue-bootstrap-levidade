@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia';
 
-export const useNotificationStore = defineStore('notificationStore',{
-
+export const useNotificationStore = defineStore('notificationStore', {
   state: () => ({
     items: [],
     maxItems: 5
@@ -35,5 +34,22 @@ export const useNotificationStore = defineStore('notificationStore',{
     getLastItem() {
       return this.items.length > 0 ? this.items[this.items.length - 1] : null;
     },
+  },
+
+  getters: {
+    // Retorna o número total de itens
+    totalItems: (state) => state.items.length,
+
+    // Retorna true se houver notificações
+    hasNotifications: (state) => state.items.length > 0,
+
+    // Retorna o item pela id
+    /* getItemById: (state) => {
+      return (id) => state.items.find(item => item.id === id);
+    }, */
+
+    getItemById: (state) => (id) => {
+      return state.items.find(item => item.id === id);
+    }
   },
 });
