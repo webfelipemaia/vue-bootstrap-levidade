@@ -1,13 +1,23 @@
 <template>
-    <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" :placeholder="placeholder" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">
-        <i v-if="showButtonIcon" :class="buttonIcon" class="me-1"></i>
-        {{ buttonText }}
-      </button>
-    </form>
+  <form class="d-flex" role="search" @submit.prevent="handleSearch">
+    <input
+      v-model="searchInput"
+      class="form-control me-2"
+      type="search"
+      :placeholder="placeholder"
+      aria-label="Search"
+    />
+    <button class="btn btn-outline-success" type="submit">
+      <i v-if="showButtonIcon" :class="buttonIcon" class="me-1"></i>
+      {{ buttonText }}
+    </button>
+  </form>
 </template>
-<script setup>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useSearchStore } from '@/store/searchStore'
+
 const props = defineProps({
   placeholder: {
     type: String,
@@ -26,5 +36,11 @@ const props = defineProps({
     default: false
   }
 })
-</script>
 
+const searchStore = useSearchStore()
+const searchInput = ref('')
+
+const handleSearch = () => {
+  searchStore.setQuery(searchInput.value)
+}
+</script>
