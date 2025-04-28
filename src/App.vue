@@ -5,6 +5,16 @@
     <template #navbar>
 
       <NavbarMain bg-color="bg-primary">
+        <template #navbar-brand>
+          <leve-image :src="'https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg'" 
+                      alt="Descrição" 
+                      :thumbnailWidth="30"
+                      :thumbnailHeight="24"
+          >
+          Bootstrap
+          </leve-image>
+        </template>
+        
         <template #navbar-nav>
           <NavbarNav :items="navItems" />
         </template>
@@ -109,6 +119,7 @@ import ContentHeader from './views/layout/ContentHeader.vue';
 import NavbarMain from '@/components/navbar/NavbarMain.vue';
 import NavbarNav from '@/components/navbar/NavbarNav.vue';
 import NavbarSearch from '@/components/navbar/NavbarSearch.vue';
+import LeveImage from '@/components/image/LeveImage.vue';
 
 provide('mainMenu', {
   isOpen: menuOpen,

@@ -3,25 +3,30 @@
     :is="tag"
     :type="(tag !== 'button' || tag === 'input') ? undefined : nativeType"
     :disabled="(disabled || loading) ? true : undefined"
-    @click="handleClick"
+    @click="handleToggleClick"
     class="btn"
     :class="[
-      { [`btn-outline-${outline}`]: outline },
-      { [`btn-${type}`]: type },
-      { [`btn-${size}`]: size },
+      { [`btn-outline-${outline}`]: outline && !isNavbarToggler },
+      { [`btn-${type}`]: type && !isNavbarToggler },
+      { [`btn-${size}`]: size && !isNavbarToggler },
       { disabled: disabled && tag !== 'button' },
+      { 'navbar-toggler': isNavbarToggler },
+      { 'collapsed': isCollapsed },
     ]"
     :style="[buttonStyle, style]"
-    :ariaLabel="ariaLabel"
+    :aria-label="isNavbarToggler ? ariaLabel || 'Toggle navigation' : ariaLabel"
     :href="tag === 'a' ? href : undefined"
+    :aria-expanded="isNavbarToggler ? String(!isCollapsed) : undefined"
   >
     <slot v-if="loading" name="loading">
       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
     </slot>
 
-    <slot v-if="icon" name="icon">
+    <slot v-if="icon && !isNavbarToggler" name="icon">
       <i class="bi" :class="[{ [`bi-${icon}`]: icon }]"></i>
     </slot>
+
+    <span v-if="isNavbarToggler" class="navbar-toggler-icon"></span>
 
     <slot></slot>
   </component>
@@ -73,6 +78,23 @@ export default {
       type: String,
       default: '',
     },
+    // Novas props para o toggle button
+    isNavbarToggler: {
+      type: Boolean,
+      default: false
+    },
+    target: {
+      type: String,
+      default: null
+    },
+    controls: {
+      type: String,
+      default: null
+    },
+    isCollapsed: {
+      type: Boolean,
+      default: true
+    }
   },
   computed: {
     buttonStyle() {
@@ -94,11 +116,9 @@ export default {
     }
   },
   methods: {
-    handleClick(evt) {
-      this.$emit("click", evt);
+    handleToggleClick() {
+      this.$emit('toggle-navbar', !this.isCollapsed);
     },
   },
 };
 </script>
-
-<style></style>

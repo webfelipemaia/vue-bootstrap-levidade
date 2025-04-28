@@ -14,7 +14,7 @@
   </form>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
 import { useSearchStore } from '@/store/searchStore'
 

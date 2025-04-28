@@ -1,20 +1,28 @@
 <template>
-    <nav class="navbar navbar-expand-lg" :class="[computedBgColor, computedTextColor, props.additionalClasses]">
-      <div :class="props.containerType">
-        <slot name="navbar-brand"></slot>
-        <slot name="navbar-toggle"></slot>
-        
-        <div class="collapse navbar-collapse" id="navbarContent">
-          <slot name="navbar-nav"></slot>
-          <slot name="navbar-search"></slot>
-        </div>
+  <nav class="navbar navbar-expand-lg" :class="[computedBgColor, computedTextColor, props.additionalClasses]">
+    <div :class="props.containerType">
+      <slot name="navbar-brand"></slot>
+      
+      <leve-button
+        v-if="$slots['navbar-nav']"
+        is-navbar-toggler
+        :is-collapsed="isCollapsed"
+        @toggle-navbar="updateCollapseState"
+        aria-label="Toggle navigation"
+      />
+      
+      <div class="navbar-collapse" :class="{ 'collapse': true, 'show': !isCollapsed }">
+        <slot name="navbar-nav"></slot>
+        <slot name="navbar-search"></slot>
       </div>
-    </nav>
-  </template>
+    </div>
+  </nav>
+</template>
   
   <script setup>
-  import { defineProps, computed } from 'vue'
-  
+  import { defineProps, computed, ref } from 'vue'
+  import LeveButton from '../LeveButton.vue'
+
   const props = defineProps({
     containerType: {
       type: String,
@@ -37,9 +45,20 @@
     additionalClasses: {
       type: String,
       default: ''
-    }
+    },
+      
+    collapseNavId: {
+      type: String,
+      default: 'navbarMainCollapse'
+    },
   })
   
+  const isCollapsed = ref(true)
+
+  const updateCollapseState = (newState) => {
+    isCollapsed.value = newState;
+  };
+
   // Computed para a cor de fundo
   const computedBgColor = computed(() => props.bgColor)
   

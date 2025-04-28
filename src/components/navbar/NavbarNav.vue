@@ -57,7 +57,7 @@ const props = defineProps({
   navClass: {
     type: String,
     default: 'me-auto mb-2 mb-lg-0'
-  }
+  },
 })
 
 // Função para verificar se o item é um divisor
