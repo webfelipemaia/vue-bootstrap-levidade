@@ -22,7 +22,6 @@
         <template #navbar-search>
           <NavbarSearch 
             placeholder="Buscar..."
-            button-text="Buscar"
             button-icon="bi bi-search"
             show-button-icon
           />

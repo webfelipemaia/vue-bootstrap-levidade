@@ -14,6 +14,10 @@
 // Custom navbar navigation (doesn't require `.nav`, but does make use of `.nav-link`).
 .navbar {
 
+  form.d-flex {
+      height: 46px;
+  }
+
   .navbar-nav {
 
       .nav-item {

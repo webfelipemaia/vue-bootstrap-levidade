@@ -1,4 +1,13 @@
 <template>
+  <template v-if="isActiveFlexContainer">
+    <nav class="navbar">
+        <slot name="navbar-brand"></slot>
+        <slot name="navbar-nav"></slot>
+        <slot name="navbar-search"></slot>
+        <slot name="navbar-option"></slot>
+    </nav>
+  </template>
+  <template v-else>
   <nav class="navbar navbar-expand-lg" :class="[computedBgColor, computedTextColor, props.additionalClasses]">
     <div :class="props.containerType">
       <slot name="navbar-brand"></slot>
@@ -17,6 +26,7 @@
       </div>
     </div>
   </nav>
+</template>
 </template>
   
   <script setup>
@@ -51,6 +61,11 @@
       type: String,
       default: 'navbarMainCollapse'
     },
+
+    isActiveFlexContainer: {
+      type: Boolean,
+      default: false
+    }
   })
   
   const isCollapsed = ref(true)

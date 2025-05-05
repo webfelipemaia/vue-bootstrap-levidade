@@ -62,4 +62,5 @@ const props = defineProps({
 
 // Função para verificar se o item é um divisor
 const isDivider = (item) => item.isDivider || (item.divider && item.divider === true)
+// Criar função para recuperar o tamanho da tela e modificar o flex-direction caso seja um breakpoint mobile
 </script>

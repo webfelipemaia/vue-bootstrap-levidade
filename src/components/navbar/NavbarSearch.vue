@@ -7,9 +7,9 @@
       :placeholder="placeholder"
       aria-label="Search"
     />
-    <button class="btn btn-outline-success" type="submit">
+    <button class="btn" :class="buttonClass" type="submit">
       <i v-if="showButtonIcon" :class="buttonIcon" class="me-1"></i>
-      {{ buttonText }}
+      {{ buttonText || '' }}
     </button>
   </form>
 </template>
@@ -25,7 +25,7 @@ const props = defineProps({
   },
   buttonText: {
     type: String,
-    default: 'Search'
+    default: ''
   },
   buttonIcon: {
     type: String,
@@ -34,7 +34,11 @@ const props = defineProps({
   showButtonIcon: {
     type: Boolean,
     default: false
-  }
+  },
+  buttonClass: {
+    type: String,
+    default: 'btn-outline-light'
+  },
 })
 
 const searchStore = useSearchStore()
