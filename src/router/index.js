@@ -12,6 +12,7 @@ import ButtonGroupExample from "../examples/ButtonGroupExample.vue";
 import CardExample from "../examples/CardExample.vue";
 import DropdownExample from "../examples/DropdownExample.vue";
 import ImageExample from "../examples/ImageExample.vue";
+import NavbarExample from "../examples/NavbarExample.vue";
 import NotificationExample from "../examples/NotificationExample.vue";
 import OffcanvasExample from "../examples/OffcanvasExample.vue";
 import ToastExample from "../examples/ToastExample.vue";
@@ -30,6 +31,7 @@ const routes = [
   { path: "/doc/card", name: "Card", component: CardExample },
   { path: "/doc/dropdown", name: "Dropdown", component: DropdownExample },
   { path: "/doc/image", name: "Image", component: ImageExample },
+  { path: "/doc/navbar", name: "Navbar", component: NavbarExample },
   { path: "/doc/notification", name: "Notification", component: NotificationExample },
   { path: "/doc/offcanvas", name: "Offcanvas", component: OffcanvasExample },
   { path: "/doc/toast", name: "Toast", component: ToastExample },

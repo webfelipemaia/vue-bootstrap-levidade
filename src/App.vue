@@ -4,7 +4,9 @@
     <!-- Header Slots -->
     <template #navbar>
 
-      <NavbarMain bg-color="bg-primary">
+      <NavbarMain
+        bgColor="bg-primary"
+      >
         <template #navbar-brand>
           <leve-image :src="'https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg'" 
                       alt="Descrição" 
@@ -83,6 +85,7 @@
           <li class="nav-item"><router-link class="nav-link" to="/doc/card">Card</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/doc/dropdown">Dropdown</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/doc/image">Image</router-link></li>
+          <li class="nav-item"><router-link class="nav-link" to="/doc/navbar">Navbar</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/doc/offcanvas">Offcanvas</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/doc/toast">Toast</router-link></li>
           <li class="nav-item"><router-link class="nav-link" to="/doc/tooltip">Tooltip</router-link></li>
