@@ -1,26 +1,37 @@
 <template>
-  <RouterLink 
-    v-if="isRouterLink"
-    class="navbar-brand"
-    :to="brandHref"
-    :class="brandClasses"
+  <component
+    :is="isRouterLink ? RouterLink : 'a'"
+    :to="isRouterLink ? brandHref : undefined"
+    :href="!isRouterLink ? brandHref : undefined"
+    :class="['navbar-brand', brandClasses]"
   >
-    <i v-if="showIcon" :class="iconClass" class="me-2"></i>
-    {{ brandText }}
-  </RouterLink>
-  <a
-    v-else
-    class="navbar-brand"
-    :href="brandHref"
-    :class="brandClasses"
-  >
-    <i v-if="showIcon" :class="iconClass" class="me-2"></i>
-    {{ brandText }}
-  </a>
+  
+    <slot v-if="$slots.default" />
+
+    <template v-else-if="brandImage">
+      <img
+        :src="brandImage"
+        alt="Brand logo"
+        class="me-2"
+        :style="{ height: brandHeight, width: brandWidth }"
+      />
+      <span class="navbar-brand mb-0 h1">{{ brandText }}</span>
+    </template>
+
+    <template v-else>
+      <i
+        v-if="showIcon"
+        :class="[iconClass, 'me-2']"
+        :style="{ height: brandHeight, width: brandWidth }"
+      ></i>
+      {{ brandText }}
+    </template>
+  </component>
 </template>
 
 <script setup>
 import { computed, inject } from 'vue'
+import { RouterLink } from 'vue-router'
 
 const props = defineProps({
   brandText: {
@@ -33,7 +44,7 @@ const props = defineProps({
   },
   iconClass: {
     type: String,
-    default: 'bi bi-bootstrap'
+    default: ''
   },
   showIcon: {
     type: Boolean,
@@ -42,6 +53,18 @@ const props = defineProps({
   useRouterLink: {
     type: Boolean,
     default: false
+  },
+  brandImage: {
+    type: String,
+    default: ''
+  },
+  brandHeight: {
+    type: String,
+    default: '32px'
+  },
+  brandWidth: {
+    type: String,
+    default: '32px'
   }
 })
 
@@ -51,7 +74,6 @@ const navbarBgColor = inject('navbarBgColor', 'bg-body-primary')
 const isRouterLink = computed(() => props.useRouterLink && props.brandHref.startsWith('/'))
 
 const brandClasses = computed(() => {
-  // Aplica classes apenas se theme foi explicitamente definido
   if (navbarTheme !== null) {
     return {
       'text-white': navbarTheme === 'dark' && !navbarBgColor.includes('body'),
@@ -59,6 +81,6 @@ const brandClasses = computed(() => {
       'text-body-emphasis': navbarBgColor.includes('body')
     }
   }
-  return {} // Retorna objeto vazio para usar classes padrão do Bootstrap
+  return {}
 })
 </script>

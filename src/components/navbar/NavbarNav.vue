@@ -9,10 +9,13 @@
           <template #dropdown-icon>
             <i v-if="item.icon" :class="item.icon" class="me-1"></i>
           </template>
+
           <div v-for="(subItem, subIndex) in item.items" :key="subIndex">
+
             <template v-if="isDivider(subItem)">
               <hr class="dropdown-divider">
             </template>
+            
             <template v-else>
               <RouterLink
                 :to="subItem.to || { name: subItem.text }"
@@ -29,6 +32,7 @@
           </div>
         </leve-dropdown>
       </template>
+      
       <template v-else>
         <RouterLink 
           :to="item.to || { name: item.text }"
@@ -68,7 +72,7 @@ const navbarTheme = inject('navbarTheme', null)
 const isDivider = (item) => item.isDivider || (item.divider && item.divider === true)
 
 const navLinkClass = (item) => {
-  // Aplica classes apenas se theme foi explicitamente definido
+  
   if (navbarTheme !== null) {
     return {
       'text-white': navbarTheme === 'dark' && !item.active,
@@ -77,7 +81,7 @@ const navLinkClass = (item) => {
       'text-primary-emphasis': navbarTheme === 'light' && item.active
     }
   }
-  return {} // Retorna objeto vazio para usar classes padrão do Bootstrap
+  return {}
 }
 
 const dropdownItemClass = (item) => ({

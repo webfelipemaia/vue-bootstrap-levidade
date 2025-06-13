@@ -23,14 +23,10 @@
 
         <pre v-highlightjs>
             <code class="javascript">
-&lt;NavbarMain bg-color=&quot;bg-primary&quot;&gt;
+&lt;NavbarMain bg-color=&quot;bg-light&quot;&gt;
   &lt;template #navbar-brand&gt;
-    &lt;leve-image 
-      :src=&quot;&#39;https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg&#39;&quot; 
-      alt=&quot;Descri&ccedil;&atilde;o&quot;
-      :thumbnailWidth=&quot;30&quot; 
-      :thumbnailHeight=&quot;24&quot;
-    &gt;
+    &lt;leve-image :src=&quot;'https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg'&quot; alt=&quot;Descrição&quot;
+      :thumbnailWidth=&quot;30&quot; :thumbnailHeight=&quot;24&quot;&gt;
       Bootstrap
     &lt;/leve-image&gt;
   &lt;/template&gt;
@@ -40,13 +36,10 @@
   &lt;/template&gt;
 
   &lt;template #navbar-search&gt;
-    &lt;NavbarSearch 
-      placeholder=&quot;Buscar...&quot; 
-      button-icon=&quot;bi bi-search&quot; 
-      show-button-icon 
-    /&gt;
+    &lt;NavbarSearch placeholder=&quot;Buscar...&quot; button-icon=&quot;bi bi-search&quot; show-button-icon /&gt;
   &lt;/template&gt;
-&lt;/NavbarMain&gt;              
+&lt;/NavbarMain&gt;
+           
             </code>
         </pre>
 
@@ -59,7 +52,7 @@
         </div>
         <br />
 
-        <NavbarMain bg-color="bg-warning">
+        <NavbarMain bg-color="bg-light">
           <template #navbar-brand>
             <leve-image :src="'https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg'" alt="Descrição"
               :thumbnailWidth="30" :thumbnailHeight="24">
@@ -166,6 +159,14 @@
 
         <pre v-highlightjs>
           <code class="javascript">
+&lt;NavbarMain bg-color=&quot;bg-light&quot;&gt;
+  &lt;template #navbar-brand&gt;
+    &lt;leve-image :src=&quot;'https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg'&quot; alt=&quot;Descrição&quot;
+      :thumbnailWidth=&quot;30&quot; :thumbnailHeight=&quot;24&quot;&gt;
+      Bootstrap
+    &lt;/leve-image&gt;
+  &lt;/template&gt;
+&lt;/NavbarMain&gt;
 
           </code>
         </pre>
@@ -176,6 +177,111 @@
               :thumbnailWidth="30" :thumbnailHeight="24">
               Bootstrap
             </leve-image>
+          </template>
+        </NavbarMain>
+      </section>
+
+      <section id="how-to-use">
+        <h5 id="alert-basic">Imagem e Texto</h5>
+        <p>Imagem e texto podem ser aplicados utilizando o componente <code>NavbarBrand</code>.</p>
+
+        <div class="howto-use__title">
+          <span>
+            <i class="bi bi-code-slash"></i> code
+          </span>
+        </div>
+
+        <pre v-highlightjs>
+          <code class="javascript">
+// Uso padrão
+&lt;NavbarMain bg-color=&quot;bg-light&quot;&gt;
+  &lt;template #navbar-brand&gt;
+    &lt;NavbarBrand
+      brand-text=&quot;Minha Marca&quot;
+      brand-href=&quot;/&quot;
+      brand-image=&quot;https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg&quot;
+      :use-router-link=&quot;true&quot;
+      brand-height=&quot;28px&quot;
+      brand-width=&quot;32px&quot;
+    /&gt;
+  &lt;/template&gt;
+&lt;/NavbarMain&gt;
+
+// Uso com imagem personalizada
+&lt;NavbarMain bg-color=&quot;bg-light&quot;&gt;
+  &lt;template #navbar-brand&gt;
+    &lt;NavbarBrand brand-href=&quot;/&quot;&gt;
+      &lt;img src=&quot;https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg&quot; alt=&quot;Logo&quot; style=&quot;height: 30px;&quot; /&gt;
+    &lt;/NavbarBrand&gt;
+  &lt;/template&gt;
+&lt;/NavbarMain&gt;
+
+// Sem imagem, apenas texto e ícone
+&lt;NavbarMain bg-color=&quot;bg-light&quot;&gt;
+  &lt;template #navbar-brand&gt;
+    &lt;NavbarBrand
+      brand-text=&quot;Minha Marca&quot;
+      brand-href=&quot;/&quot;
+      icon-class=&quot;bi bi-lightning&quot;
+    /&gt;
+  &lt;/template&gt;
+&lt;/NavbarMain&gt;
+
+// Somente texto
+&lt;NavbarMain bg-color=&quot;bg-light&quot;&gt;
+  &lt;template #navbar-brand&gt;
+    &lt;NavbarBrand
+      brand-text=&quot;Minha Marca&quot;
+      brand-href=&quot;/&quot;
+    /&gt;
+  &lt;/template&gt;
+&lt;/NavbarMain&gt;
+
+          </code>
+        </pre>
+
+        <p>Uso padrão</p>
+        <NavbarMain bg-color="bg-light">
+          <template #navbar-brand>
+            <NavbarBrand
+              brand-text="Minha Marca"
+              brand-href="/"
+              brand-image="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg"
+              :use-router-link="true"
+              brand-height="28px"
+              brand-width="32px"
+            />
+          </template>
+        </NavbarMain>
+
+        <p>Uso com imagem personalizada</p>
+        <NavbarMain bg-color="bg-light">
+          <template #navbar-brand>
+            <NavbarBrand brand-href="/">
+              <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" style="height: 30px;" />
+            </NavbarBrand>
+          </template>
+        </NavbarMain>
+
+        <p>Sem imagem, apenas texto e ícone.</p>
+        <NavbarMain bg-color="bg-light">
+          <template #navbar-brand>
+            <NavbarBrand
+              brand-text="Minha Marca"
+              brand-href="/"
+              icon-class="bi bi-lightning"
+            />
+          </template>
+        </NavbarMain>
+
+
+        <p>Somente texto.</p>
+        <NavbarMain bg-color="bg-light">
+          <template #navbar-brand>
+            <NavbarBrand
+              brand-text="Minha Marca"
+              brand-href="/"
+            />
           </template>
         </NavbarMain>
       </section>
@@ -192,6 +298,39 @@
 
         <pre v-highlightjs>
           <code class="javascript">
+// Estrutura do menu
+const navItems = [
+  {
+    text: 'Home',
+    href: '/',
+    active: false,
+    icon: 'bi bi-house'
+  },
+  {
+    text: 'Index',
+    href: '/doc',
+    active: false,
+    icon: 'bi bi-person'
+  },
+  {
+    text: 'Dropdown',
+    dropdown: true,
+    items: [
+      { text: 'Accordion', href: '/doc/accordion', active: false },
+      { text: 'Alert', href: '/doc/alert', active: false },
+      { isDivider: true },
+      { text: 'Badge', href: '/doc/badge', active: false }
+    ]
+  }
+]
+
+...
+
+&lt;NavbarMain bg-color=&quot;bg-light&quot;&gt;
+  &lt;template #navbar-nav&gt;
+    &lt;NavbarNav :items=&quot;navItems&quot; /&gt;
+  &lt;/template&gt;
+&lt;/NavbarMain&gt;
 
           </code>
         </pre>
@@ -215,6 +354,53 @@
 
         <pre v-highlightjs>
           <code class="javascript">
+&lt;NavbarMain bg-color=&quot;bg-light&quot;&gt;
+  &lt;template #navbar-search&gt;
+    &lt;NavbarSearch
+      placeholder=&quot;Pesquisar produtos...&quot;
+      button-text=&quot;Buscar&quot;
+      button-icon=&quot;bi bi-search&quot;
+      show-button-icon
+    /&gt;
+  &lt;/template&gt;
+&lt;/NavbarMain&gt;
+
+          </code>
+        </pre>
+
+        <NavbarMain bg-color="bg-light">
+          <template #navbar-search>
+            <NavbarSearch
+              placeholder="Pesquisar produtos..."
+              button-text="Buscar"
+              button-icon="bi bi-search"
+              show-button-icon
+            />
+          </template>
+        </NavbarMain>
+      </section>
+
+      <section id="how-to-use">
+        <h5 id="alert-basic">Toggle, external content, offcanvas </h5>
+
+        <div class="howto-use__title">
+          <span>
+            <i class="bi bi-code-slash"></i> code
+          </span>
+        </div>
+
+        <pre v-highlightjs>
+          <code class="javascript">
+&lt;NavbarMain bg-color=&quot;bg-light&quot;&gt;
+  &lt;template #navbar-search&gt;
+    &lt;NavbarSearch
+      placeholder=&quot;Pesquisar produtos...&quot;
+      button-text=&quot;Buscar&quot;
+      button-icon=&quot;bi bi-search&quot;
+      show-button-icon
+    /&gt;
+  &lt;/template&gt;
+&lt;/NavbarMain&gt;
 
           </code>
         </pre>
@@ -234,7 +420,8 @@
 
       <section id="how-to-use">
         <h5 id="alert-basic">NavbarToggle (Botão Mobile)</h5>
-        <p>Controla a visibilidade do menu em dispositivos móveis. O botão é gerado automaticamente.</p>
+        <p>Controla a visibilidade do menu em dispositivos móveis. O botão é gerado automaticamente. 
+          Reduza o tamanho da tela para visualizar o botão.</p>
 
         <div class="howto-use__title">
           <span>
@@ -244,19 +431,52 @@
 
         <pre v-highlightjs>
           <code class="javascript">
+// Trecho do botão
+...
+&lt;div :class=&quot;containerType&quot;&gt;
+  &lt;slot name=&quot;navbar-brand&quot;&gt;&lt;/slot&gt;
+  
+  &lt;leve-button
+    v-if=&quot;$slots['navbar-nav']&quot;
+    is-navbar-toggler
+    :is-collapsed=&quot;isCollapsed&quot;
+    @toggle-navbar=&quot;updateCollapseState&quot;
+    :theme=&quot;computedTheme&quot;
+    aria-label=&quot;Toggle navigation&quot;
+  /&gt;
+  
+  &lt;div class=&quot;navbar-collapse&quot; :class=&quot;{ 'collapse': true, 'show': !isCollapsed }&quot;&gt;
+    &lt;slot name=&quot;navbar-nav&quot;&gt;&lt;/slot&gt;
+    &lt;slot name=&quot;navbar-search&quot;&gt;&lt;/slot&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+...
+
+// aplicação
+&lt;NavbarMain bg-color=&quot;bg-light&quot;&gt;            
+  &lt;template #navbar-brand&gt;
+    &lt;NavbarBrand
+      brand-text=&quot;Minha Marca&quot;
+      brand-href=&quot;/&quot;
+    /&gt;
+  &lt;/template&gt;
+  &lt;template #navbar-nav&gt;
+    &lt;NavbarNav :items=&quot;navItems&quot; /&gt;
+  &lt;/template&gt;
+&lt;/NavbarMain&gt;
 
           </code>
         </pre>
 
-        <NavbarMain bg-color="bg-light">
-          <template #navbar-search>
-            <NavbarSearch
-              placeholder="Pesquisar produtos..."
-              button-text="Buscar"
-              button-icon="bi bi-search"
-              show-button-icon
-              button-class="btn-outline-success"
+        <NavbarMain bg-color="bg-light">            
+          <template #navbar-brand>
+            <NavbarBrand
+              brand-text="Minha Marca"
+              brand-href="/"
             />
+          </template>
+          <template #navbar-nav>
+            <NavbarNav :items="navItems" />
           </template>
         </NavbarMain>
       </section>
@@ -285,6 +505,8 @@ import NavbarMain from '@/components/navbar/NavbarMain.vue';
 import NavbarNav from '@/components/navbar/NavbarNav.vue';
 import NavbarSearch from '@/components/navbar/NavbarSearch.vue';
 import LeveImage from '@/components/image/LeveImage.vue';
+import NavbarBrand from '@/components/navbar/NavbarBrand.vue';
+import NavbarToggle from '@/components/navbar/NavbarToggle.vue';
 
 const navItems = [
   {

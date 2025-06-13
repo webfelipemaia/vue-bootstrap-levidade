@@ -71,20 +71,18 @@ const props = defineProps({
   },
   theme: {
     type: String,
-    default: null, // Alterado para null
+    default: null,
     validator: (value) => value === null || ['light', 'dark'].includes(value)
   }
 })
 
 const isCollapsed = ref(true)
 
-// Primeiro calculamos o tema
 const computedTheme = computed(() => {
   if (props.theme !== null) return props.theme
   return null
 })
 
-// Depois fornecemos o tema para os componentes filhos
 provide('navbarTheme', computedTheme.value)
 provide('navbarBgColor', props.bgColor)
 
@@ -92,7 +90,6 @@ const updateCollapseState = (newState) => {
   isCollapsed.value = newState
 }
 
-// Finalmente calculamos as classes do navbar
 const computedNavbarClasses = computed(() => {
   const classes = [props.bgColor]
   
